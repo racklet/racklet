@@ -86,11 +86,7 @@ fp-info-cache
 # VisualStudioCode.gitignore from https://github.com/github/gitignore. (Licensed as Creative Commons Zero v1.0 Universal: https://github.com/github/gitignore/blob/master/LICENSE)
 #
 
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode
 *.code-workspace
 
 # Local History for Visual Studio Code
