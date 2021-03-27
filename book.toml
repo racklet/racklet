@@ -1,0 +1,32 @@
+[book]
+authors = ["Dennis Marttinen", "Lucas Käldström", "Jaakko Sirén", "Verneri Hirvonen"]
+language = "en"
+multilingual = false
+# Include the whole repo
+src = ""
+title = "Racklet"
+description = "Open Source scale model of Data Centers using commodity compute like Raspberry Pis."
+
+[preprocessor.index]
+
+[preprocessor.links]
+
+[preprocessor.toc]
+command = "mdbook-toc"
+marker = "[TOC]"
+renderer = ["html"]
+
+# Pending PR: https://github.com/Michael-F-Bryan/mdbook-docker-image/pull/8
+# [preprocessor.katex]
+
+[preprocessor.open-on-gh]
+renderer = ["html"]
+
+[output.html]
+git-repository-url = "https://github.com/racklet/racklet"
+additional-css = [".mdbook/print.css"]
+
+# Enable the "mdbook-linkcheck" renderer
+[output.linkcheck]
+# In case linkcheck gives false positives, you might want to change this to "warn" for some time at least
+warning-policy = "error"

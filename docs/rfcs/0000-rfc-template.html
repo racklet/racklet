@@ -1,0 +1,357 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RFC template - Racklet</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Open Source scale model of Data Centers using commodity compute like Raspberry Pis.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../../favicon.png">
+        
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="../../.mdbook/print.css">
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Welcome to Racklet</a></li><li class="chapter-item expanded affix "><li class="part-title">RFCs</li><li class="chapter-item expanded "><a href="../../docs/rfcs/0000-rfc-template.html" class="active"><strong aria-hidden="true">1.</strong> RFC template</a></li><li class="chapter-item expanded "><a href="../../docs/rfcs/0001-high-level-architecture.html"><strong aria-hidden="true">2.</strong> RFC 0001</a></li><li class="chapter-item expanded affix "><a href="../../CONTRIBUTING.html">How to contribute</a></li><li class="chapter-item expanded affix "><a href="../../CODE_OF_CONDUCT.html">Code of Conduct</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Racklet</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/racklet/racklet" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rfc-nnnn-human-readable-title-goes-here"><a class="header" href="#rfc-nnnn-human-readable-title-goes-here">RFC-NNNN: Human-readable title goes here</a></h1>
+<p>Remember to add autogenerated HackMD badge here. See TODO ADD README LINK HERE for more details.</p>
+<p><strong>Authors</strong> (in alphabetical order):</p>
+<ul>
+<li>Author Name, <a href="https://github.com/Author_GitHub_Handle">@Author_GitHub_Handle</a></li>
+<li>Foo Bar, <a href="https://github.com/Foo_Bar">@Foo_Bar</a></li>
+</ul>
+<p><strong>Status</strong> (as defined <a href="https://github.com/kubernetes/enhancements/blob/master/keps/0001-kubernetes-enhancement-proposal-process.md#kep-metadata">here</a>): <code>Provisional</code></p>
+<p><strong>Creation Date</strong>: <code>YYYY-MM-DD</code></p>
+<p><strong>Last Updated</strong>: <code>YYYY-MM-DD</code></p>
+<p><strong>RFC Handle</strong>: <code>rfc-template</code> (should match the file name, as <code>NNNN-{rfc_handle}</code>)</p>
+<p><strong>Initial Pull Request</strong>: <a href="https://github.com/racklet/racklet/pull/NNNN">racklet/racklet#NNNN</a></p>
+<p><strong>Tracking Issue</strong>: <a href="https://github.com/racklet/racklet/issues/NNNN">racklet/racklet#NNNN</a></p>
+<p>The TOC marker below will translate into an automatically-generated table of contents when generated
+by <code>mdBook</code> and when edited online in HackMD.</p>
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#motivation">Motivation</a>
+<ul>
+<li><a href="#goals">Goals</a></li>
+<li><a href="#non-goals">Non-Goals</a></li>
+</ul>
+</li>
+<li><a href="#proposal">Proposal</a>
+<ul>
+<li><a href="#values">Values</a></li>
+<li><a href="#user-stories">User stories</a></li>
+<li><a href="#guide-level-explanation">Guide-level explanation</a></li>
+<li><a href="#risks-and-mitigations">Risks and Mitigations</a></li>
+</ul>
+</li>
+<li><a href="#drawbacks">Drawbacks</a></li>
+<li><a href="#rationale-and-alternatives">Rationale and alternatives</a></li>
+<li><a href="#prior-art">Prior art</a></li>
+<li><a href="#unresolved-questions">Unresolved questions</a></li>
+<li><a href="#future-possibilities">Future possibilities</a></li>
+<li><a href="#implementation-history">Implementation History</a></li>
+</ul>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<p>One paragraph explanation of the feature.</p>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p>Why are we doing this? What use cases does it support? What is the expected outcome?</p>
+<h3 id="goals"><a class="header" href="#goals">Goals</a></h3>
+<p>What is in scope for this work?</p>
+<h3 id="non-goals"><a class="header" href="#non-goals">Non-Goals</a></h3>
+<p>What is out of scope for this work?</p>
+<h2 id="proposal"><a class="header" href="#proposal">Proposal</a></h2>
+<p>This is the technical portion of the RFC. Explain the design in sufficient detail that:</p>
+<ul>
+<li>Its interaction with other features is clear.</li>
+<li>It is reasonably clear how the feature would be implemented.</li>
+<li>Corner cases are dissected by example.</li>
+</ul>
+<p>The section should return to the examples given in the guide-level explanation below, and explain more fully how the detailed proposal makes those examples work.</p>
+<h3 id="values"><a class="header" href="#values">Values</a></h3>
+<p>Describe what values does the proposed feature reflect. See <a href="0001-high-level-architecture.html">RFC-0001</a>.</p>
+<h3 id="user-stories"><a class="header" href="#user-stories">User stories</a></h3>
+<p>Explain what is the use case of the proposed feature and how it would benefit the user.</p>
+<h3 id="guide-level-explanation"><a class="header" href="#guide-level-explanation">Guide-level explanation</a></h3>
+<p>Explain the proposal as if it was already a feature of the project and this would be the documentation for that feature.</p>
+<ul>
+<li>Introducing new named concepts.</li>
+<li>Explaining the feature largely in terms of examples.</li>
+<li>If applicable, provide sample error messages, deprecation warnings, or migration guidance.</li>
+<li>If applicable, describe the differences between teaching this to a Racklet administrator versus a Racklet end user.</li>
+</ul>
+<h3 id="risks-and-mitigations"><a class="header" href="#risks-and-mitigations">Risks and Mitigations</a></h3>
+<p>What are the risks of this proposal and how do we mitigate.
+Think broadly.
+For example, consider both security and how this will impact the larger ecosystem.</p>
+<h2 id="drawbacks"><a class="header" href="#drawbacks">Drawbacks</a></h2>
+<p>Why should we <em>not</em> do this? Consider at least one drawback.</p>
+<h2 id="rationale-and-alternatives"><a class="header" href="#rationale-and-alternatives">Rationale and alternatives</a></h2>
+<ul>
+<li>Why is this design the best in the space of possible designs?</li>
+<li>What other designs have been considered and what is the rationale for not choosing them?</li>
+<li>What is the impact of not doing this?</li>
+</ul>
+<h2 id="prior-art"><a class="header" href="#prior-art">Prior art</a></h2>
+<p>Discuss prior art, both the good and the bad, in relation to this proposal.
+A few examples of what this can include are:</p>
+<ul>
+<li>For community proposals: Is this done by some other community and what were their experiences with it?</li>
+<li>For other teams: What lessons can we learn from what other communities have done here?</li>
+<li>Papers: Are there any published papers or great posts that discuss this? If you have some relevant papers to refer to, this can serve as a more detailed theoretical background.</li>
+</ul>
+<p>This section is intended to encourage you as an author to think about the lessons from other projects and provide readers of your RFC with a fuller picture.
+If there is no prior art, that is fine - your ideas are interesting to us regardless of whether they are brand new or adaptations from other projects.</p>
+<h2 id="unresolved-questions"><a class="header" href="#unresolved-questions">Unresolved questions</a></h2>
+<ul>
+<li>What parts of the design do you expect to resolve through the RFC process before this gets merged?</li>
+<li>What parts of the design do you expect to resolve through the implementation of this feature before stabilization?</li>
+<li>What related issues do you consider out of scope for this RFC that could be addressed in the future independently of the solution that comes out of this RFC?</li>
+</ul>
+<h2 id="future-possibilities"><a class="header" href="#future-possibilities">Future possibilities</a></h2>
+<p>Think about what the natural extension and evolution of your proposal would
+be and how it would affect the project as a whole in a holistic
+way. Try to use this section as a tool to more fully consider all possible
+interactions with the project in your proposal.
+Also consider how this all fits into the roadmap for the project.</p>
+<p>This is also a good place to &quot;dump ideas&quot;, if they are out of scope for the
+RFC you are writing but otherwise related.</p>
+<p>If you have tried and cannot think of any future possibilities,
+you may simply state that you cannot think of anything.</p>
+<p>Note that having something written down in the future-possibilities section
+is not a reason to accept the current or a future RFC; such notes should be
+in the section on motivation or rationale in this or subsequent RFCs.
+The section merely provides additional information.</p>
+<h2 id="implementation-history"><a class="header" href="#implementation-history">Implementation History</a></h2>
+<p>Major milestones in the lifecycle of a RFC should be tracked here.
+Major milestones might include:</p>
+<ul>
+<li>The status of the RFC has been changed or another major to the RFC has been accepted.</li>
+<li>The first Racklet version including an initial version of the RFC is released.</li>
+<li>The Racklet version where the RFC graduated to general availability is released.</li>
+<li>The RFC has been retired or superseded.</li>
+</ul>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/rfcs/0000-rfc-template.md">Edit this file on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../docs/rfcs/0001-high-level-architecture.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../../docs/rfcs/0001-high-level-architecture.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
