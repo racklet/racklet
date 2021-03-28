@@ -1,32 +1,8 @@
 # RFC-0001: Racklet
 
-<!-- toc -->
-- [RFC Metadata](#RFC-Metadata)
-- [Summary](#Summary)
-- [Motivation](#Motivation)
-  - [Goals of this RFC](#Goals-of-this-RFC)
-  - [Non-Goals of this RFC](#Non-Goals-of-this-RFC)
-- [Proposal](#Proposal)
-  - [Values](#Values)
-  - [User Perspectives](#User-Perspectives)
-    - [Tangible Cloud Teaching](#Tangible-Cloud-Teaching)
-    - [Mobile Cluster for Conferences](#Mobile-Cluster-for-Conferences)
-    - [CTF contests](#CTF-contests)
-    - [Workshops](#Workshops)
-    - [Homelabs](#Homelabs)
-    - [Research and Development](#Research-and-Development)
-  - [User Goals](#User-Goals)
-- [Design Details](#Design-Details)
-  - [High-level Layers](#High-level-Layers)
-    - [Layer 1: Structural](#Layer-1-Structural)
-    - [Layer 2: Electrical](#Layer-2-Electrical)
-    - [Layer 3: Firmware](#Layer-3-Firmware)
-    - [Layer 4: System Software](#Layer-4-System-Software)
-    - [Layer 5: User Software](#Layer-5-User-Software)
-  - [Test Plan](#Test-Plan)
-  - [Graduation Criteria](#Graduation-Criteria)
-- [Implementation History](#Implementation-History)
-<!-- /toc -->
+[TOC]
+
+<a href="0001-high-level-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a>
 
 ## RFC Metadata
 
@@ -68,7 +44,7 @@ Physically a Racklet rack is a about the size of a 1 liter milk carton and hosts
 
 Racklet aims to inspire their users to explore how modern, advanced server architectures work in practice, in a tangible and educational way. With the new-found knowledge and inspiration, the user may apply their modernization skills on traditional server infrastructure, which improves the status quo and pushes the industry forward. The aim of the project is also to write modular pieces of software and firmware that can be re-used across a diverse set of systems, not only on Racklet itself.
 
-Racklet is defined by its values and principles. Below you can read about the 9 values that shape this project, and what they mean in practice. One value to highlight here is [_accessibility_](#Accessibility). Racklet is 100% open source and should be accessible to a group as diverse as possible from all over the world. This means all parts of the system should be reproducible through open PCB designs, 3D-printed casing, and commodity, off-the-shelf hardware. We want to lower the barrier of entry for this domain.
+Racklet is defined by its values and principles. Below you can read about the 9 values that shape this project, and what they mean in practice. One value to highlight here is [_accessibility_](#accessibility). Racklet is 100% open source and should be accessible to a group as diverse as possible from all over the world. This means all parts of the system should be reproducible through open PCB designs, 3D-printed casing, and commodity, off-the-shelf hardware. We want to lower the barrier of entry for this domain.
 
 In this RFC, we will outline what Racklet is, why create it (from the user's perspective), and the values and design constraints for the system.
 
@@ -83,8 +59,6 @@ Have fun tinkering with it!
 **Problem statement** (choose the one that appeals to you):
 
 > Distributed systems of various kinds are steadily becoming the foundation for all important technological environments; and their backends require ever-increasing capacity. The world of cloud computing software is rapidly evolving towards dynamic, scalable and self-correcting systems. The amount of tools and services required to run high-performing cloud systems in a diverse range of environments are vast, and the integration between them complex[^complex_cloud]. Due to the complicated nature of this quickly-evolving cloud infrastructure, how can newcomers to the field of cloud computing get an idea of the landscape and workings of the systems in an effective way?
-
-[^complex_cloud]: See [“8 ways the cloud is more complex than you think | CIO.”](https://www.cio.com/article/3430760/8-ways-the-cloud-is-more-complex-than-you-think.html) and [“Cloud Computing, Once Loved For Its Simplicity, Is Now A Complex Beast.”](https://www.forbes.com/sites/joemckendrick/2018/09/12/cloud-computing-once-loved-for-its-simplicity-is-now-a-complex-beast/#4fbb3641747c) (accessed Dec. 05, 2019).
 
 and/or
 
@@ -102,8 +76,6 @@ As detailed in the [Summary](#summary) section above, _"Racklet is a fully-integ
 [Rust]: https://www.rust-lang.org/
 
 As pointed out in the first problem statement, it can be challenging to "get into" to the server infrastructure world, especially if you want to run your own servers, due to a multitude of reasons, including complexity, lack of standardization at several layers of the stack, and cost. Through Racklet, we want to explore these venues in a tangible and low-cost way with the help of Raspberry Pi's (or alternate single board computers). It has been shown earlier that Raspberry Pis can be helpful for teaching cloud computing[^kubecloud], hence we believe this could be a good fit.
-
-[^kubecloud]: "KubeCloud: A Small-Scale Tangible Cloud Computing Environment". Master's thesis in Computer Engineering at Aarhus University by Kasper Nissen and Martin Jensen. Published June 6th, 2016. [Download PDF here](https://github.com/KubeCloud/thesis/raw/master/master.pdf)
 
 The goal of the project is to be comprehensive and "real-world" enough to feature, at least conceptually, most of what you would find in a modern hyperscaler server infrastructure environment, but still clear, well-documented, and user-friendly enough to attract and welcome new, future talents to the server and firmware worlds.
 
@@ -158,7 +130,7 @@ The following values apply to the whole system, and are sorted roughly in priori
    [JSON]: https://en.wikipedia.org/wiki/JSON
    [YAML]: https://en.wikipedia.org/wiki/YAML
 
-1. **Accessibility / Reproducibility** <span id="Accessibility"></span>
+1. **Accessibility / Reproducibility** <span id="accessibility"></span>
    1. **Open Source**: Racklet is 100% open source software and hardware. Anyone can contribute, improve, fork and access the project. The dependencies of the project will also be openly accessible.
    2. **Common off-the-shelf parts:** Only use commonly available components that can be aquired in most parts of the world in a frictionless manner. In other words, no exotic hard-to-reproduce designs.
    3. **3D printed parts**: For non-off-the-shelf casing, we will provide 3D-printable designs that can easily be reproduced. Modelling is done in software that does not require paid-for subscriptions. Both printable STL output and the underlying save files are published to GitHub.
@@ -245,15 +217,11 @@ Racklet can be used for Research and Development purposes in Computer Labs where
 
 1. **Secure Firmware[^trusted_firmware] and Software Updates**: When the user gets notified that a new release is available, the user _doesn't_ want to do it the "classical" way of downloading some hex binary and flashing it manually for each server. Instead, they want the upgrades to be atomic (e.g. A/B partitioning), secure (payload is signed), automated and defend against common upgrading attacks (e.g. [rollback attack]). Optionally, automatic deployment of upgrades can be enabled.
 
-    [^trusted_firmware]: For example the [1st stage bootloader of the Raspberry Pi 4] is currently closed source software which we cannot audit or modify, and hence cannot use as a "complete end to end" hardware root of trust. However, such non-idealities don't stop us from getting as close as possible to full hardware root of trust, and more importantly, conceptually being consistent in the way we work with these SBCs and "normal" servers.
-
     [1st stage bootloader of the Raspberry Pi 4]: https://github.com/raspberrypi/rpi-eeprom
 
     [rollback attack]: https://en.wikipedia.org/wiki/Downgrade_attack (This is for software protocols such as TLS, but the same principle applies to firmware as well.)
 
 1. **Network Boot in an Zero-Trust Environment**: The user should feel ready to plug Racklet in to (almost) any existing network, without the system interfering with existing devices on the network or vice versa. This goes strongly in hand with #3 as ensuring security, especially in the boot and upgrade process, is of paramount importance[^security].
-
-    [^security]: At least initially this does not mean that the system is 100% secure, there are both some practical limits[^trusted_firmware] and software/hardware features that need to be explored for improved security (e.g. [ARM TrustedFirmware]).
 
     [ARM TrustedFirmware]: https://www.trustedfirmware.org/
 
@@ -333,3 +301,13 @@ For this project to be considered successful and graduated, we mandate the follo
 ## Implementation History
 
 1. `2020-12-10`: First version of this RFC has been accepted
+
+---
+
+[^complex_cloud]: See [“8 ways the cloud is more complex than you think | CIO.”](https://www.cio.com/article/3430760/8-ways-the-cloud-is-more-complex-than-you-think.html) and [“Cloud Computing, Once Loved For Its Simplicity, Is Now A Complex Beast.”](https://www.forbes.com/sites/joemckendrick/2018/09/12/cloud-computing-once-loved-for-its-simplicity-is-now-a-complex-beast/#4fbb3641747c) (accessed Dec. 05, 2019).
+
+[^kubecloud]: "KubeCloud: A Small-Scale Tangible Cloud Computing Environment". Master's thesis in Computer Engineering at Aarhus University by Kasper Nissen and Martin Jensen. Published June 6th, 2016. [Download PDF here](https://github.com/KubeCloud/thesis/raw/master/master.pdf)
+
+[^trusted_firmware]: For example the [1st stage bootloader of the Raspberry Pi 4] is currently closed source software which we cannot audit or modify, and hence cannot use as a "complete end to end" hardware root of trust. However, such non-idealities don't stop us from getting as close as possible to full hardware root of trust, and more importantly, conceptually being consistent in the way we work with these SBCs and "normal" servers.
+
+[^security]: At least initially this does not mean that the system is 100% secure, there are both some practical limits[^trusted_firmware] and software/hardware features that need to be explored for improved security (e.g. [ARM TrustedFirmware]).
