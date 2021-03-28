@@ -1,0 +1,38 @@
+[book]
+authors = ["Dennis Marttinen", "Lucas Käldström", "Jaakko Sirén", "Verneri Hirvonen"]
+language = "en"
+multilingual = false
+src = "docs"
+title = "Racklet"
+description = "Open Source scale model of Data Centers using commodity compute like Raspberry Pis."
+
+[build]
+use-default-preprocessors = false
+create-missing = false
+
+# Opt-out of using the index preprocessor, as it is not updating links to it internally, as it should
+# https://github.com/rust-lang/mdBook/issues/984. This is a blocker for using this plugin.
+# [preprocessor.index]
+
+[preprocessor.links]
+
+[preprocessor.toc]
+command = "mdbook-toc"
+marker = "[TOC]"
+renderer = ["html"]
+
+# Pending PR: https://github.com/Michael-F-Bryan/mdbook-docker-image/pull/8
+# [preprocessor.katex]
+
+[preprocessor.open-on-gh]
+renderer = ["html"]
+
+[output.html]
+git-repository-url = "https://github.com/racklet/racklet"
+additional-css = [".mdbook/print.css"]
+cname = "docs.racklet.io"
+
+# Enable the "mdbook-linkcheck" renderer
+[output.linkcheck]
+# In case linkcheck gives false positives, you might want to change this to "warn" for some time at least
+warning-policy = "error"
