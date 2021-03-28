@@ -163,3 +163,12 @@ tmp
 *.log*
 dist
 out
+
+# Ignore automatically-copied files
+docs/index.md
+docs/CODE_OF_CONDUCT.md
+docs/CONTRIBUTING.md
+docs/LICENSE
+
+# Used for running Chrome in Docker for generating PDFs
+chrome-seccomp.json

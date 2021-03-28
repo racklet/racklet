@@ -1,0 +1,102 @@
+@media print {
+    /* There is a random bug in headless Chrome that adds a white box on top of the first h1 header.
+       Here we assume that a) there is only one h1 heading, and that is the first one (this is Markdown
+       best-practice), and b) the only time this will be needed and visible is at the time of printing. 
+       A possible cause of this bug is the "header" of the mdBook page which is not print-optimized. */
+    h1 {
+      margin-top: 40px!important;
+    }
+
+    /* In the beginning of RFCs, one might add a link to the PDF variant of the document, roughly as follows:
+      <a href="NNNN-rfc-name.pdf" target="_blank" rel="noopener" class="print-pdf">Open as PDF</a>
+      We don't want this in the final PDF form; there is no need to print to PDF when you're already reading one
+     */
+    a.print-pdf {
+      display: none;
+    }
+}
+
+/* The CSS code below is slightly forked from the html5-boilerplate project (under the MIT license).
+   Source: https://github.com/h5bp/html5-boilerplate/blob/a73e1ee6894a4d7756b6785f4e262f1790fca2ce/dist/css/style.css#L189-L262 */
+
+@media print {
+    *,
+    *::before,
+    *::after {
+      background: #fff !important;
+      color: #000 !important;
+      /* Black prints faster */
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+  
+    a,
+    a:visited {
+      text-decoration: underline;
+      /* EDIT from upstream: Print links _that refer to external URLs_ with blue to easily see the difference. */
+      color: #20609f!important;
+    }
+  
+    /* EDIT from upstream: The .footnote-definition is here so that the printed PDF only spells out the URLs
+       for links in the footnotes. This to avoid a lot of URLs printed in-line with the text, but still have
+       useful references in the end. */
+    .footnote-definition a[href]::after {
+      content: " (" attr(href) ")";
+    }
+  
+    abbr[title]::after {
+      content: " (" attr(title) ")";
+    }
+  
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
+      content: ""!important;
+    }
+    /* EDIT from upstream: This used to go for links to fragments as well, but we decided we want our fragment links
+       blue as any other link, hence that mention was removed from here. However, a header in Markdown generates to
+       <hX id="my-header"><a class="header">My Header</a></hX>, and the headers themselves we want to be black. Hence,
+       "a.header" is mentioned here instead. */
+    a.header,
+    a[href^="javascript:"] {
+      color: #000!important;
+    }
+  
+    pre {
+      white-space: pre-wrap !important;
+    }
+  
+    pre,
+    blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid;
+    }
+  
+    /*
+     * Printing Tables:
+     * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+    thead {
+      display: table-header-group;
+    }
+  
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
+  
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+  
+    h2,
+    h3 {
+      page-break-after: avoid;
+    }
+  }

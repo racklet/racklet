@@ -1,0 +1,33 @@
+name: Deploy to GH Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Important: This action downloads the LFS all files in the main branch. We should not start doing it
+      # too often as GH enforces quotas. Hence, there's a separate "CI" and "Deploy" job for GH pages. We need
+      # to download the LFS files, otherwise they cannot be added to the gh-pages branch *without* LFS, as
+      # GH Pages does not support LFS files.
+      - uses: actions/checkout@v2
+        with:
+          lfs: true 
+      - name: Compile the mdBook
+        run: make docs
+      - name: Generate PDFs for inclusion in/download from the mdBook
+        run: make generate-pdfs
+      # Note that when there are more than one mdBook output, the generated html is written to "book/html", 
+      # not "book", because there is a need to differentiate the outputs from each other. We're using the
+      # "html" aqnd "linkcheck" outputs.
+      #
+      # We're using Rust's GitHub Action for the publishing, this essentially recreates the
+      # gh-pages branch from scratch on every new push. This is good for us as it allows us
+      # to store LFS-ish files just in the normal worktree without their size adding up over time.
+      - uses: rust-lang/simpleinfra/github-actions/static-websites@master
+        with:
+          deploy_dir: book/html
+          github_token: "${{ secrets.github_token }}"

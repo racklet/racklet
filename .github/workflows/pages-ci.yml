@@ -1,0 +1,11 @@
+name: Verify GH Pages compilation
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile the mdBook
+        run: make docs
