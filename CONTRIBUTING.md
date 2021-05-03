@@ -14,11 +14,12 @@ _As contributors and maintainers of this project, and in the interest of fosteri
 
 ## Community and Access
 
-Join the [racklet@groups.io](https://groups.io/g/racklet) mailing list for calendar invites to calls and edit access to community documents.
 You can ask questions and discuss features on the [#racklet](https://osfw.slack.com/messages/racklet/) Slack channel (you can get an invite at [here](https://slack.osfw.dev/)).
 
 In the future, we are also planning to start public, recurring community meetings where anyone can join and
 participate in the discussion by adding an agenda item to a public meeting notes document.
+
+The community meeting notes document is [here](https://hackmd.io/@racklet/Sk8jHHc7_) (see also the [meeting-notes](https://github.com/racklet/meeting-notes) repo). Look out there for when the community meetings are, and follow the Slack channel.
 
 ## Guidelines
 
@@ -39,7 +40,7 @@ The process to contribute code to Racklet is generally as follows:
 3. Go back to [GitHub](https://github.com/racklet/racklet), select `Pull requests` from the top bar and click
    `New pull request` to the right. Select the `compare across forks` link. This will show repositories in addition to branches.
 4. From the `head repository` dropdown, select your forked repository. If you made a new branch, select it in the `compare` dropdown.
-   You should always target `racklet/racklet` and `main` as the base repository and branch.
+   You should always target `racklet/racklet` (or similar repository) and `main` as the base repository and branch.
 5. With your changes visible, click `Create pull request`. Give it a short, descriptive title and write a comment describing your changes.
    Click `Create pull request`.
 

@@ -9,7 +9,7 @@
 -->
 
 - [RFC process](rfcs/README.md)
-  - [Template](rfcs/0000-rfc-template.md)
+  - [0000: Template](rfcs/0000-rfc-template.md)
   - [0001: Racklet](rfcs/0001-high-level-architecture.md)
 
 <!--
