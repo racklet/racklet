@@ -65,37 +65,46 @@ The section should return to the examples given in the guide-level explanation b
 
 | Part Number | Schematic Reference | Purpose | Unit price [€] | Quantity / Board | Search |
 | -------- | -------- | -------- | -------- | -------- | --- |
-| [PAC1921-1-AIA-TR] | TBD | Power monitoring | 0.81 | 1 | [Power Monitor Search] |
+| [PAC1921-1-AIA-TR] | U2 | Power monitoring | 0.81 | 1 | [Power Monitor Search] |
 | [BD9E302EFJ-E2] | U3 | DCDC Regulator | 0.89 | 1 | [Buck Converter Search] |
 | [1217AS-H-8R2M=P3] | L2 | Inductor 8.2µH | 0.74 | 1 | [Inductor Search] |
 | [LMK316ABJ476ML-T] | C12 / C_out | Output Capacitor 47µF | 0.51 | 1 | [47µF 10V Capacitor Search] |
-| [LMK063BJ104KP-F] | C10 / C_boot | Boot Capacitor 0.1µF | 0.08 | 1 | [0.1µF 10V Capacitor Search]|
 | [GMK316BJ106KL-T] | C8 / C_in | Input Capacitor 10µF | 0.31 | 1 | [10µF 35V Capacitor Search] |
-| [GMK107BJ104KAHT] | C9 / C_in_bypass | Input Bypass Capacitor 0.1µF | 0.09 | 1 | [0.1µF 35V Capacitor Search] |
-| [ERJ-2RKF5493X] | R7 / R_fbt (R1) | Voltage divider 549 kOhm | 0.08 | 1 | [549 kOhm Resistor] |
-| [ERJ-1GNF1023C] | R8 / R_fbb (R2) | Voltage divider 102 kOhm | 0.08 | 1 | [102 kOhm Resistor] |
-| [885012006003] | C13 / C_fb | DCDC feedback network | 0.08 | 1 | [15pF 10V Capacitor Search] |
-| [RMCF0402FT549K] | C11 / C_comp | DCDC phase compensation | 0.08 | 1 | [2700pF 10V Capacitor Search] |
-| [LG R971-KN-1] | LED_GREEN | Status LED | 0.22 | 1 | N/A |
-| [ERJ-2LWFR010X] | ??? | Shunt resistor 0.01 Ohm | 0.37 | 1 | [0.01 Ohm Resistor] |
-| [] | R6 | DCDC phase compensation ||||
-
+| [GMK107BJ104KAHT] | C9, C10 / C_in_bypass, C_boot | Input Bypass Capacitor 0.1µF, Boot Capacitor 0.1µF | 0.09 | 2 | [0.1µF 35V Capacitor Search] |
+| [ERJ-3EKF5493V] | R7 / R_fbt (R1) | Voltage divider 549 kOhm | 0.08 | 1 | [549 kOhm Resistor] |
+| [ERJ-3EKF1023V] | R8 / R_fbb (R2) | Voltage divider 102 kOhm | 0.08 | 1 | [102 kOhm Resistor] |
+| [CC0603JRNPO9BN150] | C13 / C_fb | DCDC feedback network | 0.08 | 1 | [15pF 10V Capacitor Search] |
+| [CL10B562KB8NNNC] | C11 / C_comp | DCDC phase compensation | 0.08 | 1 | [5600pF Capacitor Search] |
+| [LG R971-KN-1] | D2 | 5.1V Supply Status LED | 0.22 | 1 | N/A |
+| [RL0816T-R010-F] | R9 | Shunt resistor 0.01 Ohm | 0.37 | 1 | [0.01 Ohm Resistor] |
+| [RC0603FR-0716K2L] | R6 | DCDC phase compensation | 0.08 | 1 | [16.2kOhm Resistor Search] |
+| [FDS4435BZ] | Q3 | V<sub>in</sub> reverse polarity protection | 0.55 | 1 | [Vin Reverse Polarity Protection Search] |
+| [BCM857BS-7-F] | Q1 |  | 0.26 | 1 |  |
+| [TSM500P02CX RFG] | Q2 |  | 0.64 | 1 |  |
+| 47k 0603 resistor |  |  |  |  |  |
+| 10k 0603 resistor |  |  |  |  |  |
 <!-- TODO: Split into multiple BOMs, with more specific data -->
+
+
 
 
 [PAC1921-1-AIA-TR]: https://www.digikey.fi/product-detail/en/microchip-technology/PAC1921-1-AIA-TR/PAC1921-1-AIA-CT-ND/5452596
 [BD9E302EFJ-E2]: https://www.digikey.fi/product-detail/fi/rohm-semiconductor/BD9E302EFJ-E2/BD9E302EFJ-E2CT-ND/6131355
 [1217AS-H-8R2M=P3]: https://www.digikey.fi/product-detail/fi/murata-electronics/1217AS-H-8R2M-P3/490-14060-1-ND/6205785
 [LMK316ABJ476ML-T]: https://www.digikey.fi/product-detail/en/taiyo-yuden/LMK316ABJ476ML-T/587-3428-1-ND/4157517
-[LMK063BJ104KP-F]: https://www.digikey.fi/product-detail/en/taiyo-yuden/LMK063BJ104KP-F/587-2241-1-ND/2002939
 [GMK316BJ106KL-T]: https://www.digikey.fi/product-detail/en/taiyo-yuden/GMK316BJ106KL-T/587-2484-1-ND/2230350
 [GMK107BJ104KAHT]: https://www.digikey.fi/product-detail/en/taiyo-yuden/GMK107BJ104KAHT/587-3357-1-ND/4157244
 [LG R971-KN-1]: https://www.digikey.fi/product-detail/fi/osram-opto-semiconductors-inc/LG-R971-KN-1/475-1410-1-ND/1802598
-[ERJ-2LWFR010X]: https://www.digikey.fi/product-detail/en/panasonic-electronic-components/ERJ-2LWFR010X/P19181CT-ND/6004536
-[ERJ-1GNF1023C]: https://www.digikey.fi/product-detail/en/panasonic-electronic-components/ERJ-1GNF1023C/P122660CT-ND/8342259
-[ERJ-2RKF5493X]: https://www.digikey.fi/product-detail/en/panasonic-electronic-components/ERJ-2RKF5493X/P549KLCT-ND/194451
-[RMCF0402FT549K]: https://www.digikey.fi/product-detail/en/stackpole-electronics-inc/RMCF0402FT549K/738-RMCF0402FT549KCT-ND/4425019
-[885012006003]: https://www.digikey.fi/product-detail/en/w%C3%BCrth-elektronik/885012006003/732-7747-1-ND/5454374
+[RL0816T-R010-F]: https://www.digikey.fi/product-detail/en/susumu/RL0816T-R010-F/408-1404-1-ND/2734782
+[ERJ-3EKF1023V]: https://www.digikey.fi/product-detail/en/panasonic-electronic-components/ERJ-3EKF1023V/P102KHCT-ND/198113
+[ERJ-3EKF5493V]: https://www.digikey.fi/product-detail/en/panasonic-electronic-components/ERJ-3EKF5493V/P549KHCT-ND/198438
+[CL10B562KB8NNNC]: https://www.digikey.fi/product-detail/en/samsung-electro-mechanics/CL10B562KB8NNNC/1276-2091-1-ND/3890177
+[CC0603JRNPO9BN150]: https://www.digikey.fi/product-detail/en/yageo/CC0603JRNPO9BN150/311-1060-1-ND/302970
+[RC0603FR-0716K2L]: https://www.digikey.fi/product-detail/en/yageo/RC0603FR-0716K2L/311-16-2KHRCT-ND/729914
+[FDS4435BZ]: https://www.digikey.fi/product-detail/en/on-semiconductor/FDS4435BZ/FDS4435BZCT-ND/1305829
+[BCM857BS-7-F]: https://www.digikey.fi/product-detail/en/diodes-incorporated/BCM857BS-7-F/BCM857BS-7-FDICT-ND/5801284
+[TSM500P02CX RFG]: https://www.digikey.fi/product-detail/en/taiwan-semiconductor-corporation/TSM500P02CX-RFG/TSM500P02CXRFGCT-ND/7360424
+[]
 
 
 [OLD LMK212BJ106KG-T]: https://www.digikey.fi/product-detail/en/taiyo-yuden/LMK212BJ106KG-T/587-1300-1-ND/931077
@@ -141,7 +150,7 @@ General Search Criteria:
 - RoHS compliant
 - Part Status: Active
 - Media Available: Datasheet
-- Packaging: Cut Tape (CT), Tube, or an other relevant packaging format
+- Packaging: Cut Tape (CT), Tube, or another relevant packaging format
 
 #### Power Monitor
 
@@ -192,7 +201,7 @@ All capacitors (both on input and output side) should be ceramic as per the spec
 - Category: Capacitors > Ceramic Capacitors
 - Required:
     - Capacitance: Specific for each use
-    - Voltage Rating: 35V (25V would be too low given a +-20% error margin, and our requirement of 24V max input voltage) on the input side
+    - Voltage Rating: 35V (25V would be too low to account for component degrading with age with our requirement of 24V max input voltage) on the input side
 - Optional:
     - Temperature Coefficient: [X5R]
 
@@ -201,17 +210,16 @@ All capacitors (both on input and output side) should be ceramic as per the spec
 #### Output Capacitors
 
 [2700pF 10V Capacitor Search]: https://www.digikey.fi/short/8q3v8r2d
-[15pF 10V Capacitor Search]: https://www.digikey.fi/short/0ppqb27v
+[15pF 10V Capacitor Search]: https://www.digikey.fi/short/vwb52970
 
 [47µF 10V Capacitor Search]: https://www.digikey.fi/short/fvwb9mfv
 
-[0.1µF 10V Capacitor Search]: https://www.digikey.fi/short/qrm9dtw7
 
 
 - Category: Capacitors > Ceramic Capacitors
 - Required:
     - Capacitance: Specific for each use
-    - Voltage Rating: 10V (6.3V would be too low given a +-20% error margin) on the output side
+    - Voltage Rating: At least 10V (6.3V would be too low to account for component degrading with age) on the output side
 - Optional:
     - Temperature Coefficient: [X5R]
 
@@ -219,25 +227,46 @@ All capacitors (both on input and output side) should be ceramic as per the spec
 
 #### Shunt Resistor
 
-[0.01 Ohm Resistor]: https://www.digikey.fi/short/4jpz474j
+[0.01 Ohm Resistor]: https://www.digikey.fi/short/hnhw538w
 
 - Category: Resistors > Chip Resistor - Surface Mount
 - Required:
     - Resistance: 0.01 Ohm
     - Tolerance: +-1%
-    - Power (Watts): >= 3A * (0.01 Ohm)^2 = 0.0003 W
+    - Power (Watts): >= (3A)^2 * 0.01 Ohm = 0.090 W
 
 #### Voltage Selection Resistors
 
-[102 kOhm Resistor]: https://www.digikey.fi/short/r0ddd88q
-[549 kOhm Resistor]: https://www.digikey.fi/short/m4drpzrh
+[102 kOhm Resistor]: https://www.digikey.fi/short/zbdmwr0p
+[549 kOhm Resistor]: https://www.digikey.fi/short/j9m3hc83
 
 - Category: Resistors > Chip Resistor - Surface Mount
 - Required:
     - Resistance: 102 and 549 kOhm, respectively
     - Tolerance: +-1%
 
+#### DCDC Compensation
+- Category: Capacitors > Ceramic Capacitors
+- Required:
+    - Capacitance: Specific for each use
+    - Voltage Rating: 10V (6.3V would be too low given a +-20% error margin) on the output side
+- Optional:
+    - Temperature Coefficient: [X5R]
 
+[16.2kOhm Resistor Search]: https://www.digikey.fi/short/20n2pq25
+[5600pF Capacitor Search]: https://www.digikey.fi/short/jvfmbz4m
+
+
+#### Input Voltage Reverse Polarity Protection
+##### P-Channel MOSFET
+Requirements:
+* Drain-Source voltage V<sub>DS</sub> >= 24V
+* minimize R<sub>DS</sub>(on) in the range V<sub>GS</sub> in [12V, 24V]
+* Absolute maximum Gate-Source voltage should preverably be >= 24V. Alternatively use a zener diode to limit V<sub>GS</sub>, but make sure that R<sub>DS</sub>(on) is low at at that V<sub>GS</sub> value.
+
+Low part count is preferred so a single larger +- 25V V<sub>GS</sub> tolerant package was chosen.
+
+[Vin Reverse Polarity Protection Search]: https://www.digikey.fi/products/en/discrete-semiconductor-products/transistors-fets-mosfets-single/278
 
 
 ### Values
