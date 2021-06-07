@@ -1,5 +1,9 @@
 # RFC-0001: Racklet
 
+[![hackmd-github-sync-badge](https://hackmd.io/YoFCFK5aR-KZwClntWbhZg/badge)](https://hackmd.io/YoFCFK5aR-KZwClntWbhZg)
+
+<!-- TODO: @alexellis feedback on old/insecure => insecure wrt the protocols -->
+
 [TOC]
 
 <a href="0001-high-level-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a>
@@ -8,6 +12,7 @@
 
 **Authors** (in alphabetical order):
 
+- Ayan Borthakur, [@ayan1948](https://github.com/ayan1948)
 - Dennis Marttinen, [@twelho](https://github.com/twelho)
 - Lucas Käldström, [@luxas](https://github.com/luxas)
 - Verneri Hirvonen, [@chiplet](https://github.com/chiplet)
@@ -19,6 +24,8 @@
 **Creation Date**: `2020-12-10`
 
 **Last Updated**: `2020-12-10`
+
+**Version Number**: `v1.0.1`
 
 ## Summary
 
@@ -34,7 +41,7 @@ Racklet is a fully-integrated, miniature server rack. It is a scale model of a h
 
 [SMBus]: https://en.wikipedia.org/wiki/System_Management_Bus
 
-Physically a Racklet rack is a about the size of a 1 liter milk carton and hosts [single board computers] conforming to the [Raspberry Pi] 3/4 [form factor]. The defining features of Racklet compared to other "Raspberry Pi clouds" are the fully integrated and **secure** but still pluggable open source firmware/software/hardware solutions, and the scalability enabled by e.g. hotplug support as well as the inexpensive and available manufacturing techniques applied.
+Physically a Racklet rack is a bit larger than a one liter milk carton and hosts [single board computers] conforming to the [Raspberry Pi] 3/4 [form factor]. The defining features of Racklet compared to other "Raspberry Pi clouds" are the fully integrated and **secure** but still pluggable open source firmware/software/hardware solutions, and the scalability enabled by e.g. hotplug support as well as the inexpensive and available manufacturing techniques applied.
 
 [single board computers]: https://en.wikipedia.org/wiki/Single-board_computer
 
@@ -81,23 +88,23 @@ The goal of the project is to be comprehensive and "real-world" enough to featur
 
 ### Goals of this RFC
 
-1. Describe what Racklet is and what it might be used for
-1. Define the values used to guide the design and decision process
-1. Describe the purpose and goals of the system from a user point of view
-1. Define high-level layers of the system
+1. Describe what Racklet is and what it might be used for.
+1. Define the values used to guide the design and decision process.
+1. Describe the purpose and goals of the system from a user point of view.
+1. Define high-level layers of the system.
 
 ### Non-Goals of this RFC
 
-1. Go into details about what any layer, interface or API contains or does
-1. Describe what exact parts, technologies or interfaces should be used
-1. Define a timeline for the project
-1. Define project governance
+1. Go into details about what any layer, interface or API contains or does.
+1. Describe what exact parts, technologies or interfaces should be used.
+1. Define a timeline for the project.
+1. Define project governance.
 
 ## Proposal
 
 This proposal consists of a detailed breakdown of the [Values](#values) of the project, who we think will be using this project (what kind of user persona we are optimizing for, in [User Perspectives](#user-perspectives)), how we envision the users will use it ([User Goals](#user-goals)), and finally, a high-level overview of the hardware/software [Layers](#high-level-layers).
 
-Any further technical details are out of scope for this RFC, they will be covered by upcoming, category-sorted ones.
+Any further technical details are out of scope for this RFC. Those will be covered by upcoming, more detailed RFCs.
 
 ### Values
 
@@ -105,21 +112,14 @@ The following values apply to the whole system, and are sorted roughly in priori
 
 > **Disclaimer:** All of these values are aspirational, they are not literal guarantees that can be used for liability claims. We expect to iteratively improve towards and get closer to these goals as the project matures and new versions are released.
 
-1. **Pragmatism**
-   1. **Focus**: We only have a limited number of hours per day available, and should not spend all our time bikeshedding on some very non-significant detail.
-   2. **80-20**: The [80-20%] rule is a good rule of thumb; the principle specifies that 80% of the output is generated from 20% of the inputs, and vice versa.
-   3. **Deadline**: Our aspiration is to have some concrete to end-to-end prototype at the end of 2021.
-
-   [80-20%]: https://en.wikipedia.org/wiki/Pareto_principle
-
 1. **Security**
    1. **Security by design**: Security should be at the top of our minds at every decision we make. All design proposals must consider how the proposed change affects security concerns.
    2. **No old/insecure protocols**: We won't accept old/insecure protocols or ways of doing things (e.g. [TFTP]). If we need to choose between interoperability and an insecure standard, we choose the more secure alternative, although that would mean we go against the norm.
    3. **Improve Status Quo**: We aspire to improve the status quo of "secure-by-default" solutions and concepts available out there. When we find ways to improve the state of the art, we preferably contribute patches to the respective upstream, otherwise, depending on the situation, build re-usable pieces of code that bring the industry forward.
    4. **Defense in Depth**: Design according to the "Defense in Depth" and "Least Privilege" methodologies. For example, the network is considered being an insecure channel, unless proven otherwise ([Dolev-Yao adversary model]).
 
-   [Dolev-Yao adversary model]: https://en.wikipedia.org/wiki/Dolev%E2%80%93Yao_model
    [TFTP]: https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol
+   [Dolev-Yao adversary model]: https://en.wikipedia.org/wiki/Dolev%E2%80%93Yao_model
 
 1. **Interoperability**
    1. **Openness**: The truly most effective way of driving innovation forward in our minds is to define open (source) APIs, share code freely, and collaborate with fellow community members.
@@ -135,18 +135,19 @@ The following values apply to the whole system, and are sorted roughly in priori
    2. **Common off-the-shelf parts:** Only use commonly available components that can be aquired in most parts of the world in a frictionless manner. In other words, no exotic hard-to-reproduce designs.
    3. **3D printed parts**: For non-off-the-shelf casing, we will provide 3D-printable designs that can easily be reproduced. Modelling is done in software that does not require paid-for subscriptions. Both printable STL output and the underlying save files are published to GitHub.
    4. **Reproducible PCBs**: For non-off-the-shelf PCBs, we will release schematics freely reproducible, made in open source software such as KiCAD. We will try to make sure that the PCB can be ordered from major PCB manufacturing/assembly services.
-   5. **Documentation**: Documentation will be made available through [ReadTheDocs], GitHub, code-autogenerated documentation services such as [crates.io] and [pkg.go.dev] as well as [our blog] detailing the development process and important decisions made, featuring these design proposals. This documentation will lower the bar to entry in order to increase accessibility.
+   5. **Documentation**: Documentation will be made available through [our mdBook site], [our GitHub organization], code-autogenerated documentation services such as [crates.io] and [pkg.go.dev] as well as [our blog] detailing the development process and important decisions made, featuring these design proposals. This documentation will lower the bar to entry in order to increase accessibility.
 
-   [ReadTheDocs]: https://readthedocs.org/
+   [our mdBook site]: https://docs.racklet.io/
+   [our GitHub organization]: https://github.com/racklet
    [crates.io]: https://crates.io/
    [pkg.go.dev]: https://pkg.go.dev/
-   [our blog]: https://blog.racklet.io/
+   [our blog]: https://racklet.io/blog/
 
 1. **Modularity / Compatibility**
    1. **Modular design**: Our designs, both hardware and software, strive to be as modular and extensible as possible. We strive to follow the Unix philosophy. This will allow for portability between e.g. different hardware modules implementing the same interfaces, or extensibility where the user demands other features than the default.
    2. **Raspberry Pi compatibility**: The Raspberry Pi physical design (mounting holes, GPIO layout, dimensions, [HAT spec]) has established a "de facto" standard, and any other single-board computer implementing this  interface should be compatible with the system with minimal modifications.
    3. **Portability**: The code we write includes parameters for the platform it's running on so it is fairly easy to port the code to a new alternate architecture. We primarily support ARMv8 for the compute units.
-   4. **Loose coupling**: We strive towards [loose coupling]. This means that each component has as little knowledge of and hard dependencies on other components. Components should be easily interchangeable to alternate implementations.
+   4. **Loose coupling**: We strive towards [loose coupling]. This means that each component has as little knowledge of and hard dependencies on other components. Components should be easily interchangeable with alternate implementations.
 
    [HAT spec]: https://github.com/raspberrypi/hats
    [loose coupling]: https://en.wikipedia.org/wiki/Loose_coupling
@@ -167,10 +168,6 @@ The following values apply to the whole system, and are sorted roughly in priori
    4. **One-time hardware setup**: The hardware setup steps (3D-printing, PCB assembly, firmware flashing) are only performed once per rack. None of them are performed when dealing with software, even when resetting the entire cluster. This will allow for fast and less error-prone reconfigurations with faster setup/teardown cycle times.
 
    [A/B partitioning]: https://source.android.com/devices/tech/ota/ab
-
-1. **Minimalism**
-   1. **Choose lightweight**: If presented with a choice between something fully-featured (including features without clear justifications) and something lightweight, choose the lightweight variant.
-   2. **Drive by user demand**: Before implementing features that might or might not be needed, discuss with the team and ask for user stories.
 
 1. **Affordability**
    1. **Sensible rack cost**: The price point of the Racklet Bill-of-Materials should be low enough to be accessible for hobbyists and educational organizations. Our target price range (VAT-exclusive, all essentials included) is 400-500€ per rack (containing 5 Pis). If this configuration is too costly it should be possible to switch parts out for a lower total price.
@@ -261,13 +258,13 @@ This layer of the "stack" consists mainly of the 3D-printed casing and trays of 
 
 #### Layer 2: Electrical
 
-This layer consists of compute capacity (e.g. a Raspberry Pi with an attached SSD), our reproducible [Baseboard Management Controller] PCB attached to the it in some way (as also can be found in mainstream servers), and our reproducible backplane PCB/wiring which feeds the common [busbar] power rails, and the [SMBus] interconnect between compute units.
+This layer consists of compute capacity (e.g. a Raspberry Pi with an attached SSD), our reproducible [Baseboard Management Controller] PCB attached to it in some way (as also can be found in mainstream servers), and our reproducible backplane PCB/wiring which feeds the common [busbar] power rails, and the [SMBus] interconnect between compute units.
 
 [Baseboard Management Controller]: https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface
 
 #### Layer 3: Firmware
 
-The firmware layer is defined as the code that is running in "bare metal" environments, i.e. before the primary OS of the compute has been loaded, or on the BMC [microcontroller]. Examples of code that is capable of (and specialized at) running before the primary OS includes the (proprietary) [Raspberry Pi firmware], [LinuxBoot], [u-boot], and [TF-A]. We strive to use open source [Embedded Rust] due to the language's suitability for memory safe firmware and good support for most popular microcontrollers.
+The firmware layer is defined as the code that is running in "bare metal" environments, i.e. on the compute before the primary OS has been loaded, or on the BMC [microcontroller]. Examples of code that is capable of (and specialized at) running before the primary OS includes the (proprietary) [Raspberry Pi firmware], [LinuxBoot], [u-boot], and [TF-A]. We strive to use open source [Embedded Rust] due to the language's suitability for memory safe firmware and good support for most popular microcontrollers.
 
 [microcontroller]: https://en.wikipedia.org/wiki/Microcontroller
 [Raspberry Pi firmware]: https://github.com/raspberrypi/firmware
@@ -285,7 +282,7 @@ At this layer are the user-deployable workloads running in containers, we consid
 
 ### Test Plan
 
-Unit tests will be created for individual software components of the system. Integration tests will be created for cross-component communications. Automated end-to-end tests will be conducted by a physical Racklet instance that is "upgraded" to the latest development version continuously, reporting back feedback. This way we will assure the stability and resilience of the software/firmware stack.
+Unit tests will be created for individual software components of the system. Integration tests will be created for cross-component communications. Automated end-to-end tests will be conducted by a physical Racklet instance that is continuously "upgraded" to the latest development version and reports feedback. This way we will assure the stability and resilience of the software/firmware stack.
 
 Furthermore, we will rely on the developer community to test out many different hardware, software and firmware combinations other than the reference implementation.
 
@@ -300,7 +297,8 @@ For this project to be considered successful and graduated, we mandate the follo
 
 ## Implementation History
 
-1. `2020-12-10`: First version of this RFC has been accepted
+1. `2020-12-10`: First version of this RFC has been accepted.
+1. `2021-06-07`: Values have been refined, misc. clarifications and readability improvements.
 
 ---
 
