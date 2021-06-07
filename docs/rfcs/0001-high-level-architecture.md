@@ -2,6 +2,8 @@
 
 [![hackmd-github-sync-badge](https://hackmd.io/YoFCFK5aR-KZwClntWbhZg/badge)](https://hackmd.io/YoFCFK5aR-KZwClntWbhZg)
 
+<!-- TODO: @alexellis feedback on old/insecure => insecure wrt the protocols -->
+
 [TOC]
 
 <a href="0001-high-level-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a>
@@ -261,7 +263,7 @@ This layer consists of compute capacity (e.g. a Raspberry Pi with an attached SS
 
 #### Layer 3: Firmware
 
-The firmware layer is defined as the code that is running in "bare metal" environments, i.e. before the primary OS of the compute has been loaded, or on the BMC [microcontroller]. Examples of code that is capable of (and specialized at) running before the primary OS includes the (proprietary) [Raspberry Pi firmware], [LinuxBoot], [u-boot], and [TF-A]. We strive to use open source [Embedded Rust] due to the language's suitability for memory safe firmware and good support for most popular microcontrollers.
+The firmware layer is defined as the code that is running in "bare metal" environments, i.e. on the compute before the primary OS has been loaded, or on the BMC [microcontroller]. Examples of code that is capable of (and specialized at) running before the primary OS includes the (proprietary) [Raspberry Pi firmware], [LinuxBoot], [u-boot], and [TF-A]. We strive to use open source [Embedded Rust] due to the language's suitability for memory safe firmware and good support for most popular microcontrollers.
 
 [microcontroller]: https://en.wikipedia.org/wiki/Microcontroller
 [Raspberry Pi firmware]: https://github.com/raspberrypi/firmware
@@ -279,7 +281,7 @@ At this layer are the user-deployable workloads running in containers, we consid
 
 ### Test Plan
 
-Unit tests will be created for individual software components of the system. Integration tests will be created for cross-component communications. Automated end-to-end tests will be conducted by a physical Racklet instance that is "upgraded" to the latest development version continuously, reporting back feedback. This way we will assure the stability and resilience of the software/firmware stack.
+Unit tests will be created for individual software components of the system. Integration tests will be created for cross-component communications. Automated end-to-end tests will be conducted by a physical Racklet instance that is continuously "upgraded" to the latest development version and reports feedback. This way we will assure the stability and resilience of the software/firmware stack.
 
 Furthermore, we will rely on the developer community to test out many different hardware, software and firmware combinations other than the reference implementation.
 
@@ -294,7 +296,8 @@ For this project to be considered successful and graduated, we mandate the follo
 
 ## Implementation History
 
-1. `2020-12-10`: First version of this RFC has been accepted
+1. `2020-12-10`: First version of this RFC has been accepted.
+1. `2021-06-07`: Values have been refined, misc. clarifications and readability improvements.
 
 ---
 
