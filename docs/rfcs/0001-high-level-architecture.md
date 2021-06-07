@@ -2,11 +2,11 @@
 
 [![hackmd-github-sync-badge](https://hackmd.io/YoFCFK5aR-KZwClntWbhZg/badge)](https://hackmd.io/YoFCFK5aR-KZwClntWbhZg)
 
+<a href="0001-high-level-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a> (for docs.racklet.io)
+
 <!-- TODO: @alexellis feedback on old/insecure => insecure wrt the protocols -->
 
 [TOC]
-
-<a href="0001-high-level-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a>
 
 ## RFC Metadata
 
