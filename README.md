@@ -14,7 +14,7 @@ You can also look at the [introductory presentation] and [slides] during [KCD Af
 
 [![KCD Africa slides](https://files.speakerdeck.com/presentations/9d86e9f1ba6249c6886147d43c5d20f8/preview_slide_34.jpg?17978884)](https://speakerdeck.com/luxas/introducing-racklet-a-commoditized-educational-and-open-source-data-center-scale-model-for-tinkerers)
 
-[introductory presentation]: https://youtu.be/FXa_ceX28M4?t=7982
+[introductory presentation]: https://youtu.be/YKWtR0xOnF4
 [slides]: https://speakerdeck.com/luxas/introducing-racklet-a-commoditized-educational-and-open-source-data-center-scale-model-for-tinkerers
 [KCD Africa]: https://kcdafrica.com
 
