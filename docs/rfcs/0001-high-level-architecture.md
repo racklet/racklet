@@ -25,7 +25,7 @@
 
 **Last Updated**: `2020-12-10`
 
-**Version Number**: `v1.1.0`
+**Version Number**: `v1.0.1`
 
 ## Summary
 
