@@ -12,6 +12,7 @@
 
 **Authors** (in alphabetical order):
 
+- Ayan Borthakur, [@ayan1948](https://github.com/ayan1948)
 - Dennis Marttinen, [@twelho](https://github.com/twelho)
 - Lucas Käldström, [@luxas](https://github.com/luxas)
 - Verneri Hirvonen, [@chiplet](https://github.com/chiplet)
