@@ -115,8 +115,8 @@ The following values apply to the whole system, and are sorted roughly in priori
 1. <span id="value-security">**Security**</span>
     1. <span id="subvalue-security-by-design">**Security by design**</span>: Security should be at the top of our minds at every decision we make. All design proposals must consider how the proposed change affects security concerns.
     1. <span id="subvalue-no-old-insecure-protocols">**No old/insecure protocols**</span>: We won't accept old/insecure protocols or ways of doing things (e.g. [TFTP]). If we need to choose between interoperability and an insecure standard, we choose the more secure alternative, although that would mean we go against the norm.
-    1. <span id="subvalue-improve-status-quo">**Improve Status Quo**</span>: We aspire to improve the status quo of "secure-by-default" solutions and concepts available out there. When we find ways to improve the state of the art, we preferably contribute patches to the respective upstream, otherwise, depending on the situation, build re-usable pieces of code that bring the industry forward.
-    1. <span id="subvalue-defense-in-depth">**Defense in Depth**</span>: Design according to the "Defense in Depth" and "Least Privilege" methodologies. For example, the network is considered being an insecure channel, unless proven otherwise ([Dolev-Yao adversary model]).
+    1. <span id="subvalue-improve-status-quo">**Improve status quo**</span>: We aspire to improve the status quo of "secure-by-default" solutions and concepts available out there. When we find ways to improve the state of the art, we preferably contribute patches to the respective upstream, otherwise, depending on the situation, build re-usable pieces of code that bring the industry forward.
+    1. <span id="subvalue-defense-in-depth">**Defense in depth**</span>: Design according to the "defense in depth" and "least privilege" methodologies. For example, the network is considered being an insecure channel, unless proven otherwise ([Dolev-Yao adversary model]).
 
     [TFTP]: https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol
     [Dolev-Yao adversary model]: https://en.wikipedia.org/wiki/Dolev%E2%80%93Yao_model
@@ -131,7 +131,7 @@ The following values apply to the whole system, and are sorted roughly in priori
     [YAML]: https://en.wikipedia.org/wiki/YAML
 
 1. <span id="value-accessibility">**Accessibility / Reproducibility**</span>
-    1. <span id="subvalue-open-source">**Open Source**</span>: Racklet is 100% open source software and hardware. Anyone can contribute, improve, fork and access the project. The dependencies of the project will also be openly accessible.
+    1. <span id="subvalue-open-source">**Open source**</span>: Racklet is 100% open source software and hardware. Anyone can contribute, improve, fork and access the project. The dependencies of the project will also be openly accessible.
     1. <span id="subvalue-common-off-the-shelf-parts">**Common off-the-shelf parts**</span>: Only use commonly available components that can be aquired in most parts of the world in a frictionless manner. In other words, no exotic hard-to-reproduce designs.
     1. <span id="subvalue-3d-printed-parts">**3D printed parts**</span>: For non-off-the-shelf casing, we will provide 3D-printable designs that can easily be reproduced. Modelling is done in software that does not require paid-for subscriptions. Both printable STL output and the underlying save files are published to GitHub.
     1. <span id="subvalue-reproducible-pcbs">**Reproducible PCBs**</span>: For non-off-the-shelf PCBs, we will release schematics freely reproducible, made in open source software such as KiCAD. We will try to make sure that the PCB can be ordered from major PCB manufacturing/assembly services.
@@ -155,7 +155,7 @@ The following values apply to the whole system, and are sorted roughly in priori
 1. <span id="value-transparency">**Transparency**</span>
     1. <span id="subvalue-observability">**Observability**</span>: All data logging/aggregating components in the system must expose metrics compliant to the [OpenMetrics] specification.
     1. <span id="subvalue-debuggability">**Debuggability**</span>: We expose standardized debug headers (e.g. [UART]/[JTAG]) from our PCBs. Low-level firmware troubleshooting is accessible and documented for both our microcontrollers as well as the compute.
-    1. <span id="subvalue-energy-monitoring">**Energy Monitoring**</span>: Energy usage should be measured individually for the various components in the system, in order to transparently and automatically be able to track where power is consumed. This also allows for higher-order aggregation and data processing related to energy.
+    1. <span id="subvalue-energy-monitoring">**Energy monitoring**</span>: Energy usage should be measured individually for the various components in the system, in order to transparently and automatically be able to track where power is consumed. This also allows for higher-order aggregation and data processing related to energy.
 
     [OpenMetrics]: https://openmetrics.io/
     [UART]: https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
@@ -210,15 +210,15 @@ Racklet can be used for Research and Development purposes in Computer Labs where
 
     [Kubernetes]: https://kubernetes.io/
 
-1. <span id="user-goal-fast-reconfiguration">**Fast Reconfiguration / Turn-around Time**</span>: The user wants to configure their hardware once, and after that be able to set up and/or recreate the whole software stack from the ground up multiple times over with minimal hassle. For example, an educator may want to rebuild the rack configuration, trusted certificates, etc. or do a "factory reset" for every class/workshop they run.
+1. <span id="user-goal-fast-reconfiguration">**Fast reconfiguration / turn-around time**</span>: The user wants to configure their hardware once, and after that be able to set up and/or recreate the whole software stack from the ground up multiple times over with minimal hassle. For example, an educator may want to rebuild the rack configuration, trusted certificates, etc. or do a "factory reset" for every class/workshop they run.
 
-1. <span id="user-goal-secure-updates">**Secure Firmware[^trusted_firmware] and Software Updates**</span>: When the user gets notified that a new release is available, the user _doesn't_ want to do it the "classical" way of downloading some hex binary and flashing it manually for each server. Instead, they want the upgrades to be atomic (e.g. A/B partitioning), secure (payload is signed), automated and defend against common upgrading attacks (e.g. [rollback attack]). Optionally, automatic deployment of upgrades can be enabled.
+1. <span id="user-goal-secure-updates">**Secure firmware[^trusted_firmware] and software updates**</span>: When the user gets notified that a new release is available, the user _doesn't_ want to do it the "classical" way of downloading some hex binary and flashing it manually for each server. Instead, they want the upgrades to be atomic (e.g. A/B partitioning), secure (payload is signed), automated and defend against common upgrading attacks (e.g. [rollback attack]). Optionally, automatic deployment of upgrades can be enabled.
 
     [1st stage bootloader of the Raspberry Pi 4]: https://github.com/raspberrypi/rpi-eeprom
 
     [rollback attack]: https://en.wikipedia.org/wiki/Downgrade_attack (This is for software protocols such as TLS, but the same principle applies to firmware as well.)
 
-1. <span id="user-goal-zero-trust-networking">**Network Boot in a Zero-Trust Environment**</span>: The user should feel ready to plug Racklet in to (almost) any existing network, without the system interfering with existing devices on the network or vice versa. This goes strongly in hand with #3 as ensuring security, especially in the boot and upgrade process, is of paramount importance[^security].
+1. <span id="user-goal-zero-trust-networking">**Network boot in a zero-trust environment**</span>: The user should feel ready to plug Racklet in to (almost) any existing network, without the system interfering with existing devices on the network or vice versa. This goes strongly in hand with #3 as ensuring security, especially in the boot and upgrade process, is of paramount importance[^security].
 
     [ARM TrustedFirmware]: https://www.trustedfirmware.org/
 
@@ -234,7 +234,7 @@ Racklet can be used for Research and Development purposes in Computer Labs where
 
 1. <span id="user-goal-physical-portability">**Physical portability**</span>: Racklet should be lightweight enough to be carried by hand and should not require specialized equipment or disassembly for transportation.
 
-1. <span id="user-goal-commodity-power-io">**Commodity Power and I/O**</span>: The user wants to be able to utilize commodity resources they already have at hand, instead of needing to buy specialized equipment only for Racklet. Examples of these commodities include: Laptop chargers instead of a custom power cable/transformer, [USB] instead of some proprietary high-speed interconnect, and [Ethernet] switches & cables instead of e.g. expensive [SFP+].
+1. <span id="user-goal-commodity-power-io">**Commodity power and I/O**</span>: The user wants to be able to utilize commodity resources they already have at hand, instead of needing to buy specialized equipment only for Racklet. Examples of these commodities include: Laptop chargers instead of a custom power cable/transformer, [USB] instead of some proprietary high-speed interconnect, and [Ethernet] switches & cables instead of e.g. expensive [SFP+].
 
     [USB]: https://en.wikipedia.org/wiki/USB
 
