@@ -23,9 +23,9 @@
 
 **Creation Date**: `2020-12-10`
 
-**Last Updated**: `2020-12-10`
+**Last Updated**: `2020-06-08`
 
-**Version Number**: `v1.0.1`
+**Version Number**: `v1.1.0`
 
 ## Summary
 
@@ -299,6 +299,7 @@ For this project to be considered successful and graduated, we mandate the follo
 
 1. `2020-12-10`: First version of this RFC has been accepted.
 1. `2021-06-07`: Values have been refined, misc. clarifications and readability improvements.
+1. `2021-06-08`: All values, subvalues and user goals have been given IDs for referring to them.
 
 ---
 
