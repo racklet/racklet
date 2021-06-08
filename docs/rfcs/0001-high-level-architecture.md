@@ -112,65 +112,65 @@ The following values apply to the whole system, and are sorted roughly in priori
 
 > **Disclaimer:** All of these values are aspirational, they are not literal guarantees that can be used for liability claims. We expect to iteratively improve towards and get closer to these goals as the project matures and new versions are released.
 
-1. <span id="value-security"></span> **Security**
-   1. **Security by design**: Security should be at the top of our minds at every decision we make. All design proposals must consider how the proposed change affects security concerns.
-   1. **No old/insecure protocols**: We won't accept old/insecure protocols or ways of doing things (e.g. [TFTP]). If we need to choose between interoperability and an insecure standard, we choose the more secure alternative, although that would mean we go against the norm.
-   1. **Improve Status Quo**: We aspire to improve the status quo of "secure-by-default" solutions and concepts available out there. When we find ways to improve the state of the art, we preferably contribute patches to the respective upstream, otherwise, depending on the situation, build re-usable pieces of code that bring the industry forward.
-   1. **Defense in Depth**: Design according to the "Defense in Depth" and "Least Privilege" methodologies. For example, the network is considered being an insecure channel, unless proven otherwise ([Dolev-Yao adversary model]).
+1. <span id="value-security">**Security**</span>
+    1. <span id="subvalue-security-by-design">**Security by design**</span>: Security should be at the top of our minds at every decision we make. All design proposals must consider how the proposed change affects security concerns.
+    1. <span id="subvalue-no-old-insecure-protocols">**No old/insecure protocols**</span>: We won't accept old/insecure protocols or ways of doing things (e.g. [TFTP]). If we need to choose between interoperability and an insecure standard, we choose the more secure alternative, although that would mean we go against the norm.
+    1. <span id="subvalue-improve-status-quo">**Improve Status Quo**</span>: We aspire to improve the status quo of "secure-by-default" solutions and concepts available out there. When we find ways to improve the state of the art, we preferably contribute patches to the respective upstream, otherwise, depending on the situation, build re-usable pieces of code that bring the industry forward.
+    1. <span id="subvalue-defense-in-depth">**Defense in Depth**</span>: Design according to the "Defense in Depth" and "Least Privilege" methodologies. For example, the network is considered being an insecure channel, unless proven otherwise ([Dolev-Yao adversary model]).
 
-   [TFTP]: https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol
-   [Dolev-Yao adversary model]: https://en.wikipedia.org/wiki/Dolev%E2%80%93Yao_model
+    [TFTP]: https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol
+    [Dolev-Yao adversary model]: https://en.wikipedia.org/wiki/Dolev%E2%80%93Yao_model
 
-1. <span id="value-interoperability"></span> **Interoperability**
-   1. **Openness**: The truly most effective way of driving innovation forward in our minds is to define open (source) APIs, share code freely, and collaborate with fellow community members.
-   1. **De-facto standards**: Implement well-known, existing and de-facto APIs instead of creating new ones when not needed.
-   1. **Declarative management**: This is prominent in the cloud native space, but not so much in the embedded and firmware space. We believe declarative APIs are very useful and powerful, especially as it becomes "obvious" to write state reconciliation loops that follow the observe-diff-act pattern.
-   1. **Consistency**: We want to expose consistent (declarative) APIs across the stack for the same "look and feel". Use common meta-protocols like [JSON] and [YAML].
+1. <span id="value-interoperability">**Interoperability**</span>
+    1. <span id="subvalue-openness">**Openness**</span>: The truly most effective way of driving innovation forward in our minds is to define open (source) APIs, share code freely, and collaborate with fellow community members.
+    1. <span id="subvalue-de-facto-standards">**De-facto standards**</span>: Implement well-known, existing and de-facto APIs instead of creating new ones when not needed.
+    1. <span id="subvalue-declarative-management">**Declarative management**</span>: This is prominent in the cloud native space, but not so much in the embedded and firmware space. We believe declarative APIs are very useful and powerful, especially as it becomes "obvious" to write state reconciliation loops that follow the observe-diff-act pattern.
+    1. <span id="subvalue-consistency">**Consistency**</span>: We want to expose consistent (declarative) APIs across the stack for the same "look and feel". Use common meta-protocols like [JSON] and [YAML].
 
-   [JSON]: https://en.wikipedia.org/wiki/JSON
-   [YAML]: https://en.wikipedia.org/wiki/YAML
+    [JSON]: https://en.wikipedia.org/wiki/JSON
+    [YAML]: https://en.wikipedia.org/wiki/YAML
 
-1. <span id="value-accessibility"></span> **Accessibility / Reproducibility**
-   1. **Open Source**: Racklet is 100% open source software and hardware. Anyone can contribute, improve, fork and access the project. The dependencies of the project will also be openly accessible.
-   1. **Common off-the-shelf parts:** Only use commonly available components that can be aquired in most parts of the world in a frictionless manner. In other words, no exotic hard-to-reproduce designs.
-   1. **3D printed parts**: For non-off-the-shelf casing, we will provide 3D-printable designs that can easily be reproduced. Modelling is done in software that does not require paid-for subscriptions. Both printable STL output and the underlying save files are published to GitHub.
-   1. **Reproducible PCBs**: For non-off-the-shelf PCBs, we will release schematics freely reproducible, made in open source software such as KiCAD. We will try to make sure that the PCB can be ordered from major PCB manufacturing/assembly services.
-   1. **Documentation**: Documentation will be made available through [our mdBook site], [our GitHub organization], code-autogenerated documentation services such as [crates.io] and [pkg.go.dev] as well as [our blog] detailing the development process and important decisions made, featuring these design proposals. This documentation will lower the bar to entry in order to increase accessibility.
+1. <span id="value-accessibility">**Accessibility / Reproducibility**</span>
+    1. <span id="subvalue-open-source">**Open Source**</span>: Racklet is 100% open source software and hardware. Anyone can contribute, improve, fork and access the project. The dependencies of the project will also be openly accessible.
+    1. <span id="subvalue-common-off-the-shelf-parts">**Common off-the-shelf parts**</span>: Only use commonly available components that can be aquired in most parts of the world in a frictionless manner. In other words, no exotic hard-to-reproduce designs.
+    1. <span id="subvalue-3d-printed-parts">**3D printed parts**</span>: For non-off-the-shelf casing, we will provide 3D-printable designs that can easily be reproduced. Modelling is done in software that does not require paid-for subscriptions. Both printable STL output and the underlying save files are published to GitHub.
+    1. <span id="subvalue-reproducible-pcbs">**Reproducible PCBs**</span>: For non-off-the-shelf PCBs, we will release schematics freely reproducible, made in open source software such as KiCAD. We will try to make sure that the PCB can be ordered from major PCB manufacturing/assembly services.
+    1. <span id="subvalue-documentation">**Documentation**</span>: Documentation will be made available through [our mdBook site], [our GitHub organization], code-autogenerated documentation services such as [crates.io] and [pkg.go.dev] as well as [our blog] detailing the development process and important decisions made, featuring these design proposals. This documentation will lower the bar to entry in order to increase accessibility.
 
-   [our mdBook site]: https://docs.racklet.io/
-   [our GitHub organization]: https://github.com/racklet
-   [crates.io]: https://crates.io/
-   [pkg.go.dev]: https://pkg.go.dev/
-   [our blog]: https://racklet.io/blog/
+    [our mdBook site]: https://docs.racklet.io/
+    [our GitHub organization]: https://github.com/racklet
+    [crates.io]: https://crates.io/
+    [pkg.go.dev]: https://pkg.go.dev/
+    [our blog]: https://racklet.io/blog/
 
-1. <span id="value-modularity"></span> **Modularity / Compatibility**
-   1. **Modular design**: Our designs, both hardware and software, strive to be as modular and extensible as possible. We strive to follow the Unix philosophy. This will allow for portability between e.g. different hardware modules implementing the same interfaces, or extensibility where the user demands other features than the default.
-   1. **Raspberry Pi compatibility**: The Raspberry Pi physical design (mounting holes, GPIO layout, dimensions, [HAT spec]) has established a "de facto" standard, and any other single-board computer implementing this  interface should be compatible with the system with minimal modifications.
-   1. **Portability**: The code we write includes parameters for the platform it's running on so it is fairly easy to port the code to a new alternate architecture. We primarily support ARMv8 for the compute units.
-   1. **Loose coupling**: We strive towards [loose coupling]. This means that each component has as little knowledge of and hard dependencies on other components. Components should be easily interchangeable with alternate implementations.
+1. <span id="value-modularity">**Modularity / Compatibility**</span>
+    1. <span id="subvalue-modular-design">**Modular design**</span>: Our designs, both hardware and software, strive to be as modular and extensible as possible. We strive to follow the Unix philosophy. This will allow for portability between e.g. different hardware modules implementing the same interfaces, or extensibility where the user demands other features than the default.
+    1. <span id="subvalue-raspberry-pi-compatibility">**Raspberry Pi compatibility**</span>: The Raspberry Pi physical design (mounting holes, GPIO layout, dimensions, [HAT spec]) has established a "de facto" standard, and any other single-board computer implementing this  interface should be compatible with the system with minimal modifications.
+    1. <span id="subvalue-portability">**Portability**</span>: The code we write includes parameters for the platform it's running on so it is fairly easy to port the code to a new alternate architecture. We primarily support ARMv8 for the compute units.
+    1. <span id="subvalue-loose-coupling">**Loose coupling**</span>: We strive towards [loose coupling]. This means that each component has as little knowledge of and hard dependencies on other components. Components should be easily interchangeable with alternate implementations.
 
-   [HAT spec]: https://github.com/raspberrypi/hats
-   [loose coupling]: https://en.wikipedia.org/wiki/Loose_coupling
+    [HAT spec]: https://github.com/raspberrypi/hats
+    [loose coupling]: https://en.wikipedia.org/wiki/Loose_coupling
 
-1. <span id="value-transparency"></span> **Transparency**
-   1. **Observability**: All data logging/aggregating components in the system must expose metrics compliant to the [OpenMetrics] specification.
-   1. **Debuggability**: We expose standardized debug headers (e.g. [UART]/[JTAG]) from our PCBs. Low-level firmware troubleshooting is accessible and documented for both our microcontrollers as well as the compute.
-   1. **Energy Consumption**: Energy usage should be measured individually for the various components in the system, in order to transparently and automatically be able to track where power is consumed. This also allows for higher-order aggregation and data processing related to energy.
+1. <span id="value-transparency">**Transparency**</span>
+    1. <span id="subvalue-observability">**Observability**</span>: All data logging/aggregating components in the system must expose metrics compliant to the [OpenMetrics] specification.
+    1. <span id="subvalue-debuggability">**Debuggability**</span>: We expose standardized debug headers (e.g. [UART]/[JTAG]) from our PCBs. Low-level firmware troubleshooting is accessible and documented for both our microcontrollers as well as the compute.
+    1. <span id="subvalue-energy-monitoring">**Energy Monitoring**</span>: Energy usage should be measured individually for the various components in the system, in order to transparently and automatically be able to track where power is consumed. This also allows for higher-order aggregation and data processing related to energy.
 
-   [OpenMetrics]: https://openmetrics.io/
-   [UART]: https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
-   [JTAG]: https://en.wikipedia.org/wiki/JTAG
+    [OpenMetrics]: https://openmetrics.io/
+    [UART]: https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
+    [JTAG]: https://en.wikipedia.org/wiki/JTAG
 
-1. <span id="value-maintainability"></span> **Maintainability / Upgradability**
-   1. **Hot swappability**: Modules of the system (especially the compute) should be able to be hot-swapped without disturbing the operation of other modules in the rack while the rack is operating.
-   1. **Upgradability**: The modularity of the system should allow that individual pieces of the system (e.g. compute, storage, network switches, power supplies) should be upgradable without having to disrupt the rest of the rack, or disregard existing, functioning parts. This will minimize E-waste produced over time.
-   1. **Auto-upgradability**: It should be possible to enable automated (security) upgrades safely using e.g. [A/B partitioning] schemes.
-   1. **One-time hardware setup**: The hardware setup steps (3D-printing, PCB assembly, firmware flashing) are only performed once per rack. None of them are performed when dealing with software, even when resetting the entire cluster. This will allow for fast and less error-prone reconfigurations with faster setup/teardown cycle times.
+1. <span id="value-maintainability">**Maintainability / Upgradability**</span>
+    1. <span id="subvalue-hot-swappability">**Hot swappability**</span>: Modules of the system (especially the compute) should be able to be hot-swapped without disturbing the operation of other modules in the rack while the rack is operating.
+    1. <span id="subvalue-upgradability">**Upgradability**</span>: The modularity of the system should allow that individual pieces of the system (e.g. compute, storage, network switches, power supplies) should be upgradable without having to disrupt the rest of the rack, or disregard existing, functioning parts. This will minimize E-waste produced over time.
+    1. <span id="subvalue-auto-upgradability">**Auto-upgradability**</span>: It should be possible to enable automated (security) upgrades safely using e.g. [A/B partitioning] schemes.
+    1. <span id="subvalue-one-time-hardware-setup">**One-time hardware setup**</span>: The hardware setup steps (3D-printing, PCB assembly, firmware flashing) are only performed once per rack. None of them are performed when dealing with software, even when resetting the entire cluster. This will allow for fast and less error-prone reconfigurations with faster setup/teardown cycle times.
 
-   [A/B partitioning]: https://source.android.com/devices/tech/ota/ab
+    [A/B partitioning]: https://source.android.com/devices/tech/ota/ab
 
-1. <span id="value-affordability"></span> **Affordability**
-   1. **Sensible rack cost**: The price point of the Racklet Bill-of-Materials should be low enough to be accessible for hobbyists and educational organizations. Our target price range (VAT-exclusive, all essentials included) is 400-500€ per rack (containing 5 Pis). If this configuration is too costly it should be possible to switch parts out for a lower total price.
+1. <span id="value-affordability">**Affordability**</span>
+    1. <span id="subvalue-sensible-rack-cost">**Sensible rack cost**</span>: The price point of the Racklet Bill-of-Materials should be low enough to be accessible for hobbyists and educational organizations. Our target price range (VAT-exclusive, all essentials included) is 400-500€ per rack (containing 5 Pis). If this configuration is too costly it should be possible to switch parts out for a lower total price.
 
 <!-- Rough cost estimate calculation for future reference: (40€/Pi + 15€/BMC + 7€/SD Card) × 5 Pis + (25€/SSD + 5€/SATA cable) × 4 compute Pis + 2€/Ethernet cable × 6  + 30€/switch + 5€/backplane = 477€. This needs to be followed up and adjusted over time. -->
 
@@ -206,35 +206,35 @@ Racklet can be used for Research and Development purposes in Computer Labs where
 
 ### User Goals
 
-1. <span id="user-goal-kubernetes"></span> **Achieve user goals through containers and Kubernetes**: The user wants to use containers and [Kubernetes] as their preferred way of running applications, and hence some base functionality of that should be provided in a "batteries included, but swappable"-sense. At the end of the day, we're building this project so that the user can build something nice on top of it through these standard interfaces.
+1. <span id="user-goal-kubernetes">**Achieve user goals through containers and Kubernetes**</span>: The user wants to use containers and [Kubernetes] as their preferred way of running applications, and hence some base functionality of that should be provided in a "batteries included, but swappable"-sense. At the end of the day, we're building this project so that the user can build something nice on top of it through these standard interfaces.
 
-   [Kubernetes]: https://kubernetes.io/
+    [Kubernetes]: https://kubernetes.io/
 
-1. <span id="user-goal-fast-reconfiguration"></span> **Fast Reconfiguration / Turn-around Time**: The user wants to configure their hardware once, and after that be able to set up and/or recreate the whole software stack from the ground up multiple times over with minimal hassle. For example, an educator may want to rebuild the rack configuration, trusted certificates, etc. or do a "factory reset" for every class/workshop they run.
+1. <span id="user-goal-fast-reconfiguration">**Fast Reconfiguration / Turn-around Time**</span>: The user wants to configure their hardware once, and after that be able to set up and/or recreate the whole software stack from the ground up multiple times over with minimal hassle. For example, an educator may want to rebuild the rack configuration, trusted certificates, etc. or do a "factory reset" for every class/workshop they run.
 
-1. <span id="user-goal-secure-updates"></span> **Secure Firmware[^trusted_firmware] and Software Updates**: When the user gets notified that a new release is available, the user _doesn't_ want to do it the "classical" way of downloading some hex binary and flashing it manually for each server. Instead, they want the upgrades to be atomic (e.g. A/B partitioning), secure (payload is signed), automated and defend against common upgrading attacks (e.g. [rollback attack]). Optionally, automatic deployment of upgrades can be enabled.
+1. <span id="user-goal-secure-updates">**Secure Firmware[^trusted_firmware] and Software Updates**</span>: When the user gets notified that a new release is available, the user _doesn't_ want to do it the "classical" way of downloading some hex binary and flashing it manually for each server. Instead, they want the upgrades to be atomic (e.g. A/B partitioning), secure (payload is signed), automated and defend against common upgrading attacks (e.g. [rollback attack]). Optionally, automatic deployment of upgrades can be enabled.
 
     [1st stage bootloader of the Raspberry Pi 4]: https://github.com/raspberrypi/rpi-eeprom
 
     [rollback attack]: https://en.wikipedia.org/wiki/Downgrade_attack (This is for software protocols such as TLS, but the same principle applies to firmware as well.)
 
-1. <span id="user-goal-zero-trust-networking"></span> **Network Boot in a Zero-Trust Environment**: The user should feel ready to plug Racklet in to (almost) any existing network, without the system interfering with existing devices on the network or vice versa. This goes strongly in hand with #3 as ensuring security, especially in the boot and upgrade process, is of paramount importance[^security].
+1. <span id="user-goal-zero-trust-networking">**Network Boot in a Zero-Trust Environment**</span>: The user should feel ready to plug Racklet in to (almost) any existing network, without the system interfering with existing devices on the network or vice versa. This goes strongly in hand with #3 as ensuring security, especially in the boot and upgrade process, is of paramount importance[^security].
 
     [ARM TrustedFirmware]: https://www.trustedfirmware.org/
 
-1. <span id="user-goal-end-to-end-encryption"></span> **End-to-end encryption and authentication**: The user wants to feel comfortable running software on top of their Racklet without worrying about e.g. [MITM] attacks in the surrounding untrusted network it is connected to. Hence, all [TCP/IP] traffic should be end-to-end encrypted, authenticated or preferably, both.
+1. <span id="user-goal-end-to-end-encryption">**End-to-end encryption and authentication**</span>: The user wants to feel comfortable running software on top of their Racklet without worrying about e.g. [MITM] attacks in the surrounding untrusted network it is connected to. Hence, all [TCP/IP] traffic should be end-to-end encrypted, authenticated or preferably, both.
 
     [MITM]: https://en.wikipedia.org/wiki/Man-in-the-middle_attack
 
     [TCP/IP]: https://en.wikipedia.org/wiki/Transmission_Control_Protocol
 
-1. <span id="user-goal-hot-swappability"></span> **Hot swappability**: The user wants to be able to upgrade their racks often for newer hardware as they enter the market. The user also wants to be able to maintain and service the rack while it is running, and dynamically expand capacity at runtime.
+1. <span id="user-goal-hot-swappability">**Hot swappability**</span>: The user wants to be able to upgrade their racks often for newer hardware as they enter the market. The user also wants to be able to maintain and service the rack while it is running, and dynamically expand capacity at runtime.
 
-1. <span id="user-goal-power-monitoring"></span> **Keep track of power usage and efficiency**: For educational purposes and intelligent power control, it is important to know how compute utilization translates to power consumption across the system. The user wants transparently reported metrics so that they can analyze the data and utilize higher-level power control routines to optimize power draw.
+1. <span id="user-goal-power-monitoring">**Keep track of power usage and efficiency**</span>: For educational purposes and intelligent power control, it is important to know how compute utilization translates to power consumption across the system. The user wants transparently reported metrics so that they can analyze the data and utilize higher-level power control routines to optimize power draw.
 
-1. <span id="user-goal-physical-portability"></span> **Physical portability**: Racklet should be lightweight enough to be carried by hand and should not require specialized equipment or disassembly for transportation.
+1. <span id="user-goal-physical-portability">**Physical portability**</span>: Racklet should be lightweight enough to be carried by hand and should not require specialized equipment or disassembly for transportation.
 
-1. <span id="user-goal-commodity-power-io"></span> **Commodity Power and I/O**: The user wants to be able to utilize commodity resources they already have at hand, instead of needing to buy specialized equipment only for Racklet. Examples of these commodities include: Laptop chargers instead of a custom power cable/transformer, [USB] instead of some proprietary high-speed interconnect, and [Ethernet] switches & cables instead of e.g. expensive [SFP+].
+1. <span id="user-goal-commodity-power-io">**Commodity Power and I/O**</span>: The user wants to be able to utilize commodity resources they already have at hand, instead of needing to buy specialized equipment only for Racklet. Examples of these commodities include: Laptop chargers instead of a custom power cable/transformer, [USB] instead of some proprietary high-speed interconnect, and [Ethernet] switches & cables instead of e.g. expensive [SFP+].
 
     [USB]: https://en.wikipedia.org/wiki/USB
 
