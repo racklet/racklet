@@ -1,0 +1,26 @@
+on: [push]
+
+jobs:
+  render_drawio:
+    runs-on: ubuntu-latest
+    name: Render draw.io files
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Render draw.io files
+        uses: ghcr.io/racklet/render-drawio-action@v1
+        id: render
+        with: # Showcasing the default values here
+          formats: 'svg' # Render all as SVG
+          sub-dirs: 'docs' # Render only drawings in docs
+          skip-dirs: '.git' # Always skip the .git directory
+          log-level: 'info' # Info level logging
+      - name: Print the rendered files
+        run: 'echo "The following files were generated: ${{ steps.render.outputs.rendered-files }}"'
+      - uses: EndBug/add-and-commit@v7
+        with:
+          # This "special" author name and email will show up as the GH Actions user/bot in the UI
+          author_name: github-actions
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: 'Automatically render .drawio files'
+          add: "${{ steps.render.outputs.rendered-files }}"
