@@ -24,3 +24,4 @@ jobs:
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: 'Automatically render .drawio files'
           add: "${{ steps.render.outputs.rendered-files }}"
+        if: "${{ steps.render.outputs.rendered-files != ''}}"
