@@ -8,9 +8,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Render draw.io files
-        uses: ghcr.io/racklet/render-drawio-action@v1
+        uses: docker://ghcr.io/racklet/render-drawio-action:v1
         id: render
-        with: # Showcasing the default values here
+        with:
           formats: 'svg' # Render all as SVG
           sub-dirs: 'docs' # Render only drawings in docs
           skip-dirs: '.git' # Always skip the .git directory
