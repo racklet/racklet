@@ -1,3 +1,5 @@
+name: Render draw.io files
+
 on: [push]
 
 jobs:
