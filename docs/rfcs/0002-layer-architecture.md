@@ -31,7 +31,7 @@
 
 _One paragraph explanation of the feature._
 
-This RFC describes the overall Racklet architecture, its defining layers, and requirements for each such layer, derived from [RFC-0001]. For each layer the defining components are described at a high level (avoiding implementation details). The compnoents are associated with their role and five highlighted key requirements from the values and user goals of [RFC-0001].
+This RFC describes the overall Racklet architecture, its defining layers, and requirements for each such layer, derived from [RFC-0001]. For each layer the defining components are described at a high level (avoiding implementation details). The components are associated with their role and five highlighted key requirements from the values and user goals of [RFC-0001].
 
 [RFC-0001]: 0001-high-level-architecture.md
 
@@ -49,7 +49,8 @@ _What is in scope for this work?_
 
 - Define well-known layers of Racklet.
 - Describe the requirements for each layer.
-- Describe roughly how to be "Racklet conformant" and what the differences are between Racklet and other similar alternatives.
+- Briefly discuss "Racklet conformance" from an architectural perspective.
+- Highlight some differences between Racklet and other similar alternatives.
 
 ### Non-Goals
 
@@ -68,13 +69,13 @@ _This is the technical portion of the RFC. Explain the design in sufficient deta
 
 _The section should return to the examples given in the guide-level explanation below, and explain more fully how the detailed proposal makes those examples work._
 
-Racklet is divided into 5 distinct layers, from lowest-level to highest-level:
+Racklet is divided into 5 distinct layers, from highest-level to lowest-level:
 
-1. **Structural**
-2. **Electrical**
-3. **Firmware**
-4. **System Software**
-5. **User Software**
+5\. **User Software**  
+4\. **System Software**  
+3\. **Firmware**  
+2\. **Electrical**  
+1\. **Structural**  
 
 There is some overlap between these defined layers, mostly due to individual components contributing to multiple layers, but we aim to keep a clear distinction in this definition. If for example a microcontroller is part of both the electrical and firmware layer, the electrical layer only considers its electical properties and the firmware layer only its firmware.
 
@@ -91,11 +92,11 @@ The architecture is designed with the layers and their interaction as the primar
 
 **Layer components**:
 
-| Component                     | Role                                             | Key Requirements                                                                                        |
-| -------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| **VM image building automation** | Define and run VMs declaratively                 | [Improve status quo], [Openness], [Declarative management], [Documentation], [Fast reconfiguration]     |
-| **Kubernetes VM image**          | Consume/use a Kubernetes cluster                 | [De-facto standards], [Declarative management], [Loose coupling], [Upgradability], [Utilize Kubernetes] |
-| **Racklet Dashboard**            | Monitor rack and cluster state, deploy workloads | [Security by design], [Declarative management], [Open source], [Portability], [Observability]           |
+| Component                               | Role                                             | Key Requirements                                                                                        |
+| --------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| **Micro-Virtual Machine orchestration** | Define and run VMs declaratively                 | [Improve status quo], [Openness], [Declarative management], [Documentation], [Fast reconfiguration]     |
+| **Kubernetes deployment automation**    | Consume/use a Kubernetes cluster                 | [De-facto standards], [Declarative management], [Loose coupling], [Upgradability], [Utilize Kubernetes] |
+| **Racklet Dashboard**                   | Monitor rack and cluster state, deploy workloads | [Security by design], [Declarative management], [Open source], [Portability], [Observability]           |
 
 ### 4. System Software layer
 
@@ -234,9 +235,9 @@ Explain the proposal as if it was already a feature of the project and this woul
 - If applicable, provide sample error messages, deprecation warnings, or migration guidance.
 - If applicable, describe the differences between teaching this to a Racklet administrator versus a Racklet end user.
 
-**TODO**: Mention what is the difference between "reference" implementation and "community" implementations. TBD
+TODO: Better explanation
 
-These RFCs target a "reference" implementation of Racklet, as envisioned by its authors. The components and key requirements for them are described from the perspective of this reference implementation, and thus "community" implementations of Racklet (e.g. in a different physical form factor) don't need to strictly adhere to the requirements laid out here. A "Racklet compliant" system ultimately only required to follow the [values laid out in RFC-0001] and the loose coupling hardware/software interfaces of the project. That said, it is still advised that variations of Racklet follow the layers, high-level components and key requirements laid out in this document. 
+These RFCs target a "reference" implementation of Racklet, as envisioned by its authors. The components and key requirements for them are described from the perspective of this reference implementation, and thus "community" implementations of Racklet (e.g. in a different physical form factor) don't need to strictly adhere to the requirements laid out here. A "Racklet compliant" system ultimately only required to follow the [values laid out in RFC-0001] and the loose coupling hardware/software interfaces of the project. That said, it is still advised that variations of Racklet follow the layers, high-level components and key requirements in this document. 
 
 [values laid out in RFC-0001]: 0001-high-level-architecture.html#values
 
@@ -265,7 +266,7 @@ The Racklet team aims to adapt to community requirements and adaptations to keep
 
 As stated in [Risks and Mitigations](#risks-and-mitigations), Racklet is (one of) the first of its kind with regards to its specification-first architecture. The initial layer separation presented here is the result of an iterative thought process by the core Racklet authors. The five layers are chosen to clearly separate roles and responsibilities of components, without going into too much detail (too many layers) or causing excessive overlap (too few layers). Firmware and system software are separated to achieve loose coupling and clear, secure communication between them. User software is separated from system software to define a border between software mostly provided by the Racklet project and external software that the user introduces (workloads).
 
-[Loose coupling] plays a very important role in the architecture presented here. Racklet could have been designed as a fully integrated system with implementations that are strictly defined by the project, but while this potentially could make the system more compact and simple, it also faces many drawbacks that make it incompatible with the values and goals of the project. For example, Racklet relies heavily on various different projects in the Open Firmware and Cloud Native ecosystems, many of which evolve quickly and provide alternative implementations complying to standard APIs. We want Racklet to be accessible, transparent and modular, which means supporting a wide variety of hardware, and enabling user customization to a great extent. If loose coupling is implemented properly, we believe that the standardized architecture presented here will be relatively simple to maintain and extend, and community-built Racklet solutions will also be able to use the modules and different software implementations effortlessly. In summary, to fulfill the values defined in [RFC-0001] and to avoid ecosystem fragmentation the Racklet project aims to provide interfaces, not implementations.
+[Loose coupling] plays a very important role in the architecture presented here. Racklet could have been designed as a fully integrated system with implementations that are strictly defined by the project, but while this potentially could make the system more compact and simple, it also faces many drawbacks that make it incompatible with the values and goals of the project. For example, Racklet relies heavily on various different projects in the Open Source Firmware and Cloud Native ecosystems, many of which evolve quickly and provide alternative implementations complying to standard APIs. We want Racklet to be accessible, transparent and modular, which means supporting a wide variety of hardware, and enabling user customization to a great extent. If loose coupling is implemented properly, we believe that the standardized architecture presented here will be relatively simple to maintain and extend, and community-built Racklet solutions will also be able to use the modules and different software implementations effortlessly. In summary, to fulfill the values defined in [RFC-0001] and to avoid ecosystem fragmentation the Racklet project aims to provide interfaces, not implementations.
 
 ## Prior art
 
@@ -281,7 +282,7 @@ If there is no prior art, that is fine - your ideas are interesting to us regard
 
 TODO: Explain what is the difference between this try and prior RPi clusters.
 
-At the time of Racklet creation the history of Raspberry Pi (and other SBC) based cluster computers is already very rich. Various private persons, educational insistutes and companies have come up with a wide variety of designs (**TODO: Examples**) for different use cases for at least the past 10 years. What sets Racklet apart from these mostly one-off implementations is it's **specification**. Instead of deriving a specification from some implementation, Racklet as a system is *primarily* defined as a set of RFC documents. This specification is intended to define a **standardized** way to build a miniature compute cluster, from the lowest-level hardware details up to a state-of-the-art software stack. Since the specification is defined from the ground up, we prioritize basing it on the most _secure_ and _modern_ technologies available today, essentially merging the core concepts of prior SBC cluster computer implementations with the state of the art security and fleet management models of large-scale cloud providers.
+At the time of Racklet creation the history of Raspberry Pi (and other SBC) based cluster computers is already very rich. Various private persons, educational insistutes and companies have come up with a wide variety of designs (e.g. KubeCloud[^kubecloud]) for different use cases for at least the past 8 years. What sets Racklet apart from these mostly one-off implementations is it's **specification**. Instead of deriving a specification from some implementation, Racklet as a system is *primarily* defined as a set of RFC documents. This specification is intended to define a **standardized** way to build a miniature compute cluster, from the lowest-level hardware details up to a state-of-the-art software stack. Since the specification is defined from the ground up, we prioritize basing it on the most _secure_ and _modern_ technologies available today, essentially merging the core concepts of prior SBC cluster computer implementations with the state of the art security and fleet management models of large-scale cloud providers.
 
 *[SBC]: Single Board Computer
 
@@ -326,3 +327,7 @@ Major milestones in the lifecycle of a RFC should be tracked here.
 Major milestones might include:
 
 - `2021-MM-DD-FIXME`: This RFC has been accepted.
+
+---
+
+[^kubecloud]: "KubeCloud: A Small-Scale Tangible Cloud Computing Environment". Master's thesis in Computer Engineering at Aarhus University by Kasper Nissen and Martin Jensen. Published June 6th, 2016. [Download PDF here](https://github.com/KubeCloud/thesis/raw/master/master.pdf).
