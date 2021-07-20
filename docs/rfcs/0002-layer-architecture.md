@@ -288,7 +288,7 @@ The layer definitions presented here are expected to evolve with the project. Th
 
 ## Implementation History
 
-- `2021-MM-DD-FIXME`: This RFC has been accepted.
+- `2021-07-20`: This RFC has been accepted.
 
 ---
 
