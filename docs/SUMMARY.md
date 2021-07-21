@@ -11,6 +11,7 @@
 - [RFC process](rfcs/README.md)
   - [0000: Template](rfcs/0000-rfc-template.md)
   - [0001: Racklet](rfcs/0001-high-level-architecture.md)
+  - [0002: Layer Architecture](rfcs/0002-layer-architecture.md)
 
 <!--
     CONTRIBUTING.md is a copy of to the top-level CONTRIBUTING.md (can't symlink outside of docs/ as per linkcheck)
