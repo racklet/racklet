@@ -19,7 +19,7 @@
 
 **Creation Date**: `2021-04-15`
 
-**Last Updated**: `2021-06-28`
+**Last Updated**: `2021-07-02`
 
 **RFC Handle**: `0002-layer-architecture`
 
@@ -114,14 +114,11 @@ The architecture is designed with the layers and their interaction as the primar
 
 **Layer components**:
 
-| Component                                | Role                                                                         | Key Requirements                                                                                                        |
-| ---------------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **[u-root] based bootstrap environment** | Secure Git access, firmware updates and payload booting                      | [Security by design], [Improve status quo], [Open source], [Secure updates], [Zero-trust network boot]                  |
-| **BMC firmware**                         | Compute booting and debugging, key and signature storage for software layers | [Security by design], [No old/insecure protocols], [Declarative management], [Debuggability], [One-time hardware setup] |
-| **RMC firmware**                         | Rack hardware control and observability, e.g. fans                           | [Openness], [Declarative management], [Loose coupling], [Observability], [Secure updates]                               |
-
-*[BMC]: Baseboard Management Controller
-*[RMC]: Rack Management Controller
+| Component                                          | Role                                                                         | Key Requirements                                                                                                        |
+| -------------------------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **[u-root] based bootstrap environment**           | Secure Git access, firmware updates and payload booting                      | [Security by design], [Improve status quo], [Open source], [Secure updates], [Zero-trust network boot]                  |
+| **BMC (Baseboard Management Controller) firmware** | Compute booting and debugging, key and signature storage for software layers | [Security by design], [No old/insecure protocols], [Declarative management], [Debuggability], [One-time hardware setup] |
+| **RMC (Rack Management Controller) firmware**      | Rack hardware control and observability, e.g. fans                           | [Openness], [Declarative management], [Loose coupling], [Observability], [Secure updates]                               |
 
 [u-root]: https://u-root.org/
 
@@ -270,9 +267,7 @@ As stated in [Risks and Mitigations](#risks-and-mitigations), Racklet is (one of
 
 ## Prior art
 
-At the time of Racklet creation the history of Raspberry Pi (and other SBC) based cluster computers is already very rich. Various private persons, educational insistutes and companies have come up with a wide variety of designs (e.g. KubeCloud[^kubecloud]) for different use cases for at least the past 8 years. What sets Racklet apart from these mostly one-off implementations is it's **specification**. Instead of deriving a specification from some implementation, Racklet as a system is *primarily* defined as a set of RFC documents. This specification is intended to define a **standardized** way to build a miniature compute cluster, from the lowest-level hardware details up to a state-of-the-art software stack. Since the specification is defined from the ground up, we prioritize basing it on the most _secure_ and _modern_ technologies available today, essentially merging the core concepts of prior SBC cluster computer implementations with the state of the art security and fleet management models of large-scale cloud providers.
-
-*[SBC]: Single Board Computer
+At the time of Racklet creation the history of Raspberry Pi (and other single board computer) based cluster computers is already very rich. Various private persons, educational insistutes and companies have come up with a wide variety of designs (e.g. KubeCloud[^kubecloud]) for different use cases for at least the past 8 years. What sets Racklet apart from these mostly one-off implementations is it's **specification**. Instead of deriving a specification from some implementation, Racklet as a system is *primarily* defined as a set of RFC documents. This specification is intended to define a **standardized** way to build a miniature compute cluster, from the lowest-level hardware details up to a state-of-the-art software stack. Since the specification is defined from the ground up, we prioritize basing it on the most _secure_ and _modern_ technologies available today, essentially merging the core concepts of prior SBC cluster computer implementations with the state of the art security and fleet management models of large-scale cloud providers.
 
 ## Unresolved questions
 
