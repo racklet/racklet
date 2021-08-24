@@ -1,0 +1,1160 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Racklet</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Open Source scale model of Data Centers using commodity compute like Raspberry Pis.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".mdbook/print.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Welcome to Racklet</a></li><li class="chapter-item expanded "><a href="rfcs/README.html"><strong aria-hidden="true">1.</strong> RFC process</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rfcs/0000-rfc-template.html"><strong aria-hidden="true">1.1.</strong> 0000: Template</a></li><li class="chapter-item expanded "><a href="rfcs/0001-high-level-architecture.html"><strong aria-hidden="true">1.2.</strong> 0001: Racklet</a></li><li class="chapter-item expanded "><a href="rfcs/0002-layer-architecture.html"><strong aria-hidden="true">1.3.</strong> 0002: Layer Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="CONTRIBUTING.html"><strong aria-hidden="true">2.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mdbook.html"><strong aria-hidden="true">2.1.</strong> Documentation workflow</a></li><li class="chapter-item expanded "><a href="CODE_OF_CONDUCT.html"><strong aria-hidden="true">2.2.</strong> Code of Conduct</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Racklet</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/racklet/racklet" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="racklet"><a class="header" href="#racklet">racklet</a></h1>
+<p>Open source scale-model of Data Centers using commodity compute like Raspberry Pis.</p>
+<h2 id="what-is-racklet"><a class="header" href="#what-is-racklet">What is Racklet?</a></h2>
+<p><strong>Work in progress, more information to be submitted soon</strong>.</p>
+<p>Until then, please refer to <a href="https://docs.racklet.io/rfcs/0001-high-level-architecture.html">RFC 1</a>.</p>
+<p>You can also look at the <a href="https://youtu.be/YKWtR0xOnF4">introductory presentation</a> and <a href="https://speakerdeck.com/luxas/introducing-racklet-a-commoditized-educational-and-open-source-data-center-scale-model-for-tinkerers">slides</a> during <a href="https://kcdafrica.com">KCD Africa</a>.</p>
+<p><a href="https://speakerdeck.com/luxas/introducing-racklet-a-commoditized-educational-and-open-source-data-center-scale-model-for-tinkerers"><img src="https://files.speakerdeck.com/presentations/9d86e9f1ba6249c6886147d43c5d20f8/preview_slide_34.jpg?17978884" alt="KCD Africa slides" /></a></p>
+<h2 id="contributing"><a class="header" href="#contributing">Contributing</a></h2>
+<p>Please see <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> and our <a href="CODE_OF_CONDUCT.html">Code Of Conduct</a>.</p>
+<p>Other interesting resources include:</p>
+<ul>
+<li><a href="https://github.com/racklet/racklet/issues">The issue tracker</a></li>
+<li><a href="https://github.com/racklet/racklet/discussions">The discussions forum</a></li>
+<li><a href="https://github.com/racklet/racklet/milestones">The list of milestones</a></li>
+<li><a href="https://github.com/orgs/racklet/projects/1">The roadmap</a></li>
+<li><a href="https://github.com/racklet/racklet/blob/main/CHANGELOG.md">The changelog</a></li>
+</ul>
+<h2 id="getting-help"><a class="header" href="#getting-help">Getting Help</a></h2>
+<p>If you have any questions about, feedback for or problems with Racklet:</p>
+<ul>
+<li>Invite yourself to the <a href="https://slack.osfw.dev/">Open Source Firmware Slack</a>.</li>
+<li>Ask a question on the <a href="https://osfw.slack.com/messages/racklet/">#racklet</a> slack channel.</li>
+<li>Ask a question on the <a href="https://github.com/racklet/racklet/discussions">discussions forum</a>.</li>
+<li><a href="https://github.com/racklet/racklet/issues/new">File an issue</a>.</li>
+<li>Join our <a href="https://hackmd.io/@racklet/Sk8jHHc7_">community meetings</a> (see also the <a href="https://github.com/racklet/meeting-notes">meeting-notes</a> repo).</li>
+</ul>
+<p>Your feedback is always welcome!</p>
+<h2 id="maintainers"><a class="header" href="#maintainers">Maintainers</a></h2>
+<p>In alphabetical order:</p>
+<ul>
+<li>Dennis Marttinen, <a href="https://github.com/twelho">@twelho</a></li>
+<li>Jaakko Sirén, <a href="https://github.com/Jaakkonen">@Jaakkonen</a></li>
+<li>Lucas Käldström, <a href="https://github.com/luxas">@luxas</a></li>
+<li>Verneri Hirvonen, <a href="https://github.com/chiplet">@chiplet</a></li>
+</ul>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<p><a href="LICENSE">Apache 2.0</a></p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/index.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="request-for-comment-rfc-process"><a class="header" href="#request-for-comment-rfc-process">Request For Comment (RFC) Process</a></h1>
+<p>A well-defined process for improving Racklet over time in a structured and efficient manner.</p>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p>In order to make a significant change to Racklet; one must first write up a document to clearly describe
+what the proposed change is, why the change is needed, how to successfully get to the desired goal, and
+any alternatives considered before settling on a given design. This process is inspired by, and in some
+aspects similar to, <a href="https://github.com/rust-lang/rfcs">Rust's RFC process</a> and <a href="https://github.com/kubernetes/enhancements">Kubernetes' KEP process</a>.</p>
+<p>The accepted RFCs live in this folder. RFC-0000 is the template used as the base for new RFCs, it is inspired by
+and a combination of the <a href="https://github.com/rust-lang/rfcs/blob/master/0000-template.md">Rust RFC template</a> and the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/NNNN-kep-template/README.md">Kubernetes KEP template</a>.</p>
+<p>RFCs are formatted using the syntax used by <a href="https://hackmd.io"><code>hackmd.io</code></a>, i.e. a superset of the
+GitHub Flavored Markdown (GFM) dialect that GitHub supports. Hence, the RFC might not render as nicely in the
+GitHub preview as on HackMD. Each RFC should have its own <code>Collaborate on HackMD</code> badge.</p>
+<p>While the RFC lives in a PR (i.e. it hasn't been accepted yet), it is sensible to have pretty open editor
+permissions in HackMD (i.e. anyone can edit, or those who are signed in to HackMD using GitHub can edit),
+but after the RFC is accepted, and merged to the <code>main</code> branch, the document should be made read-only.
+<strong>TODO:</strong> Look into automating HackMD permission changes using e.g. GH Actions.</p>
+<h2 id="creating-a-new-rfc"><a class="header" href="#creating-a-new-rfc">Creating a new RFC</a></h2>
+<p>In order to create a new RFC, you should do the following:</p>
+<ul>
+<li>
+<p>Clone the <code>racklet/racklet</code> repository. If you do not have push access to the <code>racklet/racklet</code> repo,
+fork the repository first.</p>
+</li>
+<li>
+<p>Create a branch for your RFC, e.g. <code>rfc/foo</code></p>
+</li>
+<li>
+<p>Copy-paste the <a href="rfcs/0000-rfc-template.html">0000-rfc-template.md</a>
+into a new file following the naming schema <code>docs/rfcs/NNNN-foo.md</code>, where <code>NNNN</code> is the RFC number.</p>
+</li>
+<li>
+<p>Commit the addition of that RFC file. There's no need to change the template quite yet.</p>
+</li>
+<li>
+<p>Push your branch to GitHub, and open a Pull Request in Draft state (choose the dropdown on the
+<code>Create Pull Request</code> button, and choose the <code>Create draft pull request</code> option)</p>
+<ul>
+<li><img src="rfcs/resources/readme-draft-pr.png" alt="Creating a draft pull request" /></li>
+</ul>
+</li>
+<li>
+<p>Go to <a href="https://hackmd.io/">hackmd.io</a>, and sign in with your GitHub credentials.</p>
+</li>
+<li>
+<p>In the overview page, click the three dots <code>...</code> inside the green <code>New Note</code>
+button, and from the drop-down menu choose <code>Import a file from GitHub</code></p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-import.png" alt="Importing a file from GitHub" /></li>
+</ul>
+</li>
+<li>
+<p>HackMD will take you to the note editor, and ask you to authenticate with GitHub (again!). Click the
+button to authenticate and authorize HackMD to read repositories from your account. You can allow all repos,
+or only some specific ones, but if you have a fork of the <code>racklet</code> repo, make sure that one is in the
+selected set.</p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-authorize.png" alt="Authorizing HackMD to access repositories" /></li>
+<li><strong>Note:</strong> The <code>racklet</code> organization already has enabled the HackMD integration; but for some reason (that seems
+like a bug) HackMD forces you to authorize some repo from your own account, before you can access repositories
+in organizations (if you are a maintainer).
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-install.png" alt="Enabling HackMD GitHub integration for your own user" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Next, select either <code>racklet/racklet</code> or your fork as the repo to &quot;pull&quot;, the branch you just created as the
+target branch, and the path to the file you just created in the HackMD UI, and then proceed.</p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-pull.png" alt="Pulling from GitHub into HackMD" /></li>
+</ul>
+</li>
+<li>
+<p>HackMD will show a &quot;diff&quot; and explain it'll pull the file you just selected from GitHub into the note. Continue.</p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-apply.png" alt="Applying changes from the pull" /></li>
+</ul>
+</li>
+<li>
+<p>Now, you're almost done! Make sure that anyone can edit (or users logged in to GitHub) and anyone can view by.
+checking the permissions using the &quot;share&quot; button next to your profile picture. <strong>NOTE:</strong> Do <strong>not</strong> click the big
+blue &quot;Publish&quot; button, it not for saving your updated permissions, but instead publishes the file for search engines.</p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-permissions.png" alt="Ensuring proper permissions in HackMD" /></li>
+</ul>
+</li>
+<li>
+<p>Click the three dots <code>...</code> in the top-right corner, select <code>Versions and GitHub sync</code>, and <code>Add badge</code></p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-badge.png" alt="Adding a badge to the RFC" /></li>
+</ul>
+</li>
+<li>
+<p>HackMD will now add a badge to the top of the document, that allows reviewers of the PR to easily jump to the
+online edit view. Next, click <code>Push</code>, select the same branch as your PR lives in, and write some commit message,
+e.g. <code>Add HackMD badge</code>. Finally, click <code>Push</code>. <span id="push-procedure"></span></p>
+<ul>
+<li><img src="rfcs/resources/readme-hackmd-push.png" alt="Pushing the changes to GitHub" /></li>
+</ul>
+</li>
+<li>
+<p>You can now verify on GitHub that HackMD created a commit for you in the PR.</p>
+</li>
+</ul>
+<h2 id="editingupdating-an-rfc"><a class="header" href="#editingupdating-an-rfc">Editing/updating an RFC</a></h2>
+<p>While the RFC has not been merged, feel free to edit the document in HackMD (quickly open it using the badge on top of
+the document). Whenever you want to synchronize the changes to GitHub (do this fairly often, we don't want a large diff
+between GitHub and HackMD), just repeat the <a href="rfcs/README.html#push-procedure">push procedure</a>.</p>
+<p>If the RFC has already been merged (and the document on HackMD is read-only):</p>
+<ul>
+<li>Create and push a new branch, based on the latest <code>main</code>, for example as follows:
+<ol>
+<li><code>git checkout main</code></li>
+<li><code>git pull</code></li>
+<li><code>git checkout -b rfc/foo-update</code></li>
+<li><code>git push --set-upstream origin rfc/foo-update</code></li>
+</ol>
+</li>
+<li>Enable the editing permissions in HackMD for the file again, and make your changes and push.
+<ul>
+<li><strong>NOTE:</strong> Make sure to re-target HackMD to push to your new branch instead of the original one!</li>
+</ul>
+</li>
+<li>Draft a new pull request for the updates.</li>
+</ul>
+<p>Although discouraged, if external changes are done by e.g. pushing a commit directly to GitHub or merging review
+suggestions, you need to perform a pull in HackMD to get it up to date again. Reviews should be done exclusively
+on GitHub, in the pull request for the RFC.</p>
+<p><strong>NOTE:</strong> This, for the time being, might not fully work as expected for non-maintainers. If you encounter an issue
+with this process, please open an issue, and we'll try to resolve it to make things as convenient as possible.
+We'll improve this process over time to make contributing RFCs smoother for non-maintainers as well.</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/rfcs/README.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="rfc-nnnn-human-readable-title-goes-here"><a class="header" href="#rfc-nnnn-human-readable-title-goes-here">RFC-NNNN: Human-readable title goes here</a></h1>
+<!-- Remember to add autogenerated HackMD badge here. See the [README](README.md) for more details. -->
+<!-- The TOC marker below will translate into an automatically-generated table of contents when generated
+by `mdBook` and when edited online in HackMD. -->
+<ul>
+<li><a href="rfcs/0000-rfc-template.html#rfc-metadata">RFC Metadata</a></li>
+<li><a href="rfcs/0000-rfc-template.html#summary">Summary</a></li>
+<li><a href="rfcs/0000-rfc-template.html#motivation">Motivation</a>
+<ul>
+<li><a href="rfcs/0000-rfc-template.html#goals">Goals</a></li>
+<li><a href="rfcs/0000-rfc-template.html#non-goals">Non-Goals</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0000-rfc-template.html#proposal">Proposal</a>
+<ul>
+<li><a href="rfcs/0000-rfc-template.html#values">Values</a></li>
+<li><a href="rfcs/0000-rfc-template.html#user-stories">User stories</a></li>
+<li><a href="rfcs/0000-rfc-template.html#guide-level-explanation">Guide-level explanation</a></li>
+<li><a href="rfcs/0000-rfc-template.html#risks-and-mitigations">Risks and Mitigations</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0000-rfc-template.html#drawbacks">Drawbacks</a></li>
+<li><a href="rfcs/0000-rfc-template.html#rationale-and-alternatives">Rationale and alternatives</a></li>
+<li><a href="rfcs/0000-rfc-template.html#prior-art">Prior art</a></li>
+<li><a href="rfcs/0000-rfc-template.html#unresolved-questions">Unresolved questions</a></li>
+<li><a href="rfcs/0000-rfc-template.html#future-possibilities">Future possibilities</a></li>
+<li><a href="rfcs/0000-rfc-template.html#implementation-history">Implementation History</a></li>
+</ul>
+<!-- This link will offer the option to download this RFC as a PDF. -->
+<p><a href="rfcs/0000-rfc-template.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a></p>
+<h2 id="rfc-metadata"><a class="header" href="#rfc-metadata">RFC Metadata</a></h2>
+<p><strong>Authors</strong> (in alphabetical order):</p>
+<ul>
+<li>Author Name, <a href="https://github.com/Author_GitHub_Handle">@Author_GitHub_Handle</a></li>
+<li>Foo Bar, <a href="https://github.com/Foo_Bar">@Foo_Bar</a></li>
+</ul>
+<p><strong>Status</strong> (as defined <a href="https://github.com/kubernetes/enhancements/blob/master/keps/0001-kubernetes-enhancement-proposal-process.md#kep-metadata">here</a>): <code>Provisional</code></p>
+<p><strong>Creation Date</strong>: <code>YYYY-MM-DD</code></p>
+<p><strong>Last Updated</strong>: <code>YYYY-MM-DD</code></p>
+<p><strong>RFC Handle</strong>: <code>rfc-template</code> (should match the file name, as <code>NNNN-{rfc_handle}</code>, but without the <code>.md</code> suffix)</p>
+<p><strong>Initial Pull Request</strong>: <a href="https://github.com/racklet/racklet/pull/NNNN">racklet/racklet#NNNN</a></p>
+<p><strong>Tracking Issue</strong>: <a href="https://github.com/racklet/racklet/issues/NNNN">racklet/racklet#NNNN</a></p>
+<p><strong>Version Number</strong>: <code>v1.X.Y</code> <!-- Follows SemVer  --></p>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<p>One paragraph explanation of the feature.</p>
+<h2 id="motivation-1"><a class="header" href="#motivation-1">Motivation</a></h2>
+<p>Why are we doing this? What use cases does it support? What is the expected outcome?</p>
+<h3 id="goals"><a class="header" href="#goals">Goals</a></h3>
+<p>What is in scope for this work?</p>
+<h3 id="non-goals"><a class="header" href="#non-goals">Non-Goals</a></h3>
+<p>What is out of scope for this work?</p>
+<h2 id="proposal"><a class="header" href="#proposal">Proposal</a></h2>
+<p>This is the technical portion of the RFC. Explain the design in sufficient detail that:</p>
+<ul>
+<li>Its interaction with other features is clear.</li>
+<li>It is reasonably clear how the feature would be implemented.</li>
+<li>Corner cases are dissected by example.</li>
+</ul>
+<p>The section should return to the examples given in the guide-level explanation below, and explain more fully how the detailed proposal makes those examples work.</p>
+<h3 id="values"><a class="header" href="#values">Values</a></h3>
+<p>Describe what values does the proposed feature reflect. See <a href="rfcs/0001-high-level-architecture.html">RFC-0001</a>.</p>
+<h3 id="user-stories"><a class="header" href="#user-stories">User stories</a></h3>
+<p>Explain what is the use case of the proposed feature and how it would benefit the user.</p>
+<h3 id="guide-level-explanation"><a class="header" href="#guide-level-explanation">Guide-level explanation</a></h3>
+<p>Explain the proposal as if it was already a feature of the project and this would be the documentation for that feature.</p>
+<ul>
+<li>Introducing new named concepts.</li>
+<li>Explaining the feature largely in terms of examples.</li>
+<li>If applicable, provide sample error messages, deprecation warnings, or migration guidance.</li>
+<li>If applicable, describe the differences between teaching this to a Racklet administrator versus a Racklet end user.</li>
+</ul>
+<h3 id="risks-and-mitigations"><a class="header" href="#risks-and-mitigations">Risks and Mitigations</a></h3>
+<p>What are the risks of this proposal and how do we mitigate.
+Think broadly.
+For example, consider both security and how this will impact the larger ecosystem.</p>
+<h2 id="drawbacks"><a class="header" href="#drawbacks">Drawbacks</a></h2>
+<p>Why should we <em>not</em> do this? Consider at least one drawback.</p>
+<h2 id="rationale-and-alternatives"><a class="header" href="#rationale-and-alternatives">Rationale and alternatives</a></h2>
+<ul>
+<li>Why is this design the best in the space of possible designs?</li>
+<li>What other designs have been considered and what is the rationale for not choosing them?</li>
+<li>What is the impact of not doing this?</li>
+</ul>
+<h2 id="prior-art"><a class="header" href="#prior-art">Prior art</a></h2>
+<p>Discuss prior art, both the good and the bad, in relation to this proposal.
+A few examples of what this can include are:</p>
+<ul>
+<li>For community proposals: Is this done by some other community and what were their experiences with it?</li>
+<li>For other teams: What lessons can we learn from what other communities have done here?</li>
+<li>Papers: Are there any published papers or great posts that discuss this? If you have some relevant papers to refer to, this can serve as a more detailed theoretical background.</li>
+</ul>
+<p>This section is intended to encourage you as an author to think about the lessons from other projects and provide readers of your RFC with a fuller picture.
+If there is no prior art, that is fine - your ideas are interesting to us regardless of whether they are brand new or adaptations from other projects.</p>
+<h2 id="unresolved-questions"><a class="header" href="#unresolved-questions">Unresolved questions</a></h2>
+<ul>
+<li>What parts of the design do you expect to resolve through the RFC process before this gets merged?</li>
+<li>What parts of the design do you expect to resolve through the implementation of this feature before stabilization?</li>
+<li>What related issues do you consider out of scope for this RFC that could be addressed in the future independently of the solution that comes out of this RFC?</li>
+</ul>
+<h2 id="future-possibilities"><a class="header" href="#future-possibilities">Future possibilities</a></h2>
+<p>Think about what the natural extension and evolution of your proposal would
+be and how it would affect the project as a whole in a holistic
+way. Try to use this section as a tool to more fully consider all possible
+interactions with the project in your proposal.
+Also consider how this all fits into the roadmap for the project.</p>
+<p>This is also a good place to &quot;dump ideas&quot;, if they are out of scope for the
+RFC you are writing but otherwise related.</p>
+<p>If you have tried and cannot think of any future possibilities,
+you may simply state that you cannot think of anything.</p>
+<p>Note that having something written down in the future-possibilities section
+is not a reason to accept the current or a future RFC; such notes should be
+in the section on motivation or rationale in this or subsequent RFCs.
+The section merely provides additional information.</p>
+<h2 id="implementation-history"><a class="header" href="#implementation-history">Implementation History</a></h2>
+<p>Major milestones in the lifecycle of a RFC should be tracked here.
+Major milestones might include:</p>
+<ul>
+<li>The status of the RFC has been changed or another major change to the RFC has been accepted.</li>
+<li>The first Racklet version including an initial version of the RFC is released.</li>
+<li>The Racklet version where the RFC graduated to general availability is released.</li>
+<li>The RFC version number has been updated</li>
+<li>The RFC has been retired or superseded.</li>
+</ul>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/rfcs/0000-rfc-template.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="rfc-0001-racklet"><a class="header" href="#rfc-0001-racklet">RFC-0001: Racklet</a></h1>
+<p><a href="https://hackmd.io/YoFCFK5aR-KZwClntWbhZg"><img src="https://hackmd.io/YoFCFK5aR-KZwClntWbhZg/badge" alt="hackmd-github-sync-badge" /></a></p>
+<p><a href="rfcs/0001-high-level-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a> (for docs.racklet.io)</p>
+<!-- TODO: @alexellis feedback on old/insecure => insecure wrt the protocols -->
+<ul>
+<li><a href="rfcs/0001-high-level-architecture.html#rfc-metadata">RFC Metadata</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#summary">Summary</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#motivation">Motivation</a>
+<ul>
+<li><a href="rfcs/0001-high-level-architecture.html#goals-of-this-rfc">Goals of this RFC</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#non-goals-of-this-rfc">Non-Goals of this RFC</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0001-high-level-architecture.html#proposal">Proposal</a>
+<ul>
+<li><a href="rfcs/0001-high-level-architecture.html#values">Values</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#user-perspectives">User Perspectives</a>
+<ul>
+<li><a href="rfcs/0001-high-level-architecture.html#tangible-cloud-teaching">Tangible Cloud Teaching</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#mobile-cluster-for-conferences">Mobile Cluster for Conferences</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#ctf-contests">CTF contests</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#workshops">Workshops</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#homelabs">Homelabs</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#research-and-development">Research and Development</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0001-high-level-architecture.html#user-goals">User Goals</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0001-high-level-architecture.html#design-details">Design Details</a>
+<ul>
+<li><a href="rfcs/0001-high-level-architecture.html#high-level-layers">High-level Layers</a>
+<ul>
+<li><a href="rfcs/0001-high-level-architecture.html#layer-1-structural">Layer 1: Structural</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#layer-2-electrical">Layer 2: Electrical</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#layer-3-firmware">Layer 3: Firmware</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#layer-4-system-software">Layer 4: System Software</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#layer-5-user-software">Layer 5: User Software</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0001-high-level-architecture.html#test-plan">Test Plan</a></li>
+<li><a href="rfcs/0001-high-level-architecture.html#graduation-criteria">Graduation Criteria</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0001-high-level-architecture.html#implementation-history">Implementation History</a></li>
+</ul>
+<h2 id="rfc-metadata-1"><a class="header" href="#rfc-metadata-1">RFC Metadata</a></h2>
+<p><strong>Authors</strong> (in alphabetical order):</p>
+<ul>
+<li>Ayan Borthakur, <a href="https://github.com/ayan1948">@ayan1948</a></li>
+<li>Dennis Marttinen, <a href="https://github.com/twelho">@twelho</a></li>
+<li>Lucas Käldström, <a href="https://github.com/luxas">@luxas</a></li>
+<li>Verneri Hirvonen, <a href="https://github.com/chiplet">@chiplet</a></li>
+</ul>
+<p><strong>Status</strong> (as defined <a href="https://github.com/kubernetes/enhancements/blob/master/keps/0001-kubernetes-enhancement-proposal-process.md#kep-metadata">here</a>): <code>Implementable</code></p>
+<p><strong>Creation Date</strong>: <code>2020-12-10</code></p>
+<p><strong>Last Updated</strong>: <code>2020-06-08</code></p>
+<p><strong>Version Number</strong>: <code>v1.1.1</code></p>
+<h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
+<p>Racklet is a fully-integrated, miniature server rack. It is a scale model of a hyperscaler server rack loosely based on the <a href="https://www.opencompute.org/">Open Compute Project</a> (OCP) rack designs. It consists of several pluggable &quot;compute units&quot;, a <a href="https://www.opencompute.org/wiki/Hardware_Management/Open_RMC">Rack Management Controller</a> (RMC) and shared power delivery (the so-called <a href="https://en.wikipedia.org/wiki/Busbar">busbar</a>). In addition, there is some functionality borrowed from <a href="https://www.opencompute.org/wiki/Telcos/Edge">OCP Edge Cloud implementations</a> in place, such as a common interconnect for the compute units (<a href="https://en.wikipedia.org/wiki/System_Management_Bus">SMBus</a>).</p>
+<p>Physically a Racklet rack is a bit larger than a one liter milk carton and hosts <a href="https://en.wikipedia.org/wiki/Single-board_computer">single board computers</a> conforming to the <a href="https://www.raspberrypi.org/">Raspberry Pi</a> 3/4 <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/mechanical/README.md">form factor</a>. The defining features of Racklet compared to other &quot;Raspberry Pi clouds&quot; are the fully integrated and <strong>secure</strong> but still pluggable open source firmware/software/hardware solutions, and the scalability enabled by e.g. hotplug support as well as the inexpensive and available manufacturing techniques applied.</p>
+<p>Racklet aims to inspire their users to explore how modern, advanced server architectures work in practice, in a tangible and educational way. With the new-found knowledge and inspiration, the user may apply their modernization skills on traditional server infrastructure, which improves the status quo and pushes the industry forward. The aim of the project is also to write modular pieces of software and firmware that can be re-used across a diverse set of systems, not only on Racklet itself.</p>
+<p>Racklet is defined by its values and principles. Below you can read about the 9 values that shape this project, and what they mean in practice. One value to highlight here is <a href="rfcs/0001-high-level-architecture.html#value-accessibility"><em>accessibility</em></a>. Racklet is 100% open source and should be accessible to a group as diverse as possible from all over the world. This means all parts of the system should be reproducible through open PCB designs, 3D-printed casing, and commodity, off-the-shelf hardware. We want to lower the barrier of entry for this domain.</p>
+<p>In this RFC, we will outline what Racklet is, why create it (from the user's perspective), and the values and design constraints for the system.</p>
+<p>In short, we'd like to say that</p>
+<blockquote>
+<p>Racklet aims to be for Cloud Computing what Raspberry Pi is for Programming, and Arduino for Electronics</p>
+</blockquote>
+<p>Have fun tinkering with it!</p>
+<h2 id="motivation-2"><a class="header" href="#motivation-2">Motivation</a></h2>
+<p><strong>Problem statement</strong> (choose the one that appeals to you):</p>
+<blockquote>
+<p>Distributed systems of various kinds are steadily becoming the foundation for all important technological environments; and their backends require ever-increasing capacity. The world of cloud computing software is rapidly evolving towards dynamic, scalable and self-correcting systems. The amount of tools and services required to run high-performing cloud systems in a diverse range of environments are vast, and the integration between them complex<sup class="footnote-reference"><a href="#complex_cloud">1</a></sup>. Due to the complicated nature of this quickly-evolving cloud infrastructure, how can newcomers to the field of cloud computing get an idea of the landscape and workings of the systems in an effective way?</p>
+</blockquote>
+<p>and/or</p>
+<blockquote>
+<p>Empirically, it seems that many mainstream server and infrastructure provisioning guides (or even fully-integrated solutions) often don't put enough effort into securing the firmware stack of the server, but focus more on the layers above. This, in combination with the firmware being proprietary, often leads to situations of unknown/random bugs and security flaws (caused by the user due to insufficient knowledge, or flaws in the firmware without patched versions). Different pieces and layers of firmware doing the same things (and often too much) in subtly different ways, but without it being possible to only activate what you need or want to extend. Firmware written in C suffers from many common memory errors and even security flaws. Network booting of servers often stick to legacy and unreliable protocols like TFTP or similar, and skip any verification of the payload's integrity or authenticity.</p>
+</blockquote>
+<p><strong>Proposed solution:</strong></p>
+<p>As detailed in the <a href="rfcs/0001-high-level-architecture.html#summary">Summary</a> section above, <em>&quot;Racklet is a fully-integrated, miniature server rack&quot;</em>. Building on top of good ideas and practices from <a href="https://www.opencompute.org/">OCP</a>, the <a href="https://slack.osfw.dev/">open source firmware community</a> (e.g. <a href="https://www.linuxboot.org/">LinuxBoot</a>, <a href="https://www.denx.de/wiki/U-Boot">u-boot</a>, <a href="https://www.trustedfirmware.org/">TF-A</a>, etc.), the <a href="https://www.raspberrypi.org/">Raspberry Pi</a> educational model, and the advancements in writing secure system software and firmware with <a href="https://www.rust-lang.org/">Rust</a>, we think we can push the state of the art here, and educate newcomers to the field of secure and open source cloud computing at the same time.</p>
+<p>As pointed out in the first problem statement, it can be challenging to &quot;get into&quot; to the server infrastructure world, especially if you want to run your own servers, due to a multitude of reasons, including complexity, lack of standardization at several layers of the stack, and cost. Through Racklet, we want to explore these venues in a tangible and low-cost way with the help of Raspberry Pi's (or alternate single board computers). It has been shown earlier that Raspberry Pis can be helpful for teaching cloud computing<sup class="footnote-reference"><a href="#kubecloud">2</a></sup>, hence we believe this could be a good fit.</p>
+<p>The goal of the project is to be comprehensive and &quot;real-world&quot; enough to feature, at least conceptually, most of what you would find in a modern hyperscaler server infrastructure environment, but still clear, well-documented, and user-friendly enough to attract and welcome new, future talents to the server and firmware worlds.</p>
+<h3 id="goals-of-this-rfc"><a class="header" href="#goals-of-this-rfc">Goals of this RFC</a></h3>
+<ol>
+<li>Describe what Racklet is and what it might be used for.</li>
+<li>Define the values used to guide the design and decision process.</li>
+<li>Describe the purpose and goals of the system from a user point of view.</li>
+<li>Define high-level layers of the system.</li>
+</ol>
+<h3 id="non-goals-of-this-rfc"><a class="header" href="#non-goals-of-this-rfc">Non-Goals of this RFC</a></h3>
+<ol>
+<li>Go into details about what any layer, interface or API contains or does.</li>
+<li>Describe what exact parts, technologies or interfaces should be used.</li>
+<li>Define a timeline for the project.</li>
+<li>Define project governance.</li>
+</ol>
+<h2 id="proposal-1"><a class="header" href="#proposal-1">Proposal</a></h2>
+<p>This proposal consists of a detailed breakdown of the <a href="rfcs/0001-high-level-architecture.html#values">Values</a> of the project, who we think will be using this project (what kind of user persona we are optimizing for, in <a href="rfcs/0001-high-level-architecture.html#user-perspectives">User Perspectives</a>), how we envision the users will use it (<a href="rfcs/0001-high-level-architecture.html#user-goals">User Goals</a>), and finally, a high-level overview of the hardware/software <a href="rfcs/0001-high-level-architecture.html#high-level-layers">Layers</a>.</p>
+<p>Any further technical details are out of scope for this RFC. Those will be covered by upcoming, more detailed RFCs.</p>
+<h3 id="values-1"><a class="header" href="#values-1">Values</a></h3>
+<p>The following values apply to the whole system, and are sorted roughly in priority order, as a guideline when making decisions. Future RFCs should outline in their &quot;Motivation&quot; chapter what values have (or have not) been adhered in the RFC and how.</p>
+<blockquote>
+<p><strong>Disclaimer:</strong> All of these values are aspirational, they are not literal guarantees that can be used for liability claims. We expect to iteratively improve towards and get closer to these goals as the project matures and new versions are released.</p>
+</blockquote>
+<ol>
+<li>
+<p><span style="font-weight:bold" style="font-weight:bold" id="value-security">Security</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-security-by-design">Security by design</span>: Security should be at the top of our minds at every decision we make. All design proposals must consider how the proposed change affects security concerns.</li>
+<li><span style="font-weight:bold" id="subvalue-no-old-insecure-protocols">No old/insecure protocols</span>: We won't accept old/insecure protocols or ways of doing things (e.g. <a href="https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol">TFTP</a>). If we need to choose between interoperability and an insecure standard, we choose the more secure alternative, although that would mean we go against the norm.</li>
+<li><span style="font-weight:bold" id="subvalue-improve-status-quo">Improve status quo</span>: We aspire to improve the status quo of &quot;secure-by-default&quot; solutions and concepts available out there. When we find ways to improve the state of the art, we preferably contribute patches to the respective upstream, otherwise, depending on the situation, build re-usable pieces of code that bring the industry forward.</li>
+<li><span style="font-weight:bold" id="subvalue-defense-in-depth">Defense in depth</span>: Design according to the &quot;defense in depth&quot; and &quot;least privilege&quot; methodologies. For example, the network is considered being an insecure channel, unless proven otherwise (<a href="https://en.wikipedia.org/wiki/Dolev%E2%80%93Yao_model">Dolev-Yao adversary model</a>).</li>
+</ol>
+</li>
+<li>
+<p><span style="font-weight:bold" id="value-interoperability">Interoperability</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-openness">Openness</span>: The truly most effective way of driving innovation forward in our minds is to define open (source) APIs, share code freely, and collaborate with fellow community members.</li>
+<li><span style="font-weight:bold" id="subvalue-de-facto-standards">De-facto standards</span>: Implement well-known, existing and de-facto APIs instead of creating new ones when not needed.</li>
+<li><span style="font-weight:bold" id="subvalue-declarative-management">Declarative management</span>: This is prominent in the cloud native space, but not so much in the embedded and firmware space. We believe declarative APIs are very useful and powerful, especially as it becomes &quot;obvious&quot; to write state reconciliation loops that follow the observe-diff-act pattern.</li>
+<li><span style="font-weight:bold" id="subvalue-consistency">Consistency</span>: We want to expose consistent (declarative) APIs across the stack for the same &quot;look and feel&quot;. Use common meta-protocols like <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> and <a href="https://en.wikipedia.org/wiki/YAML">YAML</a>.</li>
+</ol>
+</li>
+<li>
+<p><span style="font-weight:bold" id="value-accessibility">Accessibility / Reproducibility</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-open-source">Open source</span>: Racklet is 100% open source software and hardware. Anyone can contribute, improve, fork and access the project. The dependencies of the project will also be openly accessible.</li>
+<li><span style="font-weight:bold" id="subvalue-common-off-the-shelf-parts">Common off-the-shelf parts</span>: Only use commonly available components that can be aquired in most parts of the world in a frictionless manner. In other words, no exotic hard-to-reproduce designs.</li>
+<li><span style="font-weight:bold" id="subvalue-3d-printed-parts">3D printed parts</span>: For non-off-the-shelf casing, we will provide 3D-printable designs that can easily be reproduced. Modelling is done in software that does not require paid-for subscriptions. Both printable STL output and the underlying save files are published to GitHub.</li>
+<li><span style="font-weight:bold" id="subvalue-reproducible-pcbs">Reproducible PCBs</span>: For non-off-the-shelf PCBs, we will release schematics freely reproducible, made in open source software such as KiCAD. We will try to make sure that the PCB can be ordered from major PCB manufacturing/assembly services.</li>
+<li><span style="font-weight:bold" id="subvalue-documentation">Documentation</span>: Documentation will be made available through <a href="https://docs.racklet.io/">our mdBook site</a>, <a href="https://github.com/racklet">our GitHub organization</a>, code-autogenerated documentation services such as <a href="https://crates.io/">crates.io</a> and <a href="https://pkg.go.dev/">pkg.go.dev</a> as well as <a href="https://racklet.io/blog/">our blog</a> detailing the development process and important decisions made, featuring these design proposals. This documentation will lower the bar to entry in order to increase accessibility.</li>
+</ol>
+</li>
+<li>
+<p><span style="font-weight:bold" id="value-modularity">Modularity / Compatibility</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-modular-design">Modular design</span>: Our designs, both hardware and software, strive to be as modular and extensible as possible. We strive to follow the Unix philosophy. This will allow for portability between e.g. different hardware modules implementing the same interfaces, or extensibility where the user demands other features than the default.</li>
+<li><span style="font-weight:bold" id="subvalue-raspberry-pi-compatibility">Raspberry Pi compatibility</span>: The Raspberry Pi physical design (mounting holes, GPIO layout, dimensions, <a href="https://github.com/raspberrypi/hats">HAT spec</a>) has established a &quot;de facto&quot; standard, and any other single-board computer implementing this  interface should be compatible with the system with minimal modifications.</li>
+<li><span style="font-weight:bold" id="subvalue-portability">Portability</span>: The code we write includes parameters for the platform it's running on so it is fairly easy to port the code to a new alternate architecture. We primarily support ARMv8 for the compute units.</li>
+<li><span style="font-weight:bold" id="subvalue-loose-coupling">Loose coupling</span>: We strive towards <a href="https://en.wikipedia.org/wiki/Loose_coupling">loose coupling</a>. This means that each component has as little knowledge of and hard dependencies on other components. Components should be easily interchangeable with alternate implementations.</li>
+</ol>
+</li>
+<li>
+<p><span style="font-weight:bold" id="value-transparency">Transparency</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-observability">Observability</span>: All data logging/aggregating components in the system must expose metrics compliant to the <a href="https://openmetrics.io/">OpenMetrics</a> specification.</li>
+<li><span style="font-weight:bold" id="subvalue-debuggability">Debuggability</span>: We expose standardized debug headers (e.g. <a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART</a>/<a href="https://en.wikipedia.org/wiki/JTAG">JTAG</a>) from our PCBs. Low-level firmware troubleshooting is accessible and documented for both our microcontrollers as well as the compute.</li>
+<li><span style="font-weight:bold" id="subvalue-energy-monitoring">Energy monitoring</span>: Energy usage should be measured individually for the various components in the system, in order to transparently and automatically be able to track where power is consumed. This also allows for higher-order aggregation and data processing related to energy.</li>
+</ol>
+</li>
+<li>
+<p><span style="font-weight:bold" id="value-maintainability">Maintainability / Upgradability</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-hot-swappability">Hot swappability</span>: Modules of the system (especially the compute) should be able to be hot-swapped without disturbing the operation of other modules in the rack while the rack is operating.</li>
+<li><span style="font-weight:bold" id="subvalue-upgradability">Upgradability</span>: The modularity of the system should allow that individual pieces of the system (e.g. compute, storage, network switches, power supplies) should be upgradable without having to disrupt the rest of the rack, or disregard existing, functioning parts. This will minimize E-waste produced over time.</li>
+<li><span style="font-weight:bold" id="subvalue-auto-upgradability">Auto-upgradability</span>: It should be possible to enable automated (security) upgrades safely using e.g. <a href="https://source.android.com/devices/tech/ota/ab">A/B partitioning</a> schemes.</li>
+<li><span style="font-weight:bold" id="subvalue-one-time-hardware-setup">One-time hardware setup</span>: The hardware setup steps (3D-printing, PCB assembly, firmware flashing) are only performed once per rack. None of them are performed when dealing with software, even when resetting the entire cluster. This will allow for fast and less error-prone reconfigurations with faster setup/teardown cycle times.</li>
+</ol>
+</li>
+<li>
+<p><span style="font-weight:bold" id="value-affordability">Affordability</span></p>
+<ol>
+<li><span style="font-weight:bold" id="subvalue-sensible-rack-cost">Sensible rack cost</span>: The price point of the Racklet Bill-of-Materials should be low enough to be accessible for hobbyists and educational organizations. Our target price range (VAT-exclusive, all essentials included) is 400-500€ per rack (containing 5 Pis). If this configuration is too costly it should be possible to switch parts out for a lower total price.</li>
+</ol>
+</li>
+</ol>
+<!-- Rough cost estimate calculation for future reference: (40€/Pi + 15€/BMC + 7€/SD Card) × 5 Pis + (25€/SSD + 5€/SATA cable) × 4 compute Pis + 2€/Ethernet cable × 6  + 30€/switch + 5€/backplane = 477€. This needs to be followed up and adjusted over time. -->
+<h3 id="user-perspectives"><a class="header" href="#user-perspectives">User Perspectives</a></h3>
+<blockquote>
+<p><strong>Main User Persona</strong>: <em>&quot;Racklet is for a student, hobbyist, teacher or industry professional who wants to learn and understand modern, increasingly important distributed and cloud computing skills to foster education, research and work opportunities.&quot;</em></p>
+</blockquote>
+<h4 id="tangible-cloud-teaching"><a class="header" href="#tangible-cloud-teaching">Tangible Cloud Teaching</a></h4>
+<p>A University distributed computing class could use one or multiple Racklets as a prototyping platform to enable fast learning augmented by practical training.</p>
+<h4 id="mobile-cluster-for-conferences"><a class="header" href="#mobile-cluster-for-conferences">Mobile Cluster for Conferences</a></h4>
+<p>Companies demoing their software and hardware at conferences could use this as an innovative way to showcase their solutions.</p>
+<h4 id="ctf-contests"><a class="header" href="#ctf-contests">CTF contests</a></h4>
+<p>As this aims to be a scale model of a real cloud environment, it forms a good target for <a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer-security">capture-the-flag hacking contests</a>.</p>
+<h4 id="workshops"><a class="header" href="#workshops">Workshops</a></h4>
+<p>In the same spirit as the Tangible Cloud Teaching use-case above, we anticipate it would also be a good fit for commercial trainings, when time is limited and you quickly need to demonstrate how some specific piece of technology works in detail. The instructor can easily engage their audience in a practical way.</p>
+<h4 id="homelabs"><a class="header" href="#homelabs">Homelabs</a></h4>
+<p>Hobbyists could use one or multiple Racklets to establish home infrastructure while learning more about and further developing the platform.</p>
+<h4 id="research-and-development"><a class="header" href="#research-and-development">Research and Development</a></h4>
+<p>Racklet can be used for Research and Development purposes in Computer Labs where some specific application's architecture is being validated on a real-world but inexpensive system. This is an alternative to data center simulation programs. Racklet captures the real-world aspects that a simulation might not take into account or can not realistically represent. Realistic outages and partial failure modes (e.g. power outages or network partitions) can easily be applied to the system in order to research how the tested application reacts.</p>
+<h3 id="user-goals"><a class="header" href="#user-goals">User Goals</a></h3>
+<ol>
+<li>
+<p><span style="font-weight:bold" id="user-goal-kubernetes">Achieve user goals through containers and Kubernetes</span>: The user wants to use containers and <a href="https://kubernetes.io/">Kubernetes</a> as their preferred way of running applications, and hence some base functionality of that should be provided in a &quot;batteries included, but swappable&quot;-sense. At the end of the day, we're building this project so that the user can build something nice on top of it through these standard interfaces.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-fast-reconfiguration">Fast reconfiguration / turn-around time</span>: The user wants to configure their hardware once, and after that be able to set up and/or recreate the whole software stack from the ground up multiple times over with minimal hassle. For example, an educator may want to rebuild the rack configuration, trusted certificates, etc. or do a &quot;factory reset&quot; for every class/workshop they run.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-secure-updates">Secure firmware<sup class="footnote-reference"><a href="#trusted_firmware">3</a></sup> and software updates</span>: When the user gets notified that a new release is available, the user <em>doesn't</em> want to do it the &quot;classical&quot; way of downloading some hex binary and flashing it manually for each server. Instead, they want the upgrades to be atomic (e.g. A/B partitioning), secure (payload is signed), automated and defend against common upgrading attacks (e.g. <a href="https://en.wikipedia.org/wiki/Downgrade_attack" title="This is for software protocols such as TLS, but the same principle applies to firmware as well.">rollback attack</a>). Optionally, automatic deployment of upgrades can be enabled.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-zero-trust-networking">Network boot in a zero-trust environment</span>: The user should feel ready to plug Racklet in to (almost) any existing network, without the system interfering with existing devices on the network or vice versa. This goes strongly in hand with #3 as ensuring security, especially in the boot and upgrade process, is of paramount importance<sup class="footnote-reference"><a href="#security">4</a></sup>.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-end-to-end-encryption">End-to-end encryption and authentication</span>: The user wants to feel comfortable running software on top of their Racklet without worrying about e.g. <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">MITM</a> attacks in the surrounding untrusted network it is connected to. Hence, all <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP/IP</a> traffic should be end-to-end encrypted, authenticated or preferably, both.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-hot-swappability">Hot swappability</span>: The user wants to be able to upgrade their racks often for newer hardware as they enter the market. The user also wants to be able to maintain and service the rack while it is running, and dynamically expand capacity at runtime.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-power-monitoring">Keep track of power usage and efficiency</span>: For educational purposes and intelligent power control, it is important to know how compute utilization translates to power consumption across the system. The user wants transparently reported metrics so that they can analyze the data and utilize higher-level power control routines to optimize power draw.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-physical-portability">Physical portability</span>: Racklet should be lightweight enough to be carried by hand and should not require specialized equipment or disassembly for transportation.</p>
+</li>
+<li>
+<p><span style="font-weight:bold" id="user-goal-commodity-power-io">Commodity power and I/O</span>: The user wants to be able to utilize commodity resources they already have at hand, instead of needing to buy specialized equipment only for Racklet. Examples of these commodities include: Laptop chargers instead of a custom power cable/transformer, <a href="https://en.wikipedia.org/wiki/USB">USB</a> instead of some proprietary high-speed interconnect, and <a href="https://en.wikipedia.org/wiki/Ethernet">Ethernet</a> switches &amp; cables instead of e.g. expensive <a href="https://en.wikipedia.org/wiki/Small_form-factor_pluggable_transceiver">SFP+</a>.</p>
+</li>
+</ol>
+<h2 id="design-details"><a class="header" href="#design-details">Design Details</a></h2>
+<p>The only design detail in-scope for this document is defining the layers of the system at a high level.</p>
+<h3 id="high-level-layers"><a class="header" href="#high-level-layers">High-level Layers</a></h3>
+<p>The following section will go through the various layers of the system and the requirements/contract of each of the items.</p>
+<p><img src="rfcs/0001-layers.png" alt="Racklet Layers" /></p>
+<h4 id="layer-1-structural"><a class="header" href="#layer-1-structural">Layer 1: Structural</a></h4>
+<p>This layer of the &quot;stack&quot; consists mainly of the 3D-printed casing and trays of the rack. The Ethernet switch optionally attached on the side of the rack can also be considered a structural item.</p>
+<h4 id="layer-2-electrical"><a class="header" href="#layer-2-electrical">Layer 2: Electrical</a></h4>
+<p>This layer consists of compute capacity (e.g. a Raspberry Pi with an attached SSD), our reproducible <a href="https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface">Baseboard Management Controller</a> PCB attached to it in some way (as also can be found in mainstream servers), and our reproducible backplane PCB/wiring which feeds the common <a href="https://en.wikipedia.org/wiki/Busbar">busbar</a> power rails, and the <a href="https://en.wikipedia.org/wiki/System_Management_Bus">SMBus</a> interconnect between compute units.</p>
+<h4 id="layer-3-firmware"><a class="header" href="#layer-3-firmware">Layer 3: Firmware</a></h4>
+<p>The firmware layer is defined as the code that is running in &quot;bare metal&quot; environments, i.e. on the compute before the primary OS has been loaded, or on the BMC <a href="https://en.wikipedia.org/wiki/Microcontroller">microcontroller</a>. Examples of code that is capable of (and specialized at) running before the primary OS includes the (proprietary) <a href="https://github.com/raspberrypi/firmware">Raspberry Pi firmware</a>, <a href="https://www.linuxboot.org/">LinuxBoot</a>, <a href="https://www.denx.de/wiki/U-Boot">u-boot</a>, and <a href="https://www.trustedfirmware.org/">TF-A</a>. We strive to use open source <a href="https://rust-embedded.github.io/book/">Embedded Rust</a> due to the language's suitability for memory safe firmware and good support for most popular microcontrollers.</p>
+<h4 id="layer-4-system-software"><a class="header" href="#layer-4-system-software">Layer 4: System Software</a></h4>
+<p>The system software includes everything the system needs to run in order to fulfil the user goals. All applications at this layer are built for and depend on Linux. As per above, we expect the user to utilize <a href="https://kubernetes.io/">Kubernetes</a>, and hence there is a default (but replaceable) installation of that. We will also pre-install a (configurable) operating system (OS), e.g. <a href="https://github.com/bottlerocket-os/bottlerocket">Bottlerocket</a>, so that the user can get going without too much preliminary work. In addition, we will implement the <a href="https://www.opencompute.org/wiki/Hardware_Management/Open_RMC">Rack Management Controller</a> features at this level.</p>
+<h4 id="layer-5-user-software"><a class="header" href="#layer-5-user-software">Layer 5: User Software</a></h4>
+<p>At this layer are the user-deployable workloads running in containers, we consider them as &quot;user-space applications&quot;. This layer is not part of the Racklet project, it is entirely user-defined. This is also a good place for users to extend Racklet and add extra functionality of their liking.</p>
+<h3 id="test-plan"><a class="header" href="#test-plan">Test Plan</a></h3>
+<p>Unit tests will be created for individual software components of the system. Integration tests will be created for cross-component communications. Automated end-to-end tests will be conducted by a physical Racklet instance that is continuously &quot;upgraded&quot; to the latest development version and reports feedback. This way we will assure the stability and resilience of the software/firmware stack.</p>
+<p>Furthermore, we will rely on the developer community to test out many different hardware, software and firmware combinations other than the reference implementation.</p>
+<h3 id="graduation-criteria"><a class="header" href="#graduation-criteria">Graduation Criteria</a></h3>
+<p>For this project to be considered successful and graduated, we mandate the following:</p>
+<ol>
+<li>There is a vibrant open source community around Racklet</li>
+<li>Racklet fulfils all of the above mentioned <a href="rfcs/0001-high-level-architecture.html#User-Goals">User Goals</a> to a sufficient degree (as determined by the RFCs addressing respective functionality)</li>
+<li>It has been end-to-end tested and verified working by following the documentation by someone external to the core contributors team</li>
+<li>It has been successfully used for educational purposes, e.g. in a university course and/or a workshop</li>
+</ol>
+<h2 id="implementation-history-1"><a class="header" href="#implementation-history-1">Implementation History</a></h2>
+<ol>
+<li><code>2020-12-10</code>: First version of this RFC has been accepted.</li>
+<li><code>2021-06-07</code>: Values have been refined, misc. clarifications and readability improvements.</li>
+<li><code>2021-06-08</code>: All values, subvalues and user goals have been given IDs for referring to them.</li>
+</ol>
+<hr />
+<div class="footnote-definition" id="complex_cloud"><sup class="footnote-definition-label">1</sup>
+<p>See <a href="https://www.cio.com/article/3430760/8-ways-the-cloud-is-more-complex-than-you-think.html">“8 ways the cloud is more complex than you think | CIO.”</a> and <a href="https://www.forbes.com/sites/joemckendrick/2018/09/12/cloud-computing-once-loved-for-its-simplicity-is-now-a-complex-beast/#4fbb3641747c">“Cloud Computing, Once Loved For Its Simplicity, Is Now A Complex Beast.”</a> (accessed Dec. 05, 2019).</p>
+</div>
+<div class="footnote-definition" id="kubecloud"><sup class="footnote-definition-label">2</sup>
+<p>&quot;KubeCloud: A Small-Scale Tangible Cloud Computing Environment&quot;. Master's thesis in Computer Engineering at Aarhus University by Kasper Nissen and Martin Jensen. Published June 6th, 2016. <a href="https://github.com/KubeCloud/thesis/raw/master/master.pdf">Download PDF here</a></p>
+</div>
+<div class="footnote-definition" id="trusted_firmware"><sup class="footnote-definition-label">3</sup>
+<p>For example the <a href="https://github.com/raspberrypi/rpi-eeprom">1st stage bootloader of the Raspberry Pi 4</a> is currently closed source software which we cannot audit or modify, and hence cannot use as a &quot;complete end to end&quot; hardware root of trust. However, such non-idealities don't stop us from getting as close as possible to full hardware root of trust, and more importantly, conceptually being consistent in the way we work with these SBCs and &quot;normal&quot; servers.</p>
+</div>
+<div class="footnote-definition" id="security"><sup class="footnote-definition-label">4</sup>
+<p>At least initially this does not mean that the system is 100% secure, there are both some practical limits<sup class="footnote-reference"><a href="#trusted_firmware">3</a></sup> and software/hardware features that need to be explored for improved security (e.g. <a href="https://www.trustedfirmware.org/">ARM TrustedFirmware</a>).</p>
+</div>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/rfcs/0001-high-level-architecture.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="rfc-0002-layer-architecture"><a class="header" href="#rfc-0002-layer-architecture">RFC-0002: Layer Architecture</a></h1>
+<p><a href="https://hackmd.io/HYXkw0gMTSia7-Da14GLpQ"><img src="https://hackmd.io/HYXkw0gMTSia7-Da14GLpQ/badge" alt="hackmd-github-sync-badge" /></a></p>
+<p><a href="rfcs/0002-layer-architecture.pdf" target="_blank" rel="noopener" class="print-pdf">Download as PDF</a> (for docs.racklet.io)</p>
+<ul>
+<li><a href="rfcs/0002-layer-architecture.html#rfc-metadata">RFC Metadata</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#summary">Summary</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#motivation">Motivation</a>
+<ul>
+<li><a href="rfcs/0002-layer-architecture.html#goals">Goals</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#non-goals">Non-Goals</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0002-layer-architecture.html#proposal">Proposal</a>
+<ul>
+<li><a href="rfcs/0002-layer-architecture.html#5-user-software-layer">5. User Software layer</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#4-system-software-layer">4. System Software layer</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#3-firmware-layer">3. Firmware layer</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#2-electrical-layer">2. Electrical layer</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#1-structural-layer">1. Structural layer</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#guide-level-explanation">Guide-level explanation</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#risks-and-mitigations">Risks and Mitigations</a></li>
+</ul>
+</li>
+<li><a href="rfcs/0002-layer-architecture.html#rationale-and-alternatives">Rationale and alternatives</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#prior-art">Prior art</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#unresolved-questions">Unresolved questions</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#future-possibilities">Future possibilities</a></li>
+<li><a href="rfcs/0002-layer-architecture.html#implementation-history">Implementation History</a></li>
+</ul>
+<h2 id="rfc-metadata-2"><a class="header" href="#rfc-metadata-2">RFC Metadata</a></h2>
+<p><strong>Authors</strong> (in alphabetical order):</p>
+<ul>
+<li>Dennis Marttinen, <a href="https://github.com/twelho">@twelho</a></li>
+<li>Lucas Käldström, <a href="https://github.com/luxas">@luxas</a></li>
+</ul>
+<p><strong>Status</strong> (as defined <a href="https://github.com/kubernetes/enhancements/blob/46b95331113de10ca20a11eb41a0131c88bca966/keps/NNNN-kep-template/kep.yaml#L9">here</a>): <code>Provisional</code></p>
+<p><strong>Creation Date</strong>: <code>2021-04-15</code></p>
+<p><strong>Last Updated</strong>: <code>2021-07-02</code></p>
+<p><strong>RFC Handle</strong>: <code>0002-layer-architecture</code></p>
+<p><strong>Initial Pull Request</strong>: <a href="https://github.com/racklet/racklet/pull/20">racklet/racklet#20</a></p>
+<p><strong>Tracking Issue</strong>: <a href="https://github.com/racklet/racklet/issues/21">racklet/racklet#21</a></p>
+<h2 id="summary-2"><a class="header" href="#summary-2">Summary</a></h2>
+<p>This RFC describes the overall Racklet architecture, its defining layers, and requirements for each such layer, derived from <a href="rfcs/0001-high-level-architecture.html">RFC-0001</a>. For each layer the defining components are described at a high level (avoiding implementation details). The components are associated with their role and five highlighted key requirements from the values and user goals of <a href="rfcs/0001-high-level-architecture.html">RFC-0001</a>.</p>
+<h2 id="motivation-3"><a class="header" href="#motivation-3">Motivation</a></h2>
+<p>With this RFC we aim to clearly define the layers Racklet consists of to provide a clear overview of the system for all contributors and maintainers. Additionally this document concisely presents the techniques and technologies used in the various layers to achieve the goals stated in <a href="rfcs/0001-high-level-architecture.html">RFC-0001</a>.</p>
+<h3 id="goals-1"><a class="header" href="#goals-1">Goals</a></h3>
+<ul>
+<li>Define well-known layers of Racklet.</li>
+<li>Describe the requirements for each layer.</li>
+<li>Briefly discuss &quot;Racklet conformance&quot; from an architectural perspective.</li>
+<li>Highlight some differences between Racklet and other similar alternatives.</li>
+</ul>
+<h3 id="non-goals-1"><a class="header" href="#non-goals-1">Non-Goals</a></h3>
+<ul>
+<li>Describe the details and/or technical implementations of the various layers. See the detailed RFCs for the layers if looking for that information.</li>
+<li>Cover every minor component or implementation-specific components, this RFC is designed to only give an overview.</li>
+</ul>
+<h2 id="proposal-2"><a class="header" href="#proposal-2">Proposal</a></h2>
+<p>Racklet is divided into 5 distinct layers, from highest-level to lowest-level:</p>
+<ol start="5">
+<li><strong>User Software</strong></li>
+<li><strong>System Software</strong></li>
+<li><strong>Firmware</strong></li>
+<li><strong>Electrical</strong></li>
+<li><strong>Structural</strong></li>
+</ol>
+<p>There is some overlap between these defined layers, mostly due to individual components contributing to multiple layers, but we aim to keep a clear distinction in this definition. If for example a microcontroller is part of both the electrical and firmware layer, the electrical layer only considers its electical properties and the firmware layer only its firmware.</p>
+<p>The architecture is designed with the layers and their interaction as the primary focus. The requirements of a layer drive the design of the layer below it, which aims to satisfy the dependencies according to the values and user goals of the project. The layers are described here in reverse order (layer 5 first), since the highest layer starts the dependency chain by directly fulfilling the user goals.</p>
+<h3 id="5-user-software-layer"><a class="header" href="#5-user-software-layer">5. User Software layer</a></h3>
+<p><strong>Summary</strong>: The user software layer should allow the user to schedule workloads of choice using either containers or VMs. There should be an accessible and observable graphical user interface in place for the user to monitor and manage the Racklet system and workloads.</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>Enable the user to observe and manage a Racklet cluster</li>
+<li>Enable easy deployment of container/VM workloads</li>
+<li>(Optionally) make a Kubernetes cluster accessible for the user</li>
+</ul>
+<p><strong>Layer components</strong>:</p>
+<table><thead><tr><th>Component</th><th>Role</th><th>Key Requirements</th></tr></thead><tbody>
+<tr><td><strong>Micro Virtual Machine orchestration</strong></td><td>Define and run VMs declaratively</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-improve-status-quo">Improve status quo</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-openness">Openness</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-documentation">Documentation</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-fast-reconfiguration">Fast reconfiguration</a></td></tr>
+<tr><td><strong>Kubernetes deployment automation</strong></td><td>Consume/use a Kubernetes cluster</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-de-facto-standards">De-facto standards</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-loose-coupling">Loose coupling</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-upgradability">Upgradability</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-kubernetes">Utilize Kubernetes</a></td></tr>
+<tr><td><strong>Racklet dashboard</strong></td><td>Monitor rack and cluster state, deploy workloads</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-security-by-design">Security by design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-open-source">Open source</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-portability">Portability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-observability">Observability</a></td></tr>
+</tbody></table>
+<h3 id="4-system-software-layer"><a class="header" href="#4-system-software-layer">4. System Software layer</a></h3>
+<p><strong>Summary</strong>: The system software layer is responsible for enabling the container/VM solutions of the user software layer. There should be a hypervisor in place for the virtual machines and a container orchestration solution (<a href="https://kubernetes.io/">Kubernetes</a>) for container workloads. Kubernetes is also leveraged for orchestrating the Racklet rack and performing managemental operations in a declarative fashion.</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>Support running containers/VMs securely and scalably</li>
+<li>Be fully declaratively configured using version control</li>
+<li>Enable secure communications inside the cluster</li>
+</ul>
+<p><strong>Layer components</strong>:</p>
+<table><thead><tr><th>Component</th><th>Role</th><th>Key Requirements</th></tr></thead><tbody>
+<tr><td><strong>System Kubernetes installation</strong></td><td>Run container workloads, perform management</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-consistency">Consistency</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-modular-design">Modular design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-portability">Portability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-loose-coupling">Loose coupling</a></td></tr>
+<tr><td><strong>Hypervisor operating system</strong></td><td>Run VM workloads, enable kernel-level security</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-defense-in-depth">Defense in depth</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-de-facto-standards">De-facto standards</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-raspberry-pi-compatibility">Raspberry Pi compatibility</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-portability">Portability</a></td></tr>
+<tr><td><strong><a href="https://github.com/containernetworking/cni">CNI</a> compliant networking</strong></td><td>Network the Racklet cluster compute units</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-security-by-design">Security by design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-no-old-insecure-protocols">No old/insecure protocols</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-openness">Openness</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-observability">Observability</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-end-to-end-encryption">End-to-end encryption</a></td></tr>
+<tr><td><strong>GitOps tooling</strong></td><td>Declarative management of the Racklet stack</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-improve-status-quo">Improve status quo</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-de-facto-standards">De-facto standards</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-observability">Observability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-auto-upgradability">Auto-upgradability</a></td></tr>
+</tbody></table>
+<h3 id="3-firmware-layer"><a class="header" href="#3-firmware-layer">3. Firmware layer</a></h3>
+<p><strong>Summary</strong>: The firmware helps in securely booting and configuring Racklet compute, for example it is declaratively managed and performs cryptographic verification of payloads to boot. The firmware should also help with collecting hardware observability data and telemetry for monitoring and debugging.</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>Enable secure access to the declarative configuration in Git</li>
+<li>Verify payloads to be booted by the compute</li>
+<li>Enable debugging and observability of the hardware and compute</li>
+<li>Store keys and signatures for the above layers</li>
+</ul>
+<p><strong>Layer components</strong>:</p>
+<table><thead><tr><th>Component</th><th>Role</th><th>Key Requirements</th></tr></thead><tbody>
+<tr><td><strong><a href="https://u-root.org/">u-root</a> based bootstrap environment</strong></td><td>Secure Git access, firmware updates and payload booting</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-security-by-design">Security by design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-improve-status-quo">Improve status quo</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-open-source">Open source</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-secure-updates">Secure updates</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-zero-trust-networking">Zero-trust network boot</a></td></tr>
+<tr><td><strong>BMC (Baseboard Management Controller) firmware</strong></td><td>Compute booting and debugging, key and signature storage for software layers</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-security-by-design">Security by design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-no-old-insecure-protocols">No old/insecure protocols</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-debuggability">Debuggability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-one-time-hardware-setup">One-time hardware setup</a></td></tr>
+<tr><td><strong>RMC (Rack Management Controller) firmware</strong></td><td>Rack hardware control and observability, e.g. fans</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-openness">Openness</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-declarative-management">Declarative management</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-loose-coupling">Loose coupling</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-observability">Observability</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-secure-updates">Secure updates</a></td></tr>
+</tbody></table>
+<h3 id="2-electrical-layer"><a class="header" href="#2-electrical-layer">2. Electrical layer</a></h3>
+<p><strong>Summary</strong>: The electrical layer backs the computational, power delivery and physical networking requirements of the compute. It also provides a means to run the firmware on the BMC and RMC (microcontrollers).</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>Provide computing capacity for the software layer</li>
+<li>Provide power for all components in a Racklet rack</li>
+<li>Provide a physical networking device for the software layer</li>
+<li>Provide a means to run the firmware for the compute and rack</li>
+</ul>
+<p><strong>Layer components</strong>:</p>
+<table><thead><tr><th>Component</th><th>Role</th><th>Key Requirements</th></tr></thead><tbody>
+<tr><td><strong>Compute unit</strong></td><td>Run the bootstrap and hypervisor operating systems and compute workloads</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-common-off-the-shelf-parts">Common off-the-shelf parts</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-raspberry-pi-compatibility">Raspberry Pi compatibility</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-hot-swappability">Hot swappability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-one-time-hardware-setup">One-time hardware setup</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-physical-portability">Physical portability</a></td></tr>
+<tr><td><strong>BMC PCB</strong></td><td>Host the BMC microcontroller and deliver power to the compute unit</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-open-source">Open Source</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-reproducible-pcbs">Reproducible PCBs</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-modular-design">Modular design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-raspberry-pi-compatibility">Raspberry Pi compatibility</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-energy-monitoring">Energy monitoring</a></td></tr>
+<tr><td><strong>Backplane PCB</strong></td><td>Rack level power distribution and inter-BMC connectivity</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-common-off-the-shelf-parts">Common off-the-shelf parts</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-reproducible-pcbs">Reproducible PCBs</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-physical-portability">Physical portability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-hot-swappability">Hot swappability</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-upgradability">Upgradability</a></td></tr>
+<tr><td><strong>Network switch</strong></td><td>Provides networking for the rack (and cluster)</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-de-facto-standards">De-facto standards</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-common-off-the-shelf-parts">Common off-the-shelf parts</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-sensible-rack-cost">Sensible rack cost</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-physical-portability">Physical portability</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-commodity-power-io">Commodity power and I/O</a></td></tr>
+</tbody></table>
+<h3 id="1-structural-layer"><a class="header" href="#1-structural-layer">1. Structural layer</a></h3>
+<p><strong>Summary</strong>: The structural layer consists of physical components that form the structure of the Racklet rack. The structural layer enables Racklet to be compact, modular and easily transportable. The rack consists of a casing that hosts the backplane, network switch and slots for slide-in trays. The compute unit with its storage is attached to modular compute trays, that have matching rails for the slide-in slots in the rack.</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li>Provide a rigid structure for hosting all components</li>
+<li>Enable component hot-swap and modularity</li>
+</ul>
+<p><strong>Layer Components</strong>:</p>
+<table><thead><tr><th>Component</th><th>Role</th><th>Key Requirements</th></tr></thead><tbody>
+<tr><td><strong>Compute tray</strong></td><td>Enable mounting of a compute unit in a hot-swappable and modular way</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-open-source">Open source</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-3d-printed-parts">3D printed parts</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-modular-design">Modular design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-raspberry-pi-compatibility">Raspberry Pi compatibility</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-hot-swappability">Hot swappability</a></td></tr>
+<tr><td><strong>Rack case</strong></td><td>Contain the network switch, a power backplane and multiple compute trays</td><td><a href="rfcs/0001-high-level-architecture.html#subvalue-open-source">Open source</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-3d-printed-parts">3D printed parts</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-modular-design">Modular design</a>, <a href="rfcs/0001-high-level-architecture.html#subvalue-sensible-rack-cost">Sensible rack cost</a>, <a href="rfcs/0001-high-level-architecture.html#user-goal-physical-portability">Physical portability</a></td></tr>
+</tbody></table>
+<!-- Links to Racklet values described in RFC-0001 -->
+<!-- Security -->
+<!-- Interoperability -->
+<!-- Accessibility / Reproducibility -->
+<!-- Modularity / Compatibility -->
+<!-- Transparency -->
+<!-- Maintainability / Upgradability -->
+<!-- Affordability -->
+<!-- User goals -->
+<h3 id="guide-level-explanation-1"><a class="header" href="#guide-level-explanation-1">Guide-level explanation</a></h3>
+<p>The layer architecture described in the proposals introduces some new named concepts and components. By layer, they can be explained as follows:</p>
+<ol start="5">
+<li><strong>User Software</strong></li>
+</ol>
+<ul>
+<li><strong>Micro virtual machine (microVM)</strong>: A very light-weight virtual machine that is optimized for low resource consumption by omitting unnecessary features. Racklet uses these to enable low-overhead kernel-level isolation of applications.</li>
+<li><strong>Kubernetes</strong>: A production-grade container orchestration system for runnign containerized applications across multiple (physical) compute unit. Kubernetes is leveraged for both running applications and managing the Racklet cluster.</li>
+<li><strong>Dashboard</strong>: A (usually web-based) graphical user interface for monitoring and controlling software/hardware. Racklet incorporates dashboards for accessibility and observability.</li>
+</ul>
+<ol start="4">
+<li><strong>System Software</strong></li>
+</ol>
+<ul>
+<li><strong>Hypervisor operating system</strong>: An operating system base that is ready to run (micro) virtual machines using e.g. <a href="https://www.linux-kvm.org/page/Main_Page">KVM</a>. The operating system used on Racklet compute units should be light-weight and have hypervisor support.</li>
+<li><strong>CNI networking</strong>: <a href="https://github.com/containernetworking/cni">CNI</a> is a standardized way to network containers for example in Kubernetes. It can however be leveraged across physical compute units and VMs as well, as is done in Racklet.</li>
+<li><strong>GitOps</strong>: A way to declaratively manage Kubernetes (and other components) by storing declarative configuration files in a Git repository. This enables traceability of configuration changes and easy state transitions.</li>
+</ul>
+<ol start="3">
+<li><strong>Firmware</strong></li>
+</ol>
+<ul>
+<li><strong>Bootstrap environment</strong>: A small integrated Linux kernel and userspace responsible for securely resolving and booting a hypervisor operating system from the network. Racklet leverages <a href="https://u-root.org/">u-root</a> for the userspace component, and GitOps for accessing the rack configuration.</li>
+<li><strong>BMC</strong>: Short for <em>Baseboard Management Controller</em>, it is a microcontroller helping with adminstrative tasks on the compute unit level. In the case of Racklet the BMC helps with tasks such as booting securely, verifying integrity and debugging boot issues. The firmware for the BMC will do much of the heavy lifting.</li>
+<li><strong>RMC</strong>: Short for <em>Rack Management Controller</em>, it is an additional microcontroller on the rack level that manages shared resources such as cooling (fans), indicator lights/displays and optionally rack-level power measurement.</li>
+</ul>
+<ol start="2">
+<li><strong>Electrical</strong></li>
+</ol>
+<ul>
+<li><strong>Compute unit</strong>: the &quot;server&quot; of Racklet, i.e. a Linux-compatible computer in the Racklet rack that runs the VMs/containers/applications in a cluster setup. The reference implementation of Racklet focuses on the SBC (Single Board Computer) form factor for affordability, portability and accessibility.</li>
+<li><strong>PCB</strong>: Short for <em>Printed Circuit Board</em>, both the BMC and the backplane of Racklet are PCB-based instead of having the user hand-wire the components together. Although PCBs and the associated SMD (surface mount device) components are more difficult to work with and require some expertise, due to their good state of accessibility and affordability nowadays Racklet is ready to take the tradeoff for a considerably more streamlined user experience.</li>
+<li><strong>Network switch</strong>: As a cluster computer implementation Racklet requires computer networking between the compute nodes. The network switch enables connecting the compute nodes and racks together (and to the Internet). While the type of network switch is not limited here, Racklet aims to only require <a href="https://en.wikipedia.org/wiki/Data_link_layer">OSI layer 2</a> compatibility from the switch. This is why the switch is categorized the electrical layer since that type of switch has no distinct firmware and other &quot;moving parts&quot;.</li>
+</ul>
+<ol>
+<li><strong>Structural</strong></li>
+</ol>
+<ul>
+<li><strong>Compute tray</strong>: The compute tray is analogous to a server casing with rails in a traditional server rack. Since Racklet compute units are mostly of the SBC form factor, they most often have no integrated casing and no way to mount storage (i.e. an SSD/HDD) like a traditional computer case. Thus, Racklet has the compute tray to facilitate exactly that, it is a case (or plate) that mounts a compute unit and its storage and provides &quot;rails&quot; to slide into the Racklet rack with hot-plug support.</li>
+<li><strong>Rack case</strong>: The physical structure hosting all compute units, PCBs, networking and power (conversion). In the reference implementation this resembles a down-scaled server rack for portability and educational value, but the form factor is not strict.</li>
+</ul>
+<p><strong>Note</strong>: These RFCs target a &quot;reference&quot; implementation of Racklet, as envisioned by its authors. The components and key requirements for them are described from the perspective of this reference implementation, and thus &quot;community&quot; implementations of Racklet (e.g. in a different physical form factor) don't need to strictly adhere to the requirements laid out here. A &quot;Racklet compliant&quot; system ultimately only required to follow the <a href="rfcs/0001-high-level-architecture.html#values">values laid out in RFC-0001</a> and the loose coupling hardware/software interfaces of the project. That said, it is still advised that variations of Racklet follow the layers, high-level components and key requirements in this document. </p>
+<h3 id="risks-and-mitigations-1"><a class="header" href="#risks-and-mitigations-1">Risks and Mitigations</a></h3>
+<p>The Racklet team aims to adapt to community requirements and adaptations to keep the Racklet ecosystem cohesive. The project has three strategies to mitigate against the risk of the ecosystem fragmenting with incompatible hardware/software implementations of Racklet:</p>
+<ol>
+<li><em>Community contributions and suggestions are taken into account and encouraged.</em>
+<ul>
+<li>The project adapts to the usecases of its userbase to avoid community implementations steering different directions.</li>
+</ul>
+</li>
+<li><em>Loose coupling is leveraged to the greatest possible extent.</em>
+<ul>
+<li>All components of Racklet shall depend on each other only through standardized interfaces, which enables the use of alternative implementations following those specifications.</li>
+</ul>
+</li>
+<li><em>The layer architecture described here is not fixed.</em>
+<ul>
+<li>The layers are used to guide the design, but are not fixed bounds that require to be strictly adhered to. For example, a community-made component can be both part of the user software and system software layer without issue. The Racklet team is also open to feedback regarding the layer structure if you have improvement suggestions to the model.</li>
+</ul>
+</li>
+</ol>
+<h2 id="rationale-and-alternatives-1"><a class="header" href="#rationale-and-alternatives-1">Rationale and alternatives</a></h2>
+<p>As stated in <a href="rfcs/0002-layer-architecture.html#risks-and-mitigations">Risks and Mitigations</a>, Racklet is (one of) the first of its kind with regards to its specification-first architecture. The initial layer separation presented here is the result of an iterative thought process by the core Racklet authors. The five layers are chosen to clearly separate roles and responsibilities of components, without going into too much detail (too many layers) or causing excessive overlap (too few layers). Firmware and system software are separated to achieve loose coupling and clear, secure communication between them. User software is separated from system software to define a border between software mostly provided by the Racklet project and external software that the user introduces (workloads).</p>
+<p><a href="rfcs/0001-high-level-architecture.html#subvalue-loose-coupling">Loose coupling</a> plays a very important role in the architecture presented here. Racklet could have been designed as a fully integrated system with implementations that are strictly defined by the project, but while this potentially could make the system more compact and simple, it also faces many drawbacks that make it incompatible with the values and goals of the project. For example, Racklet relies heavily on various different projects in the Open Source Firmware and Cloud Native ecosystems, many of which evolve quickly and provide alternative implementations complying to standard APIs. We want Racklet to be accessible, transparent and modular, which means supporting a wide variety of hardware, and enabling user customization to a great extent. If loose coupling is implemented properly, we believe that the standardized architecture presented here will be relatively simple to maintain and extend, and community-built Racklet solutions will also be able to use the modules and different software implementations effortlessly. In summary, to fulfill the values defined in <a href="rfcs/0001-high-level-architecture.html">RFC-0001</a> and to avoid ecosystem fragmentation the Racklet project aims to provide interfaces, not implementations.</p>
+<h2 id="prior-art-1"><a class="header" href="#prior-art-1">Prior art</a></h2>
+<p>At the time of Racklet creation the history of Raspberry Pi (and other single board computer) based cluster computers is already very rich. Various private persons, educational insistutes and companies have come up with a wide variety of designs (e.g. KubeCloud<sup class="footnote-reference"><a href="#kubecloud">1</a></sup>) for different use cases for at least the past 8 years. What sets Racklet apart from these mostly one-off implementations is it's <strong>specification</strong>. Instead of deriving a specification from some implementation, Racklet as a system is <em>primarily</em> defined as a set of RFC documents. This specification is intended to define a <strong>standardized</strong> way to build a miniature compute cluster, from the lowest-level hardware details up to a state-of-the-art software stack. Since the specification is defined from the ground up, we prioritize basing it on the most <em>secure</em> and <em>modern</em> technologies available today, essentially merging the core concepts of prior SBC cluster computer implementations with the state of the art security and fleet management models of large-scale cloud providers.</p>
+<h2 id="unresolved-questions-1"><a class="header" href="#unresolved-questions-1">Unresolved questions</a></h2>
+<p>The architecture described in this document is prone to encounter changes as the detailed RFCs describing individual components/layers are established. It is also unclear if this particular layered architecture with the chosen high-level components is optimal, and thus the reference implementation will likely influence the structure here once it is better known what works and what doesn't.</p>
+<p>Racklet is also a complex system, and this document in its current state can likely not provide the full picture of the architecture to an unfamiliar reader. To combat this, additional graphical elements such as architecture diagrams could be embedded into this document in a future revision (<strong>TODO</strong>).</p>
+<p>The concept of &quot;Racklet conformance&quot; briefly disussed in <a href="rfcs/0002-layer-architecture.html#risks-and-mitigations">Risks and Mitigations</a> is not expanded upon here, but might warrant its own RFC specifically for community implementations.</p>
+<h2 id="future-possibilities-1"><a class="header" href="#future-possibilities-1">Future possibilities</a></h2>
+<p>The layer definitions presented here are expected to evolve with the project. This document serves as a starting point for discussion, and records the current consensus. In the future the scope of this document might also include a thorough introduction to the architecture for newcomers to the project, as well as improved reasoning for particular high-level architectural decisions and how they are derived.</p>
+<h2 id="implementation-history-2"><a class="header" href="#implementation-history-2">Implementation History</a></h2>
+<ul>
+<li><code>2021-07-20</code>: This RFC has been accepted.</li>
+</ul>
+<hr />
+<div class="footnote-definition" id="kubecloud"><sup class="footnote-definition-label">1</sup>
+<p>&quot;KubeCloud: A Small-Scale Tangible Cloud Computing Environment&quot;. Master's thesis in Computer Engineering at Aarhus University by Kasper Nissen and Martin Jensen. Published June 6th, 2016. <a href="https://github.com/KubeCloud/thesis/raw/master/master.pdf">Download PDF here</a>.</p>
+</div>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/rfcs/0002-layer-architecture.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="contributing-1"><a class="header" href="#contributing-1">Contributing</a></h1>
+<p>We highly value and encourage contributions from the community!</p>
+<p>Racklet is <a href="LICENSE">Apache 2.0 licensed</a> and accepts contributions via <a href="https://github.com/racklet/racklet/pulls">GitHub Pull Requests</a>. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contribution accepted.</p>
+<p>We gratefully welcome improvements to documentation as well as to code.</p>
+<h2 id="code-of-conduct"><a class="header" href="#code-of-conduct">Code of Conduct</a></h2>
+<p>We are excited about the prospect of you joining our community! The Racklet community abides by the CNCF <a href="CODE_OF_CONDUCT.html">code of conduct</a>. Here is an excerpt:</p>
+<p><em>As contributors and maintainers of this project, and in the interest of fostering an open and welcoming community, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.</em></p>
+<h2 id="community-and-access"><a class="header" href="#community-and-access">Community and Access</a></h2>
+<p>You can ask questions and discuss features on the <a href="https://osfw.slack.com/messages/racklet/">#racklet</a> Slack channel (you can get an invite at <a href="https://slack.osfw.dev/">here</a>).</p>
+<p>In the future, we are also planning to start public, recurring community meetings where anyone can join and
+participate in the discussion by adding an agenda item to a public meeting notes document.</p>
+<p>The community meeting notes document is <a href="https://hackmd.io/@racklet/Sk8jHHc7_">here</a> (see also the <a href="https://github.com/racklet/meeting-notes">meeting-notes</a> repo). Look out there for when the community meetings are, and follow the Slack channel.</p>
+<h2 id="guidelines"><a class="header" href="#guidelines">Guidelines</a></h2>
+<p>If you have a feature suggestion, or general question about the project or its roadmap, head over to <a href="https://github.com/racklet/racklet/discussions">GitHub Discussions</a>. If you've found a bug, go to <a href="https://github.com/racklet/racklet/issues">GitHub issues</a> and see if there's an open issue matching your description. If not feel free to open a new issue and add short description:</p>
+<ul>
+<li>In case of a bug, be sure to include the steps you performed and the outcomes as detailedly as possible so it's easy for others to reproduce</li>
+<li>If you have a feature suggestion, describe it in moderate detail and include some potential uses you see for the feature.
+We prioritize the features to be implemented based on their usefulness/popularity. Of course if you want to start contributing yourself, go ahead! We'll be more than happy to review your pull requests.</li>
+</ul>
+<p>The maintainers will add the correct labels/milestones to the issue for you.</p>
+<h3 id="contributing-your-code"><a class="header" href="#contributing-your-code">Contributing your code</a></h3>
+<p>The process to contribute code to Racklet is generally as follows:</p>
+<ol>
+<li>Go to the project on <a href="https://github.com/racklet/racklet">GitHub</a> and click the <code>Fork</code> button in the top-right corner. This will create your own copy of the repository in your personal account.</li>
+<li>Using standard <code>git</code> workflow, <code>clone</code> your fork, make your changes and then <code>commit</code> and <code>push</code> them to <em>your</em> repository.</li>
+<li>Go back to <a href="https://github.com/racklet/racklet">GitHub</a>, select <code>Pull requests</code> from the top bar and click
+<code>New pull request</code> to the right. Select the <code>compare across forks</code> link. This will show repositories in addition to branches.</li>
+<li>From the <code>head repository</code> dropdown, select your forked repository. If you made a new branch, select it in the <code>compare</code> dropdown.
+You should always target <code>racklet/racklet</code> (or similar repository) and <code>main</code> as the base repository and branch.</li>
+<li>With your changes visible, click <code>Create pull request</code>. Give it a short, descriptive title and write a comment describing your changes.
+Click <code>Create pull request</code>.</li>
+</ol>
+<p>That's it! Maintainers follow pull requests closely and will add the correct labels and milestones.
+After a maintainer's review small changes/improvements could be requested, don't worry, feedback can
+be easily addressed by performing the requested changes and doing a <code>commit</code> and <code>push</code>. Your new
+changes will automatically be added to the pull request.</p>
+<p>If you have any questions or need help, don't hesitate to ask on our <a href="https://github.com/racklet/racklet/discussions">GitHub Discussions</a>, through <a href="https://github.com/racklet/racklet/issues">GitHub issues</a>,
+or the <a href="https://osfw.slack.com/messages/racklet/">#racklet</a> Slack channel (you can get an invite at <a href="https://slack.osfw.dev/">here</a>).</p>
+<p>Have fun contributing!</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/CONTRIBUTING.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="racklet-mdbook-setup"><a class="header" href="#racklet-mdbook-setup">Racklet mdBook setup</a></h1>
+<p><code>docs.racklet.io</code> is powered by technologies such as Rust's <a href="https://github.com/rust-lang/mdBook"><code>mdbook</code></a>, GitHub Pages, GitHub Actions and a bit of Git LFS.</p>
+<p>The source of the documentation is the <a href="https://github.com/racklet/racklet/tree/main/docs"><code>docs/</code></a> folder of the main Racklet repository.
+If you find typos or corrections you'd like to make, feel free to create a Pull Request to fix this!
+(See also the <a href="CONTRIBUTING.html">contribution guidelines</a>).</p>
+<h2 id="high-level-automation-overview"><a class="header" href="#high-level-automation-overview">High-level automation overview</a></h2>
+<p>When a new PR is submitted, documentation is automatically (thanks to <a href="https://github.com/racklet/racklet/blob/main/.github/workflows/pages-ci.yml">this CI script</a>) generated from Markdown to HTML using <code>mdbook</code>. The &quot;rendered&quot; HTML is stored in the <code>./book/html</code> folder of the repository.</p>
+<p>When a PR is merged to the <code>main</code> branch, GitHub Actions kicks off the <a href="https://github.com/racklet/racklet/blob/main/.github/workflows/pages-deploy.yml">deploy script</a> which</p>
+<ul>
+<li>downloads relevant Git LFS content from the origin (in order to upload e.g. PNGs and SVGs as-is)</li>
+<li>renders the HTML based on the source Markdown</li>
+<li>renders nicely-formatted PDFs for all <a href="rfcs/README.html">RFCs</a></li>
+<li>creates a completely new Git repo (<code>git init</code>), and commits the output HTML and PDFs in the &quot;root commit&quot;</li>
+<li>finally, force-pushes this &quot;root commit (that has Git LFS disabled) to the <code>gh-pages</code> branch in the <code>racklet</code> repo</li>
+</ul>
+<p>This flow has many benefits, including but not limited to:</p>
+<ul>
+<li>The ability to vet documentation PRs before they are merged (CI) (auto-publication of PRs is out of scope)</li>
+<li>Automatical deployment to the <code>docs.racklet.io</code> site with minimal hassle (just merge PRs, no need to host any server)</li>
+<li>The ability for users to download print-optimized PDF versions of the RFCs.</li>
+<li>The ability to write high-level, easy Markdown, but render fairly advanced document features (e.g. Table of Contents, Footnotes, Math Equations, etc.)</li>
+<li>The ability to integrate e.g. <a href="https://hackmd.io">HackMD</a> for collaborative editing before a PR is merged.</li>
+<li>The ability to use Git LFS for all history and revision on the <code>main</code> branch (to use as little space as possible) but <strong>not</strong> use Git LFS on the <code>gh-pages</code> branch, as GitHub Pages does not support LFS. As the <code>gh-pages</code> branch always has just one commit, clones of the repo won't take forever thanks to <a href="https://github.community/t/does-github-ever-purge-commits-or-files-that-were-visible-at-some-time/1944/4">garbage collection in GitHub</a> (&quot;orphaned&quot; commits seem to be deleted when it is older than 14 days and you are pushing to the repo). We might have to also confirm some time in the future that this garbage collection actually does happen.</li>
+</ul>
+<h2 id="contributing-to-the-documentation"><a class="header" href="#contributing-to-the-documentation">Contributing to the documentation</a></h2>
+<p>If you are improving the documentation locally, you need <a href="https://docker.io">Docker</a> and <a href="https://www.gnu.org/software/make/">Make</a> installed.</p>
+<p>The following commands are available to you:</p>
+<pre><code class="language-console">make help
+</code></pre>
+<p>In particular, there are four commands of importance for documentation:</p>
+<ul>
+<li><code>make docs</code>: This renders the documentation into HTML in the <code>book</code> folder</li>
+<li><code>make docs-serve</code>: This renders the documentation, reloads it as you edit files, and serves the book at <code>http://localhost:8080</code></li>
+<li><code>make generate-pdfs</code>: This generates PDFs from the rendered HTML, for the RFCs. These PDFs should be checked into the Git repo. They are also accessible from the mdBook by changing the suffix from <code>html</code> to <code>pdf</code>
+<ul>
+<li>For example, to download RFC-0001 (at <code>https://docs.racklet.io/rfcs/0001-high-level-architecture.html</code>) in PDF format, go to <code>https://docs.racklet.io/rfcs/0001-high-level-architecture.pdf</code>.</li>
+<li>TODO: In the future, we might consider automation that automatically creates a link in the Markdown file to its corresponding PDF.</li>
+</ul>
+</li>
+<li><code>make tidy</code>: This target should be run before committing modifications. It is used to reformat code, text and running lightweight linters. It might, under certain circumstances, also be a no-op.</li>
+<li><code>make autogen</code>: This target runs more heavy-weight autogeneration tasks like generating PDFs, images, code or dependency trees. It should be run once per PR. Depending on the repository and context, the CI might also run this step, and automatically push a new commit to your branch.</li>
+</ul>
+<h3 id="special-features-of-our-mdbook"><a class="header" href="#special-features-of-our-mdbook">&quot;Special&quot; features of our mdBook</a></h3>
+<p>Here a set of noteworthy features in this mdBook are listed. The &quot;general&quot; ones are listed over at <a href="https://rust-lang.github.io/mdBook/format/mdbook.html">mdBook-specific features</a></p>
+<h4 id="table-of-contents-toc-marker"><a class="header" href="#table-of-contents-toc-marker">Table of Contents (ToC) marker</a></h4>
+<p>If you are writing a long document, you might have the need for a table of contents. By just adding a <code>[TOC]</code> marker anywhere in your text, you will automatically get a fully-populated table of contents in the book. Note that this marker is understood by HackMD as well, so it'll also show up there nicely.</p>
+<h4 id="footnotes"><a class="header" href="#footnotes">Footnotes</a></h4>
+<p>There is support for <a href="https://www.markdownguide.org/extended-syntax#footnotes">Markdown footnotes</a> in <code>mdBook</code>, but it comes with a couple of caveats:</p>
+<ul>
+<li>The footnote HTML is generated exactly at the place it is in the document. This is different from some node.js-based implementations like <a href="https://github.com/jonschlinkert/remarkable">Remarkable</a>, which automatically moves the footnote to the end of the document.</li>
+<li>The footnote index is generated in the order the footnote appears in the document. In other words, the first footnote reference in the document might be something other than 1, entirely dependent on how many other definitions preceded the definition the reference points to.</li>
+<li>There is no &quot;backlinking&quot; from the definitions to the references, like the example in <a href="https://www.markdownguide.org/extended-syntax#footnotes">Markdown footnotes</a> (and as is implemented in <a href="https://github.com/jonschlinkert/remarkable">Remarkable</a>)</li>
+</ul>
+<p>For now, the workaround is to create a section at the end of the document (separated by <code>---</code> from the rest of the document), where all the footnote definitions are stored. One needs to sort them manually in the order they are referenced. This could be automated in the future.</p>
+<h4 id="latex-math-expressions"><a class="header" href="#latex-math-expressions">LaTeX math expressions</a></h4>
+<p>It should be possible to use LaTeX math expressions in our mdBook.</p>
+<p>However, the <a href="https://crates.io/crates/mdbook-katex"><code>mdbook-katex</code></a> plugin isn't present in the Docker container we're currently using, until <a href="https://github.com/Michael-F-Bryan/mdbook-docker-image/pull/8">Michael-F-Bryan/mdbook-docker-image#8</a> is resolved. Hence, we can't use the plugin yet.</p>
+<h4 id="drawio-integration"><a class="header" href="#drawio-integration">draw.io integration</a></h4>
+<p>TODO: Integrate this in the future</p>
+<h4 id="plantuml-rendering"><a class="header" href="#plantuml-rendering">PlantUML rendering</a></h4>
+<p>TODO: Integrate this in the future</p>
+<h4 id="edit-me-on-github-links"><a class="header" href="#edit-me-on-github-links">&quot;Edit me on GitHub&quot; links</a></h4>
+<p>Using the <a href="https://crates.io/crates/mdbook-open-on-gh"><code>mdbook-open-on-gh</code></a> plugin, a <code>Found a bug? Edit this file on GitHub.</code> link will be added to the end of each page.</p>
+<h4 id="pdf-generation"><a class="header" href="#pdf-generation">PDF generation</a></h4>
+<p>Our objective for the RFCs is to be as close to academic papers as is reasonable, but without the need for writing any LaTeX, which doesn't play well with the GitHub ecosystem, and isn't as contributor-friendly as Markdown.</p>
+<p>Hence, we're trying to find a middleground in which we write all our RFCs in <code>mdBook</code> form, using Markdown, but with some critical extensions like ToC and footnotes support. Additionally, we want to be able to generate PDFs which</p>
+<ul>
+<li>combine all images, drawings and other visual references in one file (for easy distribution and/or submission)</li>
+<li>preserve formatting/fonts/etc. regardless of viewer</li>
+<li>are fully navigable using internal links, e.g. from the ToC to header elements, inline text to inline text, or footnote references to definitions</li>
+<li>look visually (at least somewhat) pleasing</li>
+<li>are printable, with context of external links to webpages kept</li>
+</ul>
+<p>In order to achieve this goal, we have a <a href="https://github.com/racklet/racklet/blob/main/.mdbook/print.css">dedicated CSS file for print styles</a>, which for example make the link <code>href</code> targets visible for links within a footnote (i.e. the &quot;Sources&quot; or &quot;References&quot; section).</p>
+<p>Navigation from text to text can be achieved with a normal link and a <code>span</code> element as follows:</p>
+<p><code>[my reference here](#custom-ref)</code> =&gt; <code>I want to link exactly &lt;span id=&quot;custom-ref&quot;&gt;&lt;/span&gt; here</code></p>
+<p>Note that the <code>#custom-ref</code> must match both places, and is case-sensitive.</p>
+<p>What we still would like to improve in the future, is to make a mdBook preprocessor that creates footnotes for all normal links in the document, and refers to them using the webpage title, e.g. as follows:</p>
+<pre><code class="language-markdown">... other text ...
+
+I want to link to [Ethernet].
+
+[Ethernet]: https://en.wikipedia.org/wiki/Ethernet
+
+... other text ...
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-markdown">... other text ...
+
+I want to link to [Ethernet][^Ethernet].
+
+[Ethernet]: https://en.wikipedia.org/wiki/Ethernet
+
+... other text ...
+
+---
+
+... other footnote definitions ...
+
+[^Ethernet]: [Ethernet - Wikipedia][Ethernet]
+
+... other footnote definitions ...
+</code></pre>
+<p>This would lead to the <code>https://en.wikipedia.org/wiki/Ethernet</code> link being visible in the printed PDF, in the footnotes section.</p>
+<p>In order to raise awareness that our RFCs actually do have a PDF automatically generated (downloadable from the website or the Git repo), we'd like to add this kind of marker to each RFC:</p>
+<pre><code class="language-html">&lt;a href=&quot;0001-high-level-architecture.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; class=&quot;print-pdf&quot;&gt;Download as PDF&lt;/a&gt;
+</code></pre>
+<p>This could be made its own mdBook preprocessor as well.</p>
+<p>(If you're interested in why we use <code>rel=&quot;noopener&quot;</code> look at <a href="https://stackoverflow.com/a/4425223">this StackOverflow answer</a> and <a href="https://sites.google.com/site/bughunteruniversity/nonvuln/phishing-with-window-opener">this Google report</a>.)</p>
+<p>Finally, the code for the PDF generation itself is in the <a href="https://github.com/racklet/racklet/blob/main/Makefile"><code>Makefile</code></a>. This should be made its own mdBook output over time, but for now this is okay. Essentially, it uses a containerized version of Google Chrome to print the generated HTML output of mdBook for the RFC in question.</p>
+<h2 id="considerations-for-porting-this-mdbook-flow-to-another-repository"><a class="header" href="#considerations-for-porting-this-mdbook-flow-to-another-repository">Considerations for porting this mdBook flow to another repository</a></h2>
+<p>This guide gets you started for integrating a mdBook into a new repository.</p>
+<ol>
+<li>
+<p>Create a new, empty GH Pages branch with a <code>CNAME</code> file of your custom domain name of choice.</p>
+<ul>
+<li>For example as follows:</li>
+</ul>
+<pre><code class="language-bash"># This expects you to have set the the CNAME and GITHUB_REPOSITORY environment variables, and have SSH authentication and a name/email set up in git.
+mkdir tmp &amp;&amp; cd tmp
+git init
+echo ${CNAME} &gt; CNAME &amp;&amp; echo &quot;# Work in Progress&quot; &gt; README.md &amp;&amp; git add CNAME README.md
+git commit -m &quot;Register CNAME and README.md&quot;
+git push git@github.com:${GITHUB_REPOSITORY}.git $(git branch --show-current):gh-pages
+</code></pre>
+</li>
+<li>
+<p>In GitHub Repository settings, you should hopefully now see <code>gh-pages</code> and <code>/</code> as your source branch and directory, respectively. The &quot;Custom domain&quot; field should also have picked up the value of your <code>CNAME</code> file. If not, correct these fields.</p>
+</li>
+<li>
+<p>Go to your DNS provider, and create a CNAME record from the custom domain you chose, to <code>&lt;owner&gt;.github.io</code>, where <code>&lt;owner&gt;</code> is either your GitHub user or organization name.</p>
+</li>
+<li>
+<p>In a couple of minutes (depending on how fast your DNS record propagates), you should be able to browse to <code>http://&lt;custom-domain&gt;</code>. HTTPS might not yet be enabled. To enforce that, go to the GitHub Repository settings again, and check the &quot;Enforce HTTPS&quot; option. You might have to wait for DNS propagation before this option becomes available.</p>
+</li>
+<li>
+<p>Go to the <a href="https://rust-lang.github.io/mdBook/">mdBook website</a>, and learn the format of <code>book.toml</code> and <code>docs/SUMMARY.md</code>. You can also use adapted versions from this repository. However, note the caveats below.</p>
+</li>
+<li>
+<p>Copy or adapt parts of the <code>Makefile</code> so it fits your needs (e.g. do you need PDF generation or not?). Copy the <code>.github/workflows/pages-*</code> files, and the <code>.mdbook</code> directory to your repository.</p>
+</li>
+<li>
+<p>Now you should be close to up and running, and can start testing it in CI. One tip is to try deploying to GitHub Pages already from the Pull Request (testing in production, heh) using this configuration in the workflow (temporarily!):</p>
+<pre><code class="language-yaml">on:
+  push:
+    branches:
+    - main
+    - my-pr-branch-here    # TODO: Remove me before merging this mdBook PR
+</code></pre>
+</li>
+<li>
+<p>When that &quot;deploy&quot; action has completed, you should see your mdBook site live on the internet!</p>
+</li>
+</ol>
+<h3 id="caveats"><a class="header" href="#caveats">Caveats</a></h3>
+<ul>
+<li>The <a href="https://crates.io/crates/mdbook-katex"><code>mdbook-katex</code></a> plugin isn't present in the Docker container we're currently using, until <a href="https://github.com/Michael-F-Bryan/mdbook-docker-image/pull/8">Michael-F-Bryan/mdbook-docker-image#8</a> is resolved. Hence, we can't use the plugin yet.</li>
+<li>The built-in <code>index</code> preprocessor is not used, as it is not updating links to it internally as it should, see <a href="https://github.com/rust-lang/mdBook/issues/984">rust-lang/mdBook#984</a> for context.</li>
+<li>You need to specify your own custom domain in the <code>cname</code> field, under the <code>[output.html]</code> section.</li>
+<li>You need to change all the basic parameters in <code>book.toml</code> (like <code>authors</code>, <code>title</code>, <code>description</code> and <code>git-repository-url</code>)</li>
+<li>You might not link to files outside of your &quot;source folder&quot; (specified using <code>src</code> in the <code>[book]</code> section, <code>docs</code> in our case). The workaround we're using is that before <code>mdbook</code> is run, we're copying any needed files manually to <code>docs/</code>. This is brittle though, as it would not work if any file under <code>docs/</code> actually was referring to the file at e.g. top-level. We might need to write our own preprocessor eventually to solve this.</li>
+<li>In order to not make the URL of this documentation file <code>docs.racklet.io/README.html</code> (which would be slightly misleading), we working our way around this by having a symlink from <code>mdbook.md</code> to <code>README.md</code> (so things still show up nicely in GitHub), and reference <code>mdbook.md</code> in <code>SUMMARY.md</code>. As with the previous note, this is brittle and does not work if this file is referenced internally on the site.</li>
+</ul>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/README.md">Edit this file on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="community-code-of-conduct"><a class="header" href="#community-code-of-conduct">Community Code of Conduct</a></h1>
+<p>Racklet follows the <a href="https://github.com/cncf/foundation/blob/master/code-of-conduct.md">CNCF Code of Conduct</a>.</p>
+<p>Instances of abusive, harassing, or otherwise unacceptable behavior
+may be reported by contacting a Racklet project maintainer, or
+Lucas Käldström (lucas.kaldstrom@hotmail.co.uk).</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/CODE_OF_CONDUCT.md">Edit this file on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

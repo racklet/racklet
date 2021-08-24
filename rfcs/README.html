@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RFC process - Racklet</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Open Source scale model of Data Centers using commodity compute like Raspberry Pis.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../.mdbook/print.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Welcome to Racklet</a></li><li class="chapter-item expanded "><a href="../rfcs/README.html" class="active"><strong aria-hidden="true">1.</strong> RFC process</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rfcs/0000-rfc-template.html"><strong aria-hidden="true">1.1.</strong> 0000: Template</a></li><li class="chapter-item expanded "><a href="../rfcs/0001-high-level-architecture.html"><strong aria-hidden="true">1.2.</strong> 0001: Racklet</a></li><li class="chapter-item expanded "><a href="../rfcs/0002-layer-architecture.html"><strong aria-hidden="true">1.3.</strong> 0002: Layer Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../CONTRIBUTING.html"><strong aria-hidden="true">2.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mdbook.html"><strong aria-hidden="true">2.1.</strong> Documentation workflow</a></li><li class="chapter-item expanded "><a href="../CODE_OF_CONDUCT.html"><strong aria-hidden="true">2.2.</strong> Code of Conduct</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Racklet</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/racklet/racklet" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="request-for-comment-rfc-process"><a class="header" href="#request-for-comment-rfc-process">Request For Comment (RFC) Process</a></h1>
+<p>A well-defined process for improving Racklet over time in a structured and efficient manner.</p>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p>In order to make a significant change to Racklet; one must first write up a document to clearly describe
+what the proposed change is, why the change is needed, how to successfully get to the desired goal, and
+any alternatives considered before settling on a given design. This process is inspired by, and in some
+aspects similar to, <a href="https://github.com/rust-lang/rfcs">Rust's RFC process</a> and <a href="https://github.com/kubernetes/enhancements">Kubernetes' KEP process</a>.</p>
+<p>The accepted RFCs live in this folder. RFC-0000 is the template used as the base for new RFCs, it is inspired by
+and a combination of the <a href="https://github.com/rust-lang/rfcs/blob/master/0000-template.md">Rust RFC template</a> and the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/NNNN-kep-template/README.md">Kubernetes KEP template</a>.</p>
+<p>RFCs are formatted using the syntax used by <a href="https://hackmd.io"><code>hackmd.io</code></a>, i.e. a superset of the
+GitHub Flavored Markdown (GFM) dialect that GitHub supports. Hence, the RFC might not render as nicely in the
+GitHub preview as on HackMD. Each RFC should have its own <code>Collaborate on HackMD</code> badge.</p>
+<p>While the RFC lives in a PR (i.e. it hasn't been accepted yet), it is sensible to have pretty open editor
+permissions in HackMD (i.e. anyone can edit, or those who are signed in to HackMD using GitHub can edit),
+but after the RFC is accepted, and merged to the <code>main</code> branch, the document should be made read-only.
+<strong>TODO:</strong> Look into automating HackMD permission changes using e.g. GH Actions.</p>
+<h2 id="creating-a-new-rfc"><a class="header" href="#creating-a-new-rfc">Creating a new RFC</a></h2>
+<p>In order to create a new RFC, you should do the following:</p>
+<ul>
+<li>
+<p>Clone the <code>racklet/racklet</code> repository. If you do not have push access to the <code>racklet/racklet</code> repo,
+fork the repository first.</p>
+</li>
+<li>
+<p>Create a branch for your RFC, e.g. <code>rfc/foo</code></p>
+</li>
+<li>
+<p>Copy-paste the <a href="0000-rfc-template.html">0000-rfc-template.md</a>
+into a new file following the naming schema <code>docs/rfcs/NNNN-foo.md</code>, where <code>NNNN</code> is the RFC number.</p>
+</li>
+<li>
+<p>Commit the addition of that RFC file. There's no need to change the template quite yet.</p>
+</li>
+<li>
+<p>Push your branch to GitHub, and open a Pull Request in Draft state (choose the dropdown on the
+<code>Create Pull Request</code> button, and choose the <code>Create draft pull request</code> option)</p>
+<ul>
+<li><img src="resources/readme-draft-pr.png" alt="Creating a draft pull request" /></li>
+</ul>
+</li>
+<li>
+<p>Go to <a href="https://hackmd.io/">hackmd.io</a>, and sign in with your GitHub credentials.</p>
+</li>
+<li>
+<p>In the overview page, click the three dots <code>...</code> inside the green <code>New Note</code>
+button, and from the drop-down menu choose <code>Import a file from GitHub</code></p>
+<ul>
+<li><img src="resources/readme-hackmd-import.png" alt="Importing a file from GitHub" /></li>
+</ul>
+</li>
+<li>
+<p>HackMD will take you to the note editor, and ask you to authenticate with GitHub (again!). Click the
+button to authenticate and authorize HackMD to read repositories from your account. You can allow all repos,
+or only some specific ones, but if you have a fork of the <code>racklet</code> repo, make sure that one is in the
+selected set.</p>
+<ul>
+<li><img src="resources/readme-hackmd-authorize.png" alt="Authorizing HackMD to access repositories" /></li>
+<li><strong>Note:</strong> The <code>racklet</code> organization already has enabled the HackMD integration; but for some reason (that seems
+like a bug) HackMD forces you to authorize some repo from your own account, before you can access repositories
+in organizations (if you are a maintainer).
+<ul>
+<li><img src="resources/readme-hackmd-install.png" alt="Enabling HackMD GitHub integration for your own user" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Next, select either <code>racklet/racklet</code> or your fork as the repo to &quot;pull&quot;, the branch you just created as the
+target branch, and the path to the file you just created in the HackMD UI, and then proceed.</p>
+<ul>
+<li><img src="resources/readme-hackmd-pull.png" alt="Pulling from GitHub into HackMD" /></li>
+</ul>
+</li>
+<li>
+<p>HackMD will show a &quot;diff&quot; and explain it'll pull the file you just selected from GitHub into the note. Continue.</p>
+<ul>
+<li><img src="resources/readme-hackmd-apply.png" alt="Applying changes from the pull" /></li>
+</ul>
+</li>
+<li>
+<p>Now, you're almost done! Make sure that anyone can edit (or users logged in to GitHub) and anyone can view by.
+checking the permissions using the &quot;share&quot; button next to your profile picture. <strong>NOTE:</strong> Do <strong>not</strong> click the big
+blue &quot;Publish&quot; button, it not for saving your updated permissions, but instead publishes the file for search engines.</p>
+<ul>
+<li><img src="resources/readme-hackmd-permissions.png" alt="Ensuring proper permissions in HackMD" /></li>
+</ul>
+</li>
+<li>
+<p>Click the three dots <code>...</code> in the top-right corner, select <code>Versions and GitHub sync</code>, and <code>Add badge</code></p>
+<ul>
+<li><img src="resources/readme-hackmd-badge.png" alt="Adding a badge to the RFC" /></li>
+</ul>
+</li>
+<li>
+<p>HackMD will now add a badge to the top of the document, that allows reviewers of the PR to easily jump to the
+online edit view. Next, click <code>Push</code>, select the same branch as your PR lives in, and write some commit message,
+e.g. <code>Add HackMD badge</code>. Finally, click <code>Push</code>. <span id="push-procedure"></span></p>
+<ul>
+<li><img src="resources/readme-hackmd-push.png" alt="Pushing the changes to GitHub" /></li>
+</ul>
+</li>
+<li>
+<p>You can now verify on GitHub that HackMD created a commit for you in the PR.</p>
+</li>
+</ul>
+<h2 id="editingupdating-an-rfc"><a class="header" href="#editingupdating-an-rfc">Editing/updating an RFC</a></h2>
+<p>While the RFC has not been merged, feel free to edit the document in HackMD (quickly open it using the badge on top of
+the document). Whenever you want to synchronize the changes to GitHub (do this fairly often, we don't want a large diff
+between GitHub and HackMD), just repeat the <a href="#push-procedure">push procedure</a>.</p>
+<p>If the RFC has already been merged (and the document on HackMD is read-only):</p>
+<ul>
+<li>Create and push a new branch, based on the latest <code>main</code>, for example as follows:
+<ol>
+<li><code>git checkout main</code></li>
+<li><code>git pull</code></li>
+<li><code>git checkout -b rfc/foo-update</code></li>
+<li><code>git push --set-upstream origin rfc/foo-update</code></li>
+</ol>
+</li>
+<li>Enable the editing permissions in HackMD for the file again, and make your changes and push.
+<ul>
+<li><strong>NOTE:</strong> Make sure to re-target HackMD to push to your new branch instead of the original one!</li>
+</ul>
+</li>
+<li>Draft a new pull request for the updates.</li>
+</ul>
+<p>Although discouraged, if external changes are done by e.g. pushing a commit directly to GitHub or merging review
+suggestions, you need to perform a pull in HackMD to get it up to date again. Reviews should be done exclusively
+on GitHub, in the pull request for the RFC.</p>
+<p><strong>NOTE:</strong> This, for the time being, might not fully work as expected for non-maintainers. If you encounter an issue
+with this process, please open an issue, and we'll try to resolve it to make things as convenient as possible.
+We'll improve this process over time to make contributing RFCs smoother for non-maintainers as well.</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/rfcs/README.md">Edit this file on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../rfcs/0000-rfc-template.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../rfcs/0000-rfc-template.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

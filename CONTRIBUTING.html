@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Contributing - Racklet</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Open Source scale model of Data Centers using commodity compute like Raspberry Pis.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".mdbook/print.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Welcome to Racklet</a></li><li class="chapter-item expanded "><a href="rfcs/README.html"><strong aria-hidden="true">1.</strong> RFC process</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rfcs/0000-rfc-template.html"><strong aria-hidden="true">1.1.</strong> 0000: Template</a></li><li class="chapter-item expanded "><a href="rfcs/0001-high-level-architecture.html"><strong aria-hidden="true">1.2.</strong> 0001: Racklet</a></li><li class="chapter-item expanded "><a href="rfcs/0002-layer-architecture.html"><strong aria-hidden="true">1.3.</strong> 0002: Layer Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="CONTRIBUTING.html" class="active"><strong aria-hidden="true">2.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="mdbook.html"><strong aria-hidden="true">2.1.</strong> Documentation workflow</a></li><li class="chapter-item expanded "><a href="CODE_OF_CONDUCT.html"><strong aria-hidden="true">2.2.</strong> Code of Conduct</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Racklet</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/racklet/racklet" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="contributing"><a class="header" href="#contributing">Contributing</a></h1>
+<p>We highly value and encourage contributions from the community!</p>
+<p>Racklet is <a href="LICENSE">Apache 2.0 licensed</a> and accepts contributions via <a href="https://github.com/racklet/racklet/pulls">GitHub Pull Requests</a>. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contribution accepted.</p>
+<p>We gratefully welcome improvements to documentation as well as to code.</p>
+<h2 id="code-of-conduct"><a class="header" href="#code-of-conduct">Code of Conduct</a></h2>
+<p>We are excited about the prospect of you joining our community! The Racklet community abides by the CNCF <a href="CODE_OF_CONDUCT.html">code of conduct</a>. Here is an excerpt:</p>
+<p><em>As contributors and maintainers of this project, and in the interest of fostering an open and welcoming community, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.</em></p>
+<h2 id="community-and-access"><a class="header" href="#community-and-access">Community and Access</a></h2>
+<p>You can ask questions and discuss features on the <a href="https://osfw.slack.com/messages/racklet/">#racklet</a> Slack channel (you can get an invite at <a href="https://slack.osfw.dev/">here</a>).</p>
+<p>In the future, we are also planning to start public, recurring community meetings where anyone can join and
+participate in the discussion by adding an agenda item to a public meeting notes document.</p>
+<p>The community meeting notes document is <a href="https://hackmd.io/@racklet/Sk8jHHc7_">here</a> (see also the <a href="https://github.com/racklet/meeting-notes">meeting-notes</a> repo). Look out there for when the community meetings are, and follow the Slack channel.</p>
+<h2 id="guidelines"><a class="header" href="#guidelines">Guidelines</a></h2>
+<p>If you have a feature suggestion, or general question about the project or its roadmap, head over to <a href="https://github.com/racklet/racklet/discussions">GitHub Discussions</a>. If you've found a bug, go to <a href="https://github.com/racklet/racklet/issues">GitHub issues</a> and see if there's an open issue matching your description. If not feel free to open a new issue and add short description:</p>
+<ul>
+<li>In case of a bug, be sure to include the steps you performed and the outcomes as detailedly as possible so it's easy for others to reproduce</li>
+<li>If you have a feature suggestion, describe it in moderate detail and include some potential uses you see for the feature.
+We prioritize the features to be implemented based on their usefulness/popularity. Of course if you want to start contributing yourself, go ahead! We'll be more than happy to review your pull requests.</li>
+</ul>
+<p>The maintainers will add the correct labels/milestones to the issue for you.</p>
+<h3 id="contributing-your-code"><a class="header" href="#contributing-your-code">Contributing your code</a></h3>
+<p>The process to contribute code to Racklet is generally as follows:</p>
+<ol>
+<li>Go to the project on <a href="https://github.com/racklet/racklet">GitHub</a> and click the <code>Fork</code> button in the top-right corner. This will create your own copy of the repository in your personal account.</li>
+<li>Using standard <code>git</code> workflow, <code>clone</code> your fork, make your changes and then <code>commit</code> and <code>push</code> them to <em>your</em> repository.</li>
+<li>Go back to <a href="https://github.com/racklet/racklet">GitHub</a>, select <code>Pull requests</code> from the top bar and click
+<code>New pull request</code> to the right. Select the <code>compare across forks</code> link. This will show repositories in addition to branches.</li>
+<li>From the <code>head repository</code> dropdown, select your forked repository. If you made a new branch, select it in the <code>compare</code> dropdown.
+You should always target <code>racklet/racklet</code> (or similar repository) and <code>main</code> as the base repository and branch.</li>
+<li>With your changes visible, click <code>Create pull request</code>. Give it a short, descriptive title and write a comment describing your changes.
+Click <code>Create pull request</code>.</li>
+</ol>
+<p>That's it! Maintainers follow pull requests closely and will add the correct labels and milestones.
+After a maintainer's review small changes/improvements could be requested, don't worry, feedback can
+be easily addressed by performing the requested changes and doing a <code>commit</code> and <code>push</code>. Your new
+changes will automatically be added to the pull request.</p>
+<p>If you have any questions or need help, don't hesitate to ask on our <a href="https://github.com/racklet/racklet/discussions">GitHub Discussions</a>, through <a href="https://github.com/racklet/racklet/issues">GitHub issues</a>,
+or the <a href="https://osfw.slack.com/messages/racklet/">#racklet</a> Slack channel (you can get an invite at <a href="https://slack.osfw.dev/">here</a>).</p>
+<p>Have fun contributing!</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/racklet/racklet/edit/main/docs/CONTRIBUTING.md">Edit this file on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="rfcs/0002-layer-architecture.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="mdbook.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="rfcs/0002-layer-architecture.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="mdbook.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
