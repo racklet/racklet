@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-03-10T17:20:43.417Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="a3UN5g8yu1o7S2sfReny" version="20.8.20" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-03-10T17:22:17.356Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="yG2n7BkwdpFzzhBsuDUe" version="20.8.20" type="github" pages="3">
   <diagram id="kmUigxEFK028a0RhQnVS" name="Page-1">
     <mxGraphModel dx="1184" dy="1065" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -136,7 +136,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="t0F34XYKFjaZHX1E5aVY" name="Rack Diagram">
-    <mxGraphModel dx="1973" dy="2944" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1184" dy="2234" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -259,6 +259,9 @@
         </mxCell>
         <mxCell id="akU_VqpwlgIZYW7BHdBq-35" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="119.99999999999997" y="-119.99532500000001" width="61.417199999999994" height="19.685" as="geometry" />
+        </mxCell>
+        <mxCell id="akU_VqpwlgIZYW7BHdBq-37" value="Switch: ZyXEL GS1100-16" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="2010" y="1060" width="330" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
