@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-03-11T18:57:42.242Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="f4NUgV_6uPnHxJD65MQG" version="20.8.20" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-03-11T18:58:41.929Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="4F_TvMntK5Wgr2NWMFtO" version="20.8.20" type="github" pages="3">
   <diagram id="kmUigxEFK028a0RhQnVS" name="Page-1">
     <mxGraphModel dx="2424" dy="1261" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -146,7 +146,7 @@
         <mxCell id="XSdGwLVqfme5y12cQTK--5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry width="944.88" height="524.9989499999999" as="geometry" />
         </mxCell>
-        <mxCell id="XSdGwLVqfme5y12cQTK--21" value="&lt;font style=&quot;font-size: 50px;&quot;&gt;Network Switch&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;fontColor=#000000;strokeColor=#BD7000;" parent="1" vertex="1">
+        <mxCell id="XSdGwLVqfme5y12cQTK--21" value="&lt;font style=&quot;font-size: 50px;&quot;&gt;Network Switch&lt;br&gt;(front view)&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;fontColor=#000000;strokeColor=#BD7000;" parent="1" vertex="1">
           <mxGeometry y="525" width="944.88" height="174.99965" as="geometry" />
         </mxCell>
         <mxCell id="XSdGwLVqfme5y12cQTK--33" value="6U Half-width rack:&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Inner dimensions&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -242,7 +242,7 @@
         <mxCell id="akU_VqpwlgIZYW7BHdBq-29" value="SFX side view" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;rotation=0;fillColor=none;dashed=1;" vertex="1" parent="1">
           <mxGeometry x="7.869999999999999" y="488.48" width="393.7" height="248.03099999999998" as="geometry" />
         </mxCell>
-        <mxCell id="akU_VqpwlgIZYW7BHdBq-31" value="&lt;font style=&quot;font-size: 50px;&quot;&gt;Network Switch&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;fontColor=#000000;strokeColor=#BD7000;" vertex="1" parent="1">
+        <mxCell id="akU_VqpwlgIZYW7BHdBq-31" value="&lt;font style=&quot;font-size: 50px;&quot;&gt;Network Switch&lt;br&gt;(side view)&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;fontColor=#000000;strokeColor=#BD7000;" vertex="1" parent="1">
           <mxGeometry x="1898.74" y="535" width="523.621" height="174.99965" as="geometry" />
         </mxCell>
         <mxCell id="akU_VqpwlgIZYW7BHdBq-32" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#000000;" vertex="1" parent="1">
